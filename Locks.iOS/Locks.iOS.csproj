@@ -86,38 +86,15 @@
     <Compile Include="Main.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="LocksGame.cs" />
-    <Compile Include="Screens\Screen.cs" />
     <Compile Include="Screens\Home.cs" />
     <Compile Include="Screens\LevelChooser.cs" />
-    <Compile Include="Views\Sprite.cs" />
-    <Compile Include="Views\Popup.cs" />
-    <Compile Include="Views\View.cs" />
-    <Compile Include="Views\Overlay.cs" />
-    <Compile Include="Views\Container.cs" />
     <Compile Include="Views\WorldLevelButton.cs" />
     <Compile Include="Screens\Level.cs" />
     <Compile Include="Views\PlaySlotButton.cs" />
     <Compile Include="Views\Lock.cs" />
-    <Compile Include="Views\Effects\Effect.cs" />
-    <Compile Include="Views\Effects\Appear.cs" />
-    <Compile Include="Views\Effects\Disappear.cs" />
-    <Compile Include="Views\Effects\TranslateTo.cs" />
-    <Compile Include="Views\ViewLayers.cs" />
-    <Compile Include="Views\Effects\Rotate.cs" />
-    <Compile Include="Constants.cs" />
-    <Compile Include="Views\Button.cs" />
-    <Compile Include="Views\Label.cs" />
-    <Compile Include="Views\Switch.cs" />
     <Compile Include="Views\SettingsPopup.cs" />
-    <Compile Include="Views\Effects\Pulsate.cs" />
     <Compile Include="Views\Stars.cs" />
     <Compile Include="Views\TutorialPopup.cs" />
-    <Compile Include="Views\ParticleSystem.cs" />
-    <Compile Include="Views\Effects\Motion.cs" />
-    <Compile Include="Views\Effects\Scale.cs" />
-    <Compile Include="Views\AnimatedSprite.cs" />
-    <Compile Include="Views\ScrollPane.cs" />
-    <Compile Include="Views\Line.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Info.plist" />
@@ -171,7 +148,6 @@
   <ItemGroup>
     <Folder Include="Screens\" />
     <Folder Include="Views\" />
-    <Folder Include="Views\Effects\" />
     <Folder Include="Content\Audio\" />
     <Folder Include="Content\Images\" />
     <Folder Include="Content\Fonts\" />
