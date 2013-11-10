@@ -12,7 +12,7 @@ using Sunfish;
 namespace Locks.iOS
 {
 	/// <summary>
-	/// Default Project Template
+	/// The Locks game.
 	/// </summary>
 	public class LocksGame : SunfishGame
 	{
