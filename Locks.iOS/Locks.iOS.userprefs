@@ -1,22 +1,19 @@
 ﻿<Properties GitUserInfo="UsingGIT">
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug|iPhoneSimulator" PreferredExecutionTarget="MonoDevelop.IPhone.IPhoneSimulatorTarget.IPad.7.0" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Views/SettingsPopup.cs">
+  <MonoDevelop.Ide.Workbench>
     <Files>
-      <File FileName="LocksGame.cs" Line="108" Column="4" />
+      <File FileName="LocksGame.cs" Line="31" Column="1" />
       <File FileName="Views/SettingsPopup.cs" Line="42" Column="4" />
+      <File FileName="../../Sunfish/Framework/SunfishGame.cs" Line="54" Column="3" />
+      <File FileName="../../Sunfish/Framework/Screen.cs" Line="108" Column="4" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">
-        <State expanded="True">
+        <State expanded="True" selected="True">
           <Node name="Locks.iOS" expanded="True">
-            <Node name="Content" expanded="True">
-              <Node name="Fonts" expanded="True" />
-            </Node>
-            <Node name="Screens" expanded="True" />
-            <Node name="Views" expanded="True">
-              <Node name="SettingsPopup.cs" selected="True" />
-            </Node>
+            <Node name="Views" expanded="True" />
           </Node>
+          <Node name="Sunfish" expanded="True" />
         </State>
       </Pad>
       <Pad Id="ClassPad">
