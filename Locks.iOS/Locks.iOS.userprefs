@@ -1,4 +1,4 @@
-﻿<Properties>
+﻿<Properties GitUserInfo="UsingGIT">
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug|iPhoneSimulator" PreferredExecutionTarget="MonoDevelop.IPhone.IPhoneSimulatorTarget.IPad.7.0" />
   <MonoDevelop.Ide.Workbench ActiveDocument="../../Sunfish/Framework/Views/Popup.cs">
     <Files>

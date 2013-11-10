@@ -37,19 +37,12 @@ namespace Locks.iOS.Screens
 			creditsButton.EnableDoubleTapGesture (HandleCreditsButtonTap);
 			CreateCreditsPopup ();
 
-//			Views.Button backButton = new Views.Button (LoadTexture ("BackButton"));
-//			backButton.OnTap = StopParticleSystems;
-
 			CreateTopBar ();
 			TopBar.AddChild (settingsButton, PixelsWithDensity (10), PixelsWithDensity (10));
 			TopBar.AddChild (creditsButton, PixelsWithDensity (10), PixelsWithDensity (10));
-//			TopBar.AddChild (backButton, PixelsWithDensity(10), PixelsWithDensity(10));
 
 		}
-		//		private void StopParticleSystems(Views.Button backButton)
-		//		{
-		//			Smoke.Stop ();
-		//		}
+
 		private void CreatePlayButtonAndPopup ()
 		{
 
@@ -108,14 +101,19 @@ namespace Locks.iOS.Screens
 
 		private void HandleGameButtonTap (Sunfish.Views.View playButton)
 		{
+
 			Views.PlaySlotButton playSlotButton = (Views.PlaySlotButton)playButton;
 			Models.GameProgress[] gameProgress = Rules.GameProgress.LoadGameProgress ();
 			LocksGame.GameProgress = gameProgress [playSlotButton.Slot];
-			if (LocksGame.GameProgress == null) { // initialize a new game progress for new games
+
+			// New game?
+			if (LocksGame.GameProgress == null) { 
 				LocksGame.GameProgress = new Models.GameProgress (playSlotButton.Slot);
 			}
+
 			PlayPopup.Hide ();
 			CurrentGame.SetActiveScreen (new Screens.LevelChooser (CurrentGame));
+
 		}
 	}
 }

@@ -183,11 +183,7 @@
     <Content Include="Content\Audio\LockButtonPushed.wav" />
     <Content Include="Content\Audio\PopupTransition.wav" />
     <Content Include="Content\Audio\LevelSuccess.wav" />
-    <Content Include="Content\Fonts\CDub.xnb" />
     <Content Include="Content\Audio\LevelSong.mp3" />
-    <Content Include="Content\Fonts\Calibri12.xnb" />
-    <Content Include="Content\Fonts\Calibri14.xnb" />
-    <Content Include="Content\Fonts\Calibri18.xnb" />
     <Content Include="Content\Audio\Unlocked.wav" />
     <Content Include="Content\Images\iPad\BackButton.png" />
     <Content Include="Content\Images\iPad\ContinueGameButton.png" />
