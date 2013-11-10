@@ -56,7 +56,7 @@ namespace Locks.iOS.Views
 			Texture2D gearMediumTexture = LocksGame.ActiveScreen.LoadTexture ("GearMedium");
 			Vector2 gearMediumPosition = new Vector2 ((halfWidth - ((float)gearMediumTexture.Width) * 0.5f) - PixelsWithDensity (20), PixelsWithDensity (20));
 			GearMedium = new Sunfish.Views.Sprite (gearMediumTexture, gearMediumPosition, Sunfish.Constants.ViewLayer.Layer2);
-			GearMedium.CenterOrigin ();
+			//GearMedium.CenterOrigin ();
 			AddChild (GearMedium);
 
 			// Horizontal Pipes
@@ -118,7 +118,7 @@ namespace Locks.iOS.Views
 					lockButtonView = Sunfish.Views.Switch.CreateOff (LocksGame.ActiveScreen.LoadTexture ("RotateCCWButton"), LocksGame.ActiveScreen.LoadTexture ("RotateCWButton"), Sunfish.Constants.ViewLayer.Layer4);
 				}
 				lockButtonView.Data = lockButtonModel;
-				lockButtonView.EnableTapGesture(HandleButtonTap);
+				lockButtonView.EnableTapGesture (HandleButtonTap);
 				AddChild (lockButtonView, PixelsWithDensity (10), PixelsWithDensity (10));
 				LockButtonViewsDictionary.Add (buttonIndex, lockButtonView);
 			} 
@@ -128,7 +128,6 @@ namespace Locks.iOS.Views
 		public static Sunfish.Views.Sprite CreateDial (int currentPosition)
 		{
 			Sunfish.Views.Sprite dial = new Sunfish.Views.Sprite (LocksGame.ActiveScreen.LoadTexture ("LockDial"), Sunfish.Constants.ViewLayer.Layer4);
-			dial.CenterOrigin ();
 			if (currentPosition != 0) {
 				dial.RotationRadians = PositionsToRadians (currentPosition);
 			}
@@ -151,7 +150,7 @@ namespace Locks.iOS.Views
 				OnLockButtonPush (pushResult);
 			}
 			LocksGame.ActiveScreen.PlaySoundEffect ("LockButtonPushed");
-			//LocksGame.ActiveScreen.PlaySoundEffect ("GearMedium", 0.7f);
+			LocksGame.ActiveScreen.PlaySoundEffect ("GearMedium", 0.6f);
 
 		}
 

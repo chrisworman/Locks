@@ -267,8 +267,6 @@
     <Content Include="Content\Images\iPadRetina\LockDial.png" />
     <Content Include="Content\Images\iPadRetina\LockIndicatorLocked.png" />
     <Content Include="Content\Images\iPadRetina\LockIndicatorUnlocked.png" />
-    <Content Include="Content\Images\iPadRetina\RotateCCWButton.png" />
-    <Content Include="Content\Images\iPadRetina\RotateCWButton.png" />
     <Content Include="Content\Images\iPad\GearMedium.png" />
     <Content Include="Content\Images\iPad\LockBackground.png" />
     <Content Include="Content\Images\iPad\LockDial.png" />
@@ -277,5 +275,7 @@
     <Content Include="Content\Images\iPad\LockIndicatorUnlocked.png" />
     <Content Include="Content\Images\iPad\RotateCCWButton.png" />
     <Content Include="Content\Images\iPad\RotateCWButton.png" />
+    <Content Include="Content\Images\iPadRetina\RotateCCWButton.png" />
+    <Content Include="Content\Images\iPadRetina\RotateCWButton.png" />
   </ItemGroup>
 </Project>
