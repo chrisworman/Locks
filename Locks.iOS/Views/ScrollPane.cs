@@ -6,11 +6,11 @@ namespace Locks.iOS.Views
 {
 	public class ScrollPane
 	{
-		private Rectangle ClippingRectangle { get; set; }
-
-		public ScrollPane ()
-		{
-		}
+//		private Rectangle ClippingRectangle { get; set; }
+//
+//		public ScrollPane ()
+//		{
+//		}
 
 //		public override Rectangle? GetClippingRectangle ()
 //		{

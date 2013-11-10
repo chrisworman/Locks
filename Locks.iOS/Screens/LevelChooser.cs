@@ -13,6 +13,8 @@ namespace Locks.iOS.Screens
 
 		private Views.SettingsPopup SettingsPopup;
 
+		#region "Initialization"
+
 		public LevelChooser (Sunfish.SunfishGame currentGame) : base(currentGame, Color.DarkSlateGray)
 		{
 		}
@@ -107,6 +109,10 @@ namespace Locks.iOS.Screens
 			}
 		}
 
+		#endregion
+
+		#region "Event handling"
+
 		private void HandleSettingsButtonTap (Sunfish.Views.View settingsButton)
 		{
 			SettingsPopup.Show ();
@@ -115,7 +121,6 @@ namespace Locks.iOS.Screens
 		private void HandleLevelButtonTap (Sunfish.Views.View levelButtonView)
 		{
 			PlaySoundEffect ("Unlocked");
-			//CurrentGame.ShowLevelScreen (levelButton.WorldNumber, levelButton.LevelNumber);
 			Views.WorldLevelButton levelButton = (Views.WorldLevelButton)levelButtonView;
 			CurrentGame.SetActiveScreen (new Screens.Level (CurrentGame, levelButton.WorldNumber, levelButton.LevelNumber));
 		}
@@ -124,6 +129,9 @@ namespace Locks.iOS.Screens
 		{
 			CurrentGame.SetActiveScreen (new Screens.Home (CurrentGame));
 		}
+
+		#endregion
+
 	}
 }
 

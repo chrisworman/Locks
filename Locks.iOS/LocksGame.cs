@@ -100,10 +100,10 @@ namespace Locks.iOS
 		protected override void LoadContent ()
 		{
 
-			GameSong = Content.Load<SoundEffect> (Constants.AudioContentFolder + "LevelSong").CreateInstance ();
-			GameSong.Volume = 0.3f;
-			GameSong.IsLooped = true;
-			MusicOn = true;
+//			GameSong = Content.Load<SoundEffect> (Constants.AudioContentFolder + "LevelSong").CreateInstance ();
+//			GameSong.Volume = 0.3f;
+//			GameSong.IsLooped = true;
+			MusicOn = false;
 		
 		}
 
