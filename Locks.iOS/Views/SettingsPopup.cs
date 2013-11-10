@@ -12,11 +12,10 @@ namespace Locks.iOS.Views
 			Sunfish.Views.Sprite soundEffectsLabel = new Sunfish.Views.Sprite (LocksGame.ActiveScreen.LoadTexture ("SoundEffectsLabel"), Sunfish.Constants.ViewLayer.Modal);
 			Sunfish.Views.Switch soundEffectsCheckBox = null;
 			if (LocksGame.SoundEffectsOn) {
-				soundEffectsCheckBox = Sunfish.Views.Switch.CreateOn (LocksGame.ActiveScreen.LoadTexture ("CheckBoxOn"), LocksGame.ActiveScreen.LoadTexture ("CheckBoxOff"), Sunfish.Constants.ViewLayer.Modal);
+				soundEffectsCheckBox = Sunfish.Views.Switch.CreateOn (LocksGame.ActiveScreen.LoadTexture ("CheckBoxOn"), LocksGame.ActiveScreen.LoadTexture ("CheckBoxOff"), Sunfish.Constants.ViewLayer.Modal, HandleSoundEffectsCheckboxTapped);
 			} else {
-				soundEffectsCheckBox = Sunfish.Views.Switch.CreateOff (LocksGame.ActiveScreen.LoadTexture ("CheckBoxOn"), LocksGame.ActiveScreen.LoadTexture ("CheckBoxOff"), Sunfish.Constants.ViewLayer.Modal);
+				soundEffectsCheckBox = Sunfish.Views.Switch.CreateOff (LocksGame.ActiveScreen.LoadTexture ("CheckBoxOn"), LocksGame.ActiveScreen.LoadTexture ("CheckBoxOff"), Sunfish.Constants.ViewLayer.Modal, HandleSoundEffectsCheckboxTapped);
 			}
-			soundEffectsCheckBox.EnableTapGesture(HandleSoundEffectsCheckboxTapped);
 			Sunfish.Views.Container soundEffectsContainer = new Sunfish.Views.Container (soundEffectsLabel.Width + soundEffectsCheckBox.Width, soundEffectsLabel.Height, Sunfish.Constants.ViewLayer.Modal, Sunfish.Constants.ViewContainerLayout.FloatLeft);
 			soundEffectsContainer.AddChild (soundEffectsCheckBox);
 			soundEffectsContainer.AddChild (soundEffectsLabel);
@@ -24,11 +23,10 @@ namespace Locks.iOS.Views
 			Sunfish.Views.Sprite musicLabel = new Sunfish.Views.Sprite (LocksGame.ActiveScreen.LoadTexture ("MusicLabel"), Sunfish.Constants.ViewLayer.Modal);
 			Sunfish.Views.Switch musicCheckBox = null;
 			if (LocksGame.MusicOn) {
-				musicCheckBox = Sunfish.Views.Switch.CreateOn (LocksGame.ActiveScreen.LoadTexture ("CheckBoxOn"), LocksGame.ActiveScreen.LoadTexture ("CheckBoxOff"), Sunfish.Constants.ViewLayer.Modal);
+				musicCheckBox = Sunfish.Views.Switch.CreateOn (LocksGame.ActiveScreen.LoadTexture ("CheckBoxOn"), LocksGame.ActiveScreen.LoadTexture ("CheckBoxOff"), Sunfish.Constants.ViewLayer.Modal, HandleMusicCheckboxTapped);
 			} else {
-				musicCheckBox = Sunfish.Views.Switch.CreateOff (LocksGame.ActiveScreen.LoadTexture ("CheckBoxOn"), LocksGame.ActiveScreen.LoadTexture ("CheckBoxOff"), Sunfish.Constants.ViewLayer.Modal);
+				musicCheckBox = Sunfish.Views.Switch.CreateOff (LocksGame.ActiveScreen.LoadTexture ("CheckBoxOn"), LocksGame.ActiveScreen.LoadTexture ("CheckBoxOff"), Sunfish.Constants.ViewLayer.Modal, HandleMusicCheckboxTapped);
 			}
-			musicCheckBox.EnableTapGesture (HandleMusicCheckboxTapped);
 			Sunfish.Views.Container musicContainer = new Sunfish.Views.Container (musicLabel.Width + musicCheckBox.Width, musicLabel.Height, Sunfish.Constants.ViewLayer.Modal, Sunfish.Constants.ViewContainerLayout.FloatLeft);
 			musicContainer.AddChild (musicCheckBox);
 			musicContainer.AddChild (musicLabel);

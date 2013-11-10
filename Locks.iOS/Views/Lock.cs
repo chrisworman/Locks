@@ -41,7 +41,7 @@ namespace Locks.iOS.Views
 			Layout = Sunfish.Constants.ViewContainerLayout.FloatLeft;
 
 			CreateLockIndicatorDial ();
-			CreateLocksButtons ();
+			CreateLockButtons ();
 
 		}
 
@@ -105,7 +105,7 @@ namespace Locks.iOS.Views
 			}
 		}
 
-		private void CreateLocksButtons ()
+		private void CreateLockButtons ()
 		{
 			LockButtonViewsDictionary = new Dictionary<int, Sunfish.Views.Switch> ();
 
@@ -113,12 +113,11 @@ namespace Locks.iOS.Views
 				Models.LockButton lockButtonModel = LockModel.Buttons [buttonIndex];
 				Sunfish.Views.Switch lockButtonView = null;
 				if (lockButtonModel.IsOn) {
-					lockButtonView = Sunfish.Views.Switch.CreateOn (LocksGame.ActiveScreen.LoadTexture ("RotateCCWButton"), LocksGame.ActiveScreen.LoadTexture ("RotateCWButton"), Sunfish.Constants.ViewLayer.Layer4);
+					lockButtonView = Sunfish.Views.Switch.CreateOn (LocksGame.ActiveScreen.LoadTexture ("RotateCCWButton"), LocksGame.ActiveScreen.LoadTexture ("RotateCWButton"), Sunfish.Constants.ViewLayer.Layer4, HandleButtonTap);
 				} else {
-					lockButtonView = Sunfish.Views.Switch.CreateOff (LocksGame.ActiveScreen.LoadTexture ("RotateCCWButton"), LocksGame.ActiveScreen.LoadTexture ("RotateCWButton"), Sunfish.Constants.ViewLayer.Layer4);
+					lockButtonView = Sunfish.Views.Switch.CreateOff (LocksGame.ActiveScreen.LoadTexture ("RotateCCWButton"), LocksGame.ActiveScreen.LoadTexture ("RotateCWButton"), Sunfish.Constants.ViewLayer.Layer4, HandleButtonTap);
 				}
 				lockButtonView.Data = lockButtonModel;
-				lockButtonView.EnableTapGesture (HandleButtonTap);
 				AddChild (lockButtonView, PixelsWithDensity (10), PixelsWithDensity (10));
 				LockButtonViewsDictionary.Add (buttonIndex, lockButtonView);
 			} 

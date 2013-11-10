@@ -31,7 +31,7 @@ namespace Locks.iOS
 
 		protected override void LoadContent ()
 		{
-			//SetAndStartGameSong ("LevelSong", 0.4f);
+			SetAndStartGameSong ("LevelSong", 0.4f);
 		}
 
 	}
