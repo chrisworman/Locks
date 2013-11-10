@@ -1,0 +1,305 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">iPhoneSimulator</Platform>
+    <ProductVersion>10.0.0</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{7AC1C262-D458-4447-8C1D-FEA8831CB2A1}</ProjectGuid>
+    <ProjectTypeGuids>{6BC8ED88-2882-458C-8E55-DFD12B67127B};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <OutputType>Exe</OutputType>
+    <RootNamespace>Locks.iOS</RootNamespace>
+    <IPhoneResourcePrefix>Resources</IPhoneResourcePrefix>
+    <AssemblyName>LocksiOS</AssemblyName>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|iPhoneSimulator' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\iPhoneSimulator\Debug</OutputPath>
+    <DefineConstants>DEBUG;</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <MtouchLink>None</MtouchLink>
+    <ConsolePause>false</ConsolePause>
+    <MtouchDebug>true</MtouchDebug>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|iPhoneSimulator' ">
+    <DebugType>full</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\iPhoneSimulator\Release</OutputPath>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <MtouchLink>None</MtouchLink>
+    <ConsolePause>false</ConsolePause>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|iPhone' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\iPhone\Debug</OutputPath>
+    <DefineConstants>DEBUG;</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <MtouchDebug>true</MtouchDebug>
+    <ConsolePause>false</ConsolePause>
+    <CodesignKey>iPhone Developer</CodesignKey>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|iPhone' ">
+    <DebugType>full</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\iPhone\Release</OutputPath>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <CodesignKey>iPhone Developer</CodesignKey>
+    <ConsolePause>false</ConsolePause>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Ad-Hoc|iPhone' ">
+    <DebugType>full</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\iPhone\Ad-Hoc</OutputPath>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <CodesignKey>iPhone Distribution</CodesignKey>
+    <BuildIpa>true</BuildIpa>
+    <ConsolePause>false</ConsolePause>
+    <CodesignProvision>Automatic:AdHoc</CodesignProvision>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'AppStore|iPhone' ">
+    <DebugType>full</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\iPhone\AppStore</OutputPath>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <CodesignKey>iPhone Distribution</CodesignKey>
+    <ConsolePause>false</ConsolePause>
+    <CodesignProvision>Automatic:AppStore</CodesignProvision>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Core" />
+    <Reference Include="monotouch" />
+    <Reference Include="OpenTK" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Main.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="LocksGame.cs" />
+    <Compile Include="Screens\Screen.cs" />
+    <Compile Include="Screens\Home.cs" />
+    <Compile Include="Screens\LevelChooser.cs" />
+    <Compile Include="Views\Sprite.cs" />
+    <Compile Include="Views\Popup.cs" />
+    <Compile Include="Views\View.cs" />
+    <Compile Include="Views\Overlay.cs" />
+    <Compile Include="Views\Container.cs" />
+    <Compile Include="Views\WorldLevelButton.cs" />
+    <Compile Include="Screens\Level.cs" />
+    <Compile Include="Views\PlaySlotButton.cs" />
+    <Compile Include="Views\Lock.cs" />
+    <Compile Include="Views\Effects\Effect.cs" />
+    <Compile Include="Views\Effects\Appear.cs" />
+    <Compile Include="Views\Effects\Disappear.cs" />
+    <Compile Include="Views\Effects\TranslateTo.cs" />
+    <Compile Include="Views\ViewLayers.cs" />
+    <Compile Include="Views\Effects\Rotate.cs" />
+    <Compile Include="Constants.cs" />
+    <Compile Include="Views\Button.cs" />
+    <Compile Include="Views\Label.cs" />
+    <Compile Include="Views\Switch.cs" />
+    <Compile Include="Views\SettingsPopup.cs" />
+    <Compile Include="Views\Effects\Pulsate.cs" />
+    <Compile Include="Views\Stars.cs" />
+    <Compile Include="Views\TutorialPopup.cs" />
+    <Compile Include="Views\ParticleSystem.cs" />
+    <Compile Include="Views\Effects\Motion.cs" />
+    <Compile Include="Views\Effects\Scale.cs" />
+    <Compile Include="Views\AnimatedSprite.cs" />
+    <Compile Include="Views\ScrollPane.cs" />
+    <Compile Include="Views\Line.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Info.plist" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Default.png" />
+    <BundleResource Include="GameThumbnail.png" />
+    <BundleResource Include="Resources\Icon%402x.png" />
+    <BundleResource Include="Resources\Icon-72.png" />
+    <BundleResource Include="Resources\Icon-72%402x.png" />
+    <BundleResource Include="Resources\Icon.png" />
+    <BundleResource Include="Content\Images\iPadRetina\BackButton.png" />
+    <BundleResource Include="Content\Images\iPadRetina\LockDial.png" />
+    <BundleResource Include="Content\Images\iPadRetina\NextLevelButton.png" />
+    <BundleResource Include="Content\Images\iPadRetina\PauseButton.png" />
+    <BundleResource Include="Content\Images\iPadRetina\QuitGameButton.png" />
+    <BundleResource Include="Content\Images\iPadRetina\RestartGameButton.png" />
+    <BundleResource Include="Content\Images\iPadRetina\ResumeGameButton.png" />
+    <BundleResource Include="Content\Images\iPadRetina\RetryButton.png" />
+    <BundleResource Include="Content\Images\iPadRetina\Stars0.png" />
+    <BundleResource Include="Content\Images\iPadRetina\Stars1.png" />
+    <BundleResource Include="Content\Images\iPadRetina\Stars2.png" />
+    <BundleResource Include="Content\Images\iPadRetina\Stars3.png" />
+    <BundleResource Include="Content\Images\iPadRetina\World0Title.png" />
+    <BundleResource Include="Content\Images\iPadRetina\World1Title.png" />
+    <BundleResource Include="Content\Images\iPadRetina\World2Title.png" />
+    <BundleResource Include="Content\Images\iPadRetina\WorldLevelFirstUnsolved.png" />
+    <BundleResource Include="Content\Images\iPadRetina\WorldLevelsContainer.png" />
+    <BundleResource Include="Content\Images\iPadRetina\WorldLevelSolved.png" />
+    <BundleResource Include="Content\Images\iPadRetina\WorldLevelUnsolved.png" />
+  </ItemGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <ItemGroup>
+    <ProjectReference Include="..\Locks.Core.iOS\Locks.Core.iOS.csproj">
+      <Project>{E2BD4B22-A0E2-4E3A-9D46-B4F3F938E6F3}</Project>
+      <Name>Locks.Core.iOS</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\MonoGame-develop\ThirdParty\Lidgren.Network\Lidgren.Network.iOS.csproj">
+      <Project>{734EAA48-F1CA-481A-B391-0285BC0E8B40}</Project>
+      <Name>Lidgren.Network.iOS</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\MonoGame-develop\MonoGame.Framework\MonoGame.Framework.iOS.csproj">
+      <Project>{DB8508BB-9849-4CC2-BC0F-8EB5DACB3C47}</Project>
+      <Name>MonoGame.Framework.iOS</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Sunfish\iOS\Sunfish\Sunfish.csproj">
+      <Project>{70BE6E15-44EF-4F95-944D-8CAB8A562A0F}</Project>
+      <Name>Sunfish</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Screens\" />
+    <Folder Include="Views\" />
+    <Folder Include="Views\Effects\" />
+    <Folder Include="Content\Audio\" />
+    <Folder Include="Content\Images\" />
+    <Folder Include="Content\Fonts\" />
+    <Folder Include="Content\Levels\" />
+    <Folder Include="Content\Images\iPad\" />
+    <Folder Include="Content\Images\iPadRetina\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Content\Audio\LockButtonPushed.wav" />
+    <Content Include="Content\Audio\PopupTransition.wav" />
+    <Content Include="Content\Audio\LevelSuccess.wav" />
+    <Content Include="Content\Fonts\CDub.xnb" />
+    <Content Include="Content\Audio\LevelSong.mp3" />
+    <Content Include="Content\Fonts\Calibri12.xnb" />
+    <Content Include="Content\Fonts\Calibri14.xnb" />
+    <Content Include="Content\Fonts\Calibri18.xnb" />
+    <Content Include="Content\Audio\Unlocked.wav" />
+    <Content Include="Content\Images\iPad\BackButton.png" />
+    <Content Include="Content\Images\iPad\ContinueGameButton.png" />
+    <Content Include="Content\Images\iPad\CheckBoxOff.png" />
+    <Content Include="Content\Images\iPad\CheckBoxOn.png" />
+    <Content Include="Content\Images\iPad\CloseButton.png" />
+    <Content Include="Content\Images\iPad\LockButtonOff.png" />
+    <Content Include="Content\Images\iPad\LockButtonOn.png" />
+    <Content Include="Content\Images\iPad\LockDial.png" />
+    <Content Include="Content\Images\iPad\MusicLabel.png" />
+    <Content Include="Content\Images\iPad\NewGameButton.png" />
+    <Content Include="Content\Images\iPad\NextLevelButton.png" />
+    <Content Include="Content\Images\iPad\OverlayOpaquePixel.png" />
+    <Content Include="Content\Images\iPad\OverlayTransparentPixel.png" />
+    <Content Include="Content\Images\iPad\PauseButton.png" />
+    <Content Include="Content\Images\iPad\PopupBackground.png" />
+    <Content Include="Content\Images\iPad\QuitGameButton.png" />
+    <Content Include="Content\Images\iPad\RestartGameButton.png" />
+    <Content Include="Content\Images\iPad\ResumeGameButton.png" />
+    <Content Include="Content\Images\iPad\RetryButton.png" />
+    <Content Include="Content\Images\iPad\SettingsButton.png" />
+    <Content Include="Content\Images\iPad\SoundEffectsLabel.png" />
+    <Content Include="Content\Images\iPad\Stars0.png" />
+    <Content Include="Content\Images\iPad\Stars1.png" />
+    <Content Include="Content\Images\iPad\Stars2.png" />
+    <Content Include="Content\Images\iPad\Stars3.png" />
+    <Content Include="Content\Images\iPad\StartButton.png" />
+    <Content Include="Content\Images\iPad\TopBarBackground.png" />
+    <Content Include="Content\Images\iPad\World0Title.png" />
+    <Content Include="Content\Images\iPad\World1Title.png" />
+    <Content Include="Content\Images\iPad\World2Title.png" />
+    <Content Include="Content\Images\iPad\WorldLevelFirstUnsolved.png" />
+    <Content Include="Content\Images\iPad\WorldLevelsContainer.png" />
+    <Content Include="Content\Images\iPad\WorldLevelSolved.png" />
+    <Content Include="Content\Images\iPad\CreditsButton.png" />
+    <Content Include="Content\Images\iPad\WorldLevelUnsolved.png" />
+    <Content Include="Content\Images\iPadRetina\CheckBoxOff.png" />
+    <Content Include="Content\Images\iPadRetina\CheckBoxOn.png" />
+    <Content Include="Content\Images\iPadRetina\CloseButton.png" />
+    <Content Include="Content\Images\iPadRetina\CreditsButton.png" />
+    <Content Include="Content\Images\iPadRetina\MusicLabel.png" />
+    <Content Include="Content\Images\iPadRetina\NewGameButton.png" />
+    <Content Include="Content\Images\iPadRetina\OverlayOpaquePixel.png" />
+    <Content Include="Content\Images\iPadRetina\OverlayTransparentPixel.png" />
+    <Content Include="Content\Images\iPadRetina\PopupBackground.png" />
+    <Content Include="Content\Images\iPadRetina\SettingsButton.png" />
+    <Content Include="Content\Images\iPadRetina\SoundEffectsLabel.png" />
+    <Content Include="Content\Images\iPadRetina\StartButton.png" />
+    <Content Include="Content\Images\iPadRetina\TopBarBackground.png" />
+    <Content Include="Content\Images\iPadRetina\ContinueGameButton.png" />
+    <Content Include="Content\Images\iPad\TutorialDialHint.png" />
+    <Content Include="Content\Images\iPadRetina\TutorialDialHint.png" />
+    <Content Include="Content\Images\iPadRetina\TapIcon.png" />
+    <Content Include="Content\Images\iPad\TapIcon.png" />
+    <Content Include="Content\Images\iPad\NextButton.png" />
+    <Content Include="Content\Images\iPadRetina\NextButton.png" />
+    <Content Include="Content\Images\iPad\RightArrow.png" />
+    <Content Include="Content\Images\iPadRetina\RightArrow.png" />
+    <Content Include="Content\Images\iPad\TutorialRotateHint.png" />
+    <Content Include="Content\Images\iPadRetina\TutorialRotateHint.png" />
+    <Content Include="Content\Images\iPad\Spark.png" />
+    <Content Include="Content\Images\iPad\Spark2.png" />
+    <Content Include="Content\Images\iPad\Smoke1.png" />
+    <Content Include="Content\Images\iPad\Smoke2.png" />
+    <Content Include="Content\Images\iPad\Smoke3.png" />
+    <Content Include="Content\Images\iPad\Smoke4.png" />
+    <Content Include="Content\Images\iPad\Smoke5.png" />
+    <Content Include="Content\Images\iPad\Smoke6.png" />
+    <Content Include="Content\Images\iPad\Smoke7.png" />
+    <Content Include="Content\Images\iPad\SampleSpriteSheet.png" />
+    <Content Include="Content\Levels\World0Level0.txt" />
+    <Content Include="Content\Levels\World0Level1.txt" />
+    <Content Include="Content\Levels\World0Level2.txt" />
+    <Content Include="Content\Levels\World0Level3.txt" />
+    <Content Include="Content\Levels\World0Level4.txt" />
+    <Content Include="Content\Levels\World0Level5.txt" />
+    <Content Include="Content\Levels\World0Level6.txt" />
+    <Content Include="Content\Levels\World0Level7.txt" />
+    <Content Include="Content\Levels\World0Level8.txt" />
+    <Content Include="Content\Levels\World1Level0.txt" />
+    <Content Include="Content\Levels\World1Level1.txt" />
+    <Content Include="Content\Levels\World1Level2.txt" />
+    <Content Include="Content\Levels\World1Level3.txt" />
+    <Content Include="Content\Levels\World1Level4.txt" />
+    <Content Include="Content\Levels\World1Level5.txt" />
+    <Content Include="Content\Levels\World1Level6.txt" />
+    <Content Include="Content\Levels\World1Level7.txt" />
+    <Content Include="Content\Levels\World1Level8.txt" />
+    <Content Include="Content\Levels\World2Level0.txt" />
+    <Content Include="Content\Levels\World2Level1.txt" />
+    <Content Include="Content\Levels\World2Level2.txt" />
+    <Content Include="Content\Levels\World2Level3.txt" />
+    <Content Include="Content\Levels\World2Level4.txt" />
+    <Content Include="Content\Levels\World2Level5.txt" />
+    <Content Include="Content\Levels\World2Level6.txt" />
+    <Content Include="Content\Levels\World2Level7.txt" />
+    <Content Include="Content\Levels\World2Level8.txt" />
+    <Content Include="Content\Images\iPad\WhitePixel.png" />
+    <Content Include="Content\Images\iPad\LockIndicatorLocked.png" />
+    <Content Include="Content\Images\iPad\LockIndicatorUnlocked.png" />
+    <Content Include="Content\Images\iPad\RotateCCWButton.png" />
+    <Content Include="Content\Images\iPad\RotateCWButton.png" />
+    <Content Include="Content\Images\iPadRetina\LockBackground.png" />
+    <Content Include="Content\Images\iPadRetina\LockIndicatorLocked.png" />
+    <Content Include="Content\Images\iPadRetina\LockIndicatorUnlocked.png" />
+    <Content Include="Content\Images\iPadRetina\RotateCCWButton.png" />
+    <Content Include="Content\Images\iPadRetina\RotateCWButton.png" />
+    <Content Include="Content\Images\iPad\LockBackground.png" />
+    <Content Include="Content\Images\iPad\LockFaceplate.png" />
+    <Content Include="Content\Images\iPad\GearMedium.png" />
+    <Content Include="Content\Audio\GearMedium.wav" />
+    <Content Include="Content\Images\iPad\PipeHorizontal1.png" />
+    <Content Include="Content\Images\iPad\PipeVertical1.png" />
+  </ItemGroup>
+</Project>

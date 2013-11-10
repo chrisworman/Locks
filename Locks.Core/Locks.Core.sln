@@ -1,0 +1,20 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Visual Studio 2010
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Locks.Core", "Locks.Core.csproj", "{59A31F84-30DB-482F-963A-4A6B4B003CBB}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{59A31F84-30DB-482F-963A-4A6B4B003CBB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{59A31F84-30DB-482F-963A-4A6B4B003CBB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{59A31F84-30DB-482F-963A-4A6B4B003CBB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{59A31F84-30DB-482F-963A-4A6B4B003CBB}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(MonoDevelopProperties) = preSolution
+		StartupItem = Locks.Core.csproj
+	EndGlobalSection
+EndGlobal

@@ -1,0 +1,50 @@
+﻿<Properties>
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug|iPhoneSimulator" PreferredExecutionTarget="MonoDevelop.IPhone.IPhoneSimulatorTarget.IPad.7.0" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="../../Sunfish/Framework/Views/Popup.cs">
+    <Files>
+      <File FileName="Screens/Home.cs" Line="111" Column="1" />
+      <File FileName="../../Sunfish/Framework/Views/View.cs" Line="345" Column="4" />
+      <File FileName="../../Sunfish/Framework/Views/ScreenLayers.cs" Line="68" Column="25" />
+      <File FileName="Views/PlaySlotButton.cs" Line="11" Column="2" />
+      <File FileName="../../Sunfish/Framework/Views/Popup.cs" Line="45" Column="4" />
+      <File FileName="../../Sunfish/Framework/Views/Sprite.cs" Line="62" Column="50" />
+      <File FileName="../../Sunfish/Framework/Views/Overlay.cs" Line="40" Column="84" />
+    </Files>
+    <Pads>
+      <Pad Id="ProjectPad">
+        <State expanded="True">
+          <Node name="MonoGameFramework" expanded="True">
+            <Node name="MonoGame.Framework.iOS" expanded="True">
+              <Node name="Graphics" expanded="True" />
+            </Node>
+          </Node>
+          <Node name="Locks.iOS" expanded="True">
+            <Node name="Screens" expanded="True" />
+            <Node name="Views" expanded="True" />
+          </Node>
+          <Node name="Sunfish" expanded="True">
+            <Node name="Views" expanded="True">
+              <Node name="Effects" expanded="True" />
+              <Node name="Popup.cs" selected="True" />
+            </Node>
+          </Node>
+        </State>
+      </Pad>
+      <Pad Id="ClassPad">
+        <State expanded="True" selected="True" />
+      </Pad>
+      <Pad Id="MonoDevelop.Debugger.WatchPad">
+        <State />
+      </Pad>
+      <Pad Id="ConnectionManagerPad">
+        <State selected="True" />
+      </Pad>
+    </Pads>
+  </MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.DebuggingService.Breakpoints>
+    <BreakpointStore />
+  </MonoDevelop.Ide.DebuggingService.Breakpoints>
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches>
+    <Watch file="../../Sunfish/Framework/Views/View.cs" line="357" offsetX="338" offsetY="4620" expression="this.Texture.Name" liveUpdate="False" />
+  </MonoDevelop.Ide.DebuggingService.PinnedWatches>
+</Properties>
