@@ -297,5 +297,7 @@
     <Content Include="Content\Audio\GearMedium.wav" />
     <Content Include="Content\Images\iPad\PipeHorizontal1.png" />
     <Content Include="Content\Images\iPad\PipeVertical1.png" />
+    <Content Include="Content\Fonts\Helvetica40.png" />
+    <Content Include="Content\Fonts\Helvetica40.txt" />
   </ItemGroup>
 </Project>

@@ -35,12 +35,13 @@ namespace Locks.iOS.Screens
 			SettingsPopup = new Views.SettingsPopup ();
 			AddChildView (SettingsPopup);
 
-			//Sunfish.Views.Label chooseALevelLabel = new Sunfish.Views.Label ("Choose a Level", LoadFont ("Calibri18"), Color.Black);
+			Sunfish.Views.Font chooseALevelFont = new Sunfish.Views.Font ("Helvetica40");
+			Sunfish.Views.Label chooseALevelLabel = new Sunfish.Views.Label ("Choose a Level", chooseALevelFont, Color.Black);
 
 			CreateTopBar ();
 			TopBar.AddChild (backButton, PixelsWithDensity(10), PixelsWithDensity(10));
 			TopBar.AddChild (settingsButton, PixelsWithDensity(10), PixelsWithDensity(10));
-			//TopBar.AddChild (chooseALevelLabel, PixelsWithDensity(280), PixelsWithDensity(25));
+			TopBar.AddChild (chooseALevelLabel, PixelsWithDensity(280), PixelsWithDensity(25));
 
 		}
 
@@ -111,15 +112,17 @@ namespace Locks.iOS.Screens
 			SettingsPopup.Show ();
 		}
 
-		private void HandleLevelButtonTap (Sunfish.Views.View levelButton)
+		private void HandleLevelButtonTap (Sunfish.Views.View levelButtonView)
 		{
 			PlaySoundEffect ("Unlocked");
 			//CurrentGame.ShowLevelScreen (levelButton.WorldNumber, levelButton.LevelNumber);
+			Views.WorldLevelButton levelButton = (Views.WorldLevelButton)levelButtonView;
+			CurrentGame.SetActiveScreen (new Screens.Level (CurrentGame, levelButton.WorldNumber, levelButton.LevelNumber));
 		}
 
 		private void HandleBackButtonTap (Sunfish.Views.View backButton)
 		{
-			//CurrentGame.ShowHomeScreen ();
+			CurrentGame.SetActiveScreen (new Screens.Home (CurrentGame));
 		}
 	}
 }

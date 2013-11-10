@@ -15,7 +15,7 @@ namespace Locks.iOS.Screens
 		private Sunfish.Views.Popup CreditsPopup;
 		private Sunfish.Views.Popup PlayPopup { get; set; }
 
-		public Home (LocksGame currentGame) : base(currentGame, Color.BurlyWood)
+		public Home (SunfishGame currentGame) : base(currentGame, Color.BurlyWood)
 		{
 		}
 

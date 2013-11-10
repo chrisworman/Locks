@@ -33,7 +33,7 @@ namespace Locks.iOS.Screens
 
 		private Views.Stars StarsView { get; set; }
 
-		public Level (LocksGame currentGame, int worldNumber, int levelNumber) :
+		public Level (Sunfish.SunfishGame currentGame, int worldNumber, int levelNumber) :
 		base(currentGame, Color.DarkOliveGreen)
 		{
 			WorldNumber = worldNumber;
