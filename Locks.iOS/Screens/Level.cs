@@ -23,7 +23,7 @@ namespace Locks.iOS.Screens
 
 		private int Moves { get; set; }
 
-		private Sunfish.Views.Label MovesLabel { get; set; }
+		private Sunfish.Views.Label TurnsLabel { get; set; }
 
 		private Sunfish.Views.Label LockedCountLabel { get; set; }
 
@@ -60,23 +60,25 @@ namespace Locks.iOS.Screens
 			Sunfish.Views.Sprite settingsButton = new Sunfish.Views.Sprite (LoadTexture ("SettingsButton"));
 			settingsButton.EnableTapGesture(HandleSettingsButtonTapped);
 
-			//MovesLabel = new Views.Label ("", LoadFont ("CDub"), Color.Black);
-			//UpdateMovesLabel ();
+			Sunfish.Views.Font topBarFont = new Sunfish.Views.Font ("Helvetica40");
 
-			//LockedCountLabel = new Views.Label ("", LoadFont ("CDub"), Color.Black);
-			//UpdateLockCountLabel ();
+			TurnsLabel = new Sunfish.Views.Label ("0", topBarFont, Color.Black);
+			UpdateTurnsLabel ();
 
-			//Views.Label levelLabel = new Views.Label ("World " + WorldNumber.ToString () + " Level " + LevelNumber.ToString (), LoadFont ("CDub"), Color.Black);
+			LockedCountLabel = new Sunfish.Views.Label ("0", topBarFont, Color.Black);
+			UpdateLockCountLabel ();
+
+			Sunfish.Views.Label levelLabel = new Sunfish.Views.Label ("World " + WorldNumber.ToString () + " Level " + LevelNumber.ToString (), topBarFont, Color.Black);
 
 			SettingsPopup = new Views.SettingsPopup ();
-			//ScreenLayers.Add (SettingsPopup);
+			AddChildView (SettingsPopup);
 
 			CreateTopBar ();
 			TopBar.AddChild (pauseButton, PixelsWithDensity (10), PixelsWithDensity (10));
 			TopBar.AddChild (settingsButton, PixelsWithDensity (10), PixelsWithDensity (10));
-			//TopBar.AddChild (MovesLabel, PixelsWithDensity (150), PixelsWithDensity (30));
-			//TopBar.AddChild (LockedCountLabel, PixelsWithDensity (80), PixelsWithDensity (30));
-			//TopBar.AddChild (levelLabel, PixelsWithDensity (80), PixelsWithDensity (30));
+			TopBar.AddChild (TurnsLabel, PixelsWithDensity (80), PixelsWithDensity (20));
+			TopBar.AddChild (LockedCountLabel, PixelsWithDensity (70), PixelsWithDensity (20));
+			TopBar.AddChild (levelLabel, PixelsWithDensity (70), PixelsWithDensity (20));
 
 		}
 
@@ -173,7 +175,7 @@ namespace Locks.iOS.Screens
 		{
 
 			Moves++;
-			UpdateMovesLabel ();
+			UpdateTurnsLabel ();
 
 			if (pushResult.LinkedButton != null) {
 				Views.Lock lockView = null;
@@ -208,18 +210,19 @@ namespace Locks.iOS.Screens
 
 		}
 
-		private void UpdateMovesLabel ()
+		private void UpdateTurnsLabel ()
 		{
-//			if (Moves == 1) {
-//				MovesLabel.Text = Moves.ToString () + " Turn";
-//			} else {
-//				MovesLabel.Text = Moves.ToString () + " Turns";
-//			}
+			if (Moves == 1) {
+				TurnsLabel.SetText(Moves.ToString () + " Turn");
+			} else {
+				TurnsLabel.SetText(Moves.ToString () + " Turns");
+			}
 		}
 
 		private void UpdateLockCountLabel ()
 		{
-			//LockedCountLabel.Text = Model.LockGrid.CountUnlocked ().ToString () + " of " + (Model.LockGrid.ColCount * Model.LockGrid.RowCount).ToString () + " Unlocked";
+			string lockCountText = Model.LockGrid.CountUnlocked ().ToString () + " of " + (Model.LockGrid.ColCount * Model.LockGrid.RowCount).ToString () + " Unlocked";
+			LockedCountLabel.SetText (lockCountText);
 		}
 
 		private void HandleSolvedPopupShown (Sunfish.Views.Popup popupThatIsNowShown)
@@ -268,11 +271,11 @@ namespace Locks.iOS.Screens
 
 		private void HandleNextLevelButtonTapped (Sunfish.Views.View nextLevelButton)
 		{
-//			if (LevelNumber == Core.Constants.WorldLevelCount - 1) {
-//				CurrentGame.ShowLevelScreen (WorldNumber + 1, 0);
-//			} else {
-//				CurrentGame.ShowLevelScreen (WorldNumber, LevelNumber + 1);
-//			}
+			if (LevelNumber == Core.Constants.WorldLevelCount - 1) {
+				CurrentGame.SetActiveScreen(new Screens.Level(CurrentGame, WorldNumber + 1, 0));
+			} else {
+				CurrentGame.SetActiveScreen(new Screens.Level(CurrentGame, WorldNumber, LevelNumber + 1));
+			}
 			SolvedPopup.Hide ();
 		}
 
@@ -288,12 +291,12 @@ namespace Locks.iOS.Screens
 
 		private void RetryLevel ()
 		{
-			//CurrentGame.ShowLevelScreen (WorldNumber, LevelNumber);
+			CurrentGame.SetActiveScreen(new Screens.Level(CurrentGame, WorldNumber, LevelNumber));
 		}
 
 		private void QuitGame ()
 		{
-			//CurrentGame.ShowLevelChooserScreen ();
+			CurrentGame.SetActiveScreen (new Screens.LevelChooser (CurrentGame));
 		}
 	}
 }

@@ -43,7 +43,7 @@ namespace Locks.iOS.Screens
 			CreateTopBar ();
 			TopBar.AddChild (backButton, PixelsWithDensity(10), PixelsWithDensity(10));
 			TopBar.AddChild (settingsButton, PixelsWithDensity(10), PixelsWithDensity(10));
-			TopBar.AddChild (chooseALevelLabel, PixelsWithDensity(280), PixelsWithDensity(25));
+			TopBar.AddChild (chooseALevelLabel, PixelsWithDensity(240), PixelsWithDensity(20));
 
 		}
 
