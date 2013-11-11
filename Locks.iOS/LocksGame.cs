@@ -19,8 +19,6 @@ namespace Locks.iOS
 
 		public static Models.GameProgress GameProgress { get; set; }
 
-		private static Sunfish.Views.Font topBarFont;
-
 		protected override Screen GetHomeScreen ()
 		{
 			return new Screens.Home (this);

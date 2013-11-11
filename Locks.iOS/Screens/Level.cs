@@ -45,7 +45,7 @@ namespace Locks.iOS.Screens
 		public override void PopulateScreenViews ()
 		{
 			CreateAndPopulateTopBar ();
-			CreateLevelGrid (TopBar.Height);
+			CreateLocks (TopBar.Height);
 			CreatePausedPopup ();
 			CreateSolvedPopup ();
 			CreateAndShowTutorialPopupIfNecessary ();
@@ -80,7 +80,7 @@ namespace Locks.iOS.Screens
 
 		}
 
-		private void CreateLevelGrid (int yOffset)
+		private void CreateLocks (int yOffset)
 		{
 		
 			Sunfish.Views.Container lockContainer = CreateLevelGridContainer ();
@@ -178,7 +178,7 @@ namespace Locks.iOS.Screens
 			if (pushResult.LinkedButton != null) {
 				Views.Lock lockView = null;
 				if (LockViewsDictionary.TryGetValue (pushResult.LinkedButton.ContainingLock.GetRowColString (), out lockView)) {
-					lockView.SwitchLockButton (pushResult.LinkedButton.ContainingLockIndex);
+					lockView.SwitchAndPulsateLockButton (pushResult.LinkedButton.ContainingLockIndex);
 					lockView.OnDialRotateComplete = HandleLockDialRotateComplete;
 					lockView.RotateDial (pushResult.GetLinkedButtonContainingLockPositionDelta ());
 				}

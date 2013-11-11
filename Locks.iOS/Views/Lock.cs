@@ -140,27 +140,31 @@ namespace Locks.iOS.Views
 
 		private void HandleButtonTap (Sunfish.Views.View buttonThatWasTapped)
 		{
+
+			// Obtain and update the lock button model
 			Models.LockButton lockButton = (Models.LockButton)buttonThatWasTapped.Data;
 			int previousPosition = lockButton.ContainingLock.CurrentPosition;
 			Models.LockButtonPushResult pushResult = lockButton.Push ();
+
+			// Rotate the lock dial and play a sound effect
 			RotateDial (lockButton.ContainingLock.CurrentPosition - previousPosition);
+			LocksGame.ActiveScreen.PlaySoundEffect ("LockDialTurning");
+
 			RotateGears ();
 			if (OnLockButtonPush != null) {
 				OnLockButtonPush (pushResult);
 			}
-			LocksGame.ActiveScreen.PlaySoundEffect ("LockButtonPushed");
-			LocksGame.ActiveScreen.PlaySoundEffect ("GearMedium", 0.6f);
 
 		}
 
-		public void SwitchLockButton (int buttonIndex)
+		public void SwitchAndPulsateLockButton (int buttonIndex)
 		{
 			Sunfish.Views.Switch lockButtonView = null;
 			if (LockButtonViewsDictionary.TryGetValue (buttonIndex, out lockButtonView)) {
 
 				// Pulsate the lock button
 				lockButtonView.Toggle ();
-				lockButtonView.StartEffect (new Sunfish.Views.Effects.Pulsate (400, 4, Color.White));
+				lockButtonView.StartEffect (new Sunfish.Views.Effects.Pulsate (400, 5, Color.White));
 
 				RotateGears ();
 
@@ -179,6 +183,7 @@ namespace Locks.iOS.Views
 		public void RotateGears ()
 		{
 			GearMedium.StartEffect (new Sunfish.Views.Effects.Rotate (GearMedium.RotationRadians, GearMedium.RotationRadians + (float)Math.PI, 1000d));
+			LocksGame.ActiveScreen.PlaySoundEffect ("GearMedium", 0.6f);
 
 		}
 

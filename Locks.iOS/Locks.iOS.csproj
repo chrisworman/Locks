@@ -137,7 +137,6 @@
     <Folder Include="Content\Images\iPadRetina\" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Content\Audio\LockButtonPushed.wav" />
     <Content Include="Content\Audio\PopupTransition.wav" />
     <Content Include="Content\Audio\LevelSuccess.wav" />
     <Content Include="Content\Audio\LevelSong.mp3" />
@@ -279,5 +278,6 @@
     <Content Include="Content\Fonts\AmericanTypewriter24.txt" />
     <Content Include="Content\Fonts\AmericanTypewriter48.png" />
     <Content Include="Content\Fonts\AmericanTypewriter48.txt" />
+    <Content Include="Content\Audio\LockDialTurning.wav" />
   </ItemGroup>
 </Project>
