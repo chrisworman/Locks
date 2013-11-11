@@ -237,7 +237,6 @@
     <Content Include="Content\Levels\World2Level7.txt" />
     <Content Include="Content\Levels\World2Level8.txt" />
     <Content Include="Content\Images\iPad\WhitePixel.png" />
-    <Content Include="Content\Audio\GearMedium.wav" />
     <Content Include="Content\Images\iPad\PipeHorizontal1.png" />
     <Content Include="Content\Images\iPad\PipeVertical1.png" />
     <Content Include="Content\Images\iPadRetina\BackButton.png" />
@@ -279,5 +278,6 @@
     <Content Include="Content\Fonts\AmericanTypewriter48.png" />
     <Content Include="Content\Fonts\AmericanTypewriter48.txt" />
     <Content Include="Content\Audio\LockDialTurning.wav" />
+    <Content Include="Content\Audio\GearTurning.wav" />
   </ItemGroup>
 </Project>

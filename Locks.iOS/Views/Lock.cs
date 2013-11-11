@@ -183,7 +183,7 @@ namespace Locks.iOS.Views
 		public void RotateGears ()
 		{
 			GearMedium.StartEffect (new Sunfish.Views.Effects.Rotate (GearMedium.RotationRadians, GearMedium.RotationRadians + (float)Math.PI, 1000d));
-			LocksGame.ActiveScreen.PlaySoundEffect ("GearMedium", 0.6f);
+			LocksGame.ActiveScreen.PlaySoundEffect ("GearTurning", 0.6f);
 
 		}
 
