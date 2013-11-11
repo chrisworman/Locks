@@ -241,8 +241,6 @@
     <Content Include="Content\Audio\GearMedium.wav" />
     <Content Include="Content\Images\iPad\PipeHorizontal1.png" />
     <Content Include="Content\Images\iPad\PipeVertical1.png" />
-    <Content Include="Content\Fonts\Helvetica40.png" />
-    <Content Include="Content\Fonts\Helvetica40.txt" />
     <Content Include="Content\Images\iPadRetina\BackButton.png" />
     <Content Include="Content\Images\iPadRetina\NextLevelButton.png" />
     <Content Include="Content\Images\iPadRetina\PauseButton.png" />
@@ -277,5 +275,9 @@
     <Content Include="Content\Images\iPad\RotateCWButton.png" />
     <Content Include="Content\Images\iPadRetina\RotateCCWButton.png" />
     <Content Include="Content\Images\iPadRetina\RotateCWButton.png" />
+    <Content Include="Content\Fonts\AmericanTypewriter24.png" />
+    <Content Include="Content\Fonts\AmericanTypewriter24.txt" />
+    <Content Include="Content\Fonts\AmericanTypewriter48.png" />
+    <Content Include="Content\Fonts\AmericanTypewriter48.txt" />
   </ItemGroup>
 </Project>

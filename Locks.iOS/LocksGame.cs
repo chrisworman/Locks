@@ -19,6 +19,8 @@ namespace Locks.iOS
 
 		public static Models.GameProgress GameProgress { get; set; }
 
+		private static Sunfish.Views.Font topBarFont;
+
 		protected override Screen GetHomeScreen ()
 		{
 			return new Screens.Home (this);
@@ -29,9 +31,19 @@ namespace Locks.iOS
 			return DisplayOrientation.LandscapeLeft | DisplayOrientation.LandscapeRight;
 		}
 
-		protected override void LoadContent ()
+		protected override void Initialize ()
 		{
+			base.Initialize ();
 			SetAndStartGameSong ("LevelSong", 0.4f);
+		}
+
+		public static Sunfish.Views.Font GetTopBarFont()
+		{
+			if (IsiPad()) {
+				return new Sunfish.Views.Font ("AmericanTypewriter24");
+			} else {
+				return new Sunfish.Views.Font ("AmericanTypewriter48");
+			}
 		}
 
 	}

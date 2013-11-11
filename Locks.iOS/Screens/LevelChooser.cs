@@ -37,8 +37,7 @@ namespace Locks.iOS.Screens
 			SettingsPopup = new Views.SettingsPopup ();
 			AddChildView (SettingsPopup);
 
-			Sunfish.Views.Font chooseALevelFont = new Sunfish.Views.Font ("Helvetica40");
-			Sunfish.Views.Label chooseALevelLabel = new Sunfish.Views.Label ("Choose a Level", chooseALevelFont, Color.Black);
+			Sunfish.Views.Label chooseALevelLabel = new Sunfish.Views.Label ("Choose a Level", LocksGame.GetTopBarFont(), Color.Black);
 
 			CreateTopBar ();
 			TopBar.AddChild (backButton, PixelsWithDensity(10), PixelsWithDensity(10));
