@@ -106,6 +106,9 @@
     <BundleResource Include="Resources\Icon-72.png" />
     <BundleResource Include="Resources\Icon-72%402x.png" />
     <BundleResource Include="Resources\Icon.png" />
+    <BundleResource Include="Content\Images\iPad\WorldLevelsContainer_1.png" />
+    <BundleResource Include="Content\Images\iPad\WorldLevelsContainer_2.png" />
+    <BundleResource Include="Content\Images\iPad\WorldLevelsContainer_3.png" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
@@ -279,5 +282,8 @@
     <Content Include="Content\Fonts\AmericanTypewriter48.txt" />
     <Content Include="Content\Audio\LockDialTurning.wav" />
     <Content Include="Content\Audio\GearTurning.wav" />
+    <Content Include="Content\Images\iPadRetina\WorldLevelsContainer_1.png" />
+    <Content Include="Content\Images\iPadRetina\WorldLevelsContainer_2.png" />
+    <Content Include="Content\Images\iPadRetina\WorldLevelsContainer_3.png" />
   </ItemGroup>
 </Project>

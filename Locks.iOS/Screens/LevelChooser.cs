@@ -53,9 +53,9 @@ namespace Locks.iOS.Screens
 			Sunfish.Views.Sprite world1Title = new Sunfish.Views.Sprite (LoadTexture ("World1Title"));
 			Sunfish.Views.Sprite world2Title = new Sunfish.Views.Sprite (LoadTexture ("World2Title"));
 
-			Sunfish.Views.Container world0LevelsContainer = new Sunfish.Views.Container (LoadTexture ("WorldLevelsContainer"), Sunfish.Constants.ViewContainerLayout.FloatLeft);
-			Sunfish.Views.Container world1LevelsContainer = new Sunfish.Views.Container (LoadTexture ("WorldLevelsContainer"), Sunfish.Constants.ViewContainerLayout.FloatLeft);
-			Sunfish.Views.Container world2LevelsContainer = new Sunfish.Views.Container (LoadTexture ("WorldLevelsContainer"), Sunfish.Constants.ViewContainerLayout.FloatLeft);
+			Sunfish.Views.Container world0LevelsContainer = new Sunfish.Views.Container (LoadTexture ("WorldLevelsContainer_1"), Sunfish.Constants.ViewContainerLayout.FloatLeft);
+			Sunfish.Views.Container world1LevelsContainer = new Sunfish.Views.Container (LoadTexture ("WorldLevelsContainer_2"), Sunfish.Constants.ViewContainerLayout.FloatLeft);
+			Sunfish.Views.Container world2LevelsContainer = new Sunfish.Views.Container (LoadTexture ("WorldLevelsContainer_3"), Sunfish.Constants.ViewContainerLayout.FloatLeft);
 
 			Sunfish.Views.Container world0Container = new Sunfish.Views.Container (Math.Max(world0Title.Width, world0LevelsContainer.Width), 0, Sunfish.Constants.ViewContainerLayout.StackCentered);
 			world0Container.ShouldExpandHeight = true;

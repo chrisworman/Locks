@@ -118,7 +118,11 @@ namespace Locks.iOS.Views
 					lockButtonView = Sunfish.Views.Switch.CreateOff (LocksGame.ActiveScreen.LoadTexture ("RotateCCWButton"), LocksGame.ActiveScreen.LoadTexture ("RotateCWButton"), Sunfish.Constants.ViewLayer.Layer4, HandleButtonTap);
 				}
 				lockButtonView.Data = lockButtonModel;
-				AddChild (lockButtonView, PixelsWithDensity (10), PixelsWithDensity (10));
+				int marginY = 0;
+				if (buttonIndex > 1) {
+					marginY = PixelsWithDensity (10);
+				}
+				AddChild (lockButtonView, PixelsWithDensity (10), marginY);
 				LockButtonViewsDictionary.Add (buttonIndex, lockButtonView);
 			} 
 
@@ -146,11 +150,13 @@ namespace Locks.iOS.Views
 			int previousPosition = lockButton.ContainingLock.CurrentPosition;
 			Models.LockButtonPushResult pushResult = lockButton.Push ();
 
-			// Rotate the lock dial and play a sound effect
+			// Start the effects in the UI
 			RotateDial (lockButton.ContainingLock.CurrentPosition - previousPosition);
 			LocksGame.ActiveScreen.PlaySoundEffect ("LockDialTurning");
-
+			PulsateLockButton (buttonThatWasTapped);
 			RotateGears ();
+
+			// Notify the handler of the button push
 			if (OnLockButtonPush != null) {
 				OnLockButtonPush (pushResult);
 			}
@@ -164,11 +170,16 @@ namespace Locks.iOS.Views
 
 				// Pulsate the lock button
 				lockButtonView.Toggle ();
-				lockButtonView.StartEffect (new Sunfish.Views.Effects.Pulsate (400, 5, Color.White));
+				PulsateLockButton (lockButtonView);
 
 				RotateGears ();
 
 			}
+		}
+
+		private void PulsateLockButton(Sunfish.Views.View lockButtonView)
+		{
+			lockButtonView.StartEffect (new Sunfish.Views.Effects.Pulsate (4000, 1, Color.White));
 		}
 
 		public void RotateDial (int positions)
