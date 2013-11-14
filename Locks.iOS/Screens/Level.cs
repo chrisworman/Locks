@@ -155,11 +155,11 @@ namespace Locks.iOS.Screens
 
 		private void CreateAndShowTutorialPopupIfNecessary ()
 		{
-			if (LevelNumber == 0 && WorldNumber == 0 && LocksGame.GameProgress.GetSolvedLevel (LevelNumber, WorldNumber) == null) {
-				Views.TutorialPopup tutorialPopup = new Views.TutorialPopup ();
-				AddChildView (tutorialPopup);
-				tutorialPopup.Show ();
-			}
+//			if (LevelNumber == 0 && WorldNumber == 0 && LocksGame.GameProgress.GetSolvedLevel (LevelNumber, WorldNumber) == null) {
+//				Views.TutorialPopup tutorialPopup = new Views.TutorialPopup ();
+//				AddChildView (tutorialPopup);
+//				tutorialPopup.Show ();
+//			}
 		}
 
 		private Sunfish.Views.Container CreateLevelGridContainer ()

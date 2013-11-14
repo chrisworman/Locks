@@ -88,8 +88,8 @@ namespace Locks.iOS.Views
 
 			Sunfish.Views.Container dialContainer = new Sunfish.Views.Container (Width, 0, Sunfish.Constants.ViewLayer.Layer4, Sunfish.Constants.ViewContainerLayout.StackCentered);
 			dialContainer.ShouldExpandHeight = true;
-			dialContainer.AddChild (LockIndicator, 0, PixelsWithDensity (5));
-			dialContainer.AddChild (Dial, 0, PixelsWithDensity (5));
+			dialContainer.AddChild (LockIndicator, 0, PixelsWithDensity (4));
+			dialContainer.AddChild (Dial, 0, PixelsWithDensity (5) - PixelsWithDensity(63));
 			AddChild (dialContainer);
 
 		}
