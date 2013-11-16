@@ -321,5 +321,7 @@
     <Content Include="Content\Images\iPad\WorldLevelsContainer_1.png" />
     <Content Include="Content\Images\iPad\WorldLevelsContainer_2.png" />
     <Content Include="Content\Images\iPad\WorldLevelsContainer_3.png" />
+    <Content Include="Content\Images\iPadRetina\PipeHorizontal1.png" />
+    <Content Include="Content\Images\iPadRetina\PipeVertical1.png" />
   </ItemGroup>
 </Project>
