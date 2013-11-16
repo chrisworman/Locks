@@ -34,7 +34,7 @@ namespace Locks.iOS.Screens
 		private Views.Stars StarsView { get; set; }
 
 		public Level (Sunfish.SunfishGame currentGame, int worldNumber, int levelNumber) :
-		base(currentGame, Color.DarkOliveGreen)
+		base(currentGame, Color.DarkGray)
 		{
 			WorldNumber = worldNumber;
 			LevelNumber = levelNumber;
@@ -89,7 +89,7 @@ namespace Locks.iOS.Screens
 			for (int row=0; row<rowCount; row++) {
 				for (int col=0; col<colCount; col++) {
 					Models.Lock lockModel = Model.LockGrid.Locks [row, col];
-					Views.Lock lockView = new Views.Lock (lockModel, row == 0, row == (rowCount - 1), col == 0, col == (colCount - 1));
+					Views.Lock lockView = new Views.Lock (lockModel, WorldNumber, row == 0, row == (rowCount - 1), col == 0, col == (colCount - 1));
 					lockView.OnLockButtonPush = HandleLockButtonPush;
 					lockContainer.AddChild (lockView, (col == 0) ? 0 : PixelsWithDensity (18), PixelsWithDensity (18));
 					LockViewsDictionary.Add (lockModel.GetRowColString (), lockView);
@@ -164,7 +164,7 @@ namespace Locks.iOS.Screens
 
 		private Sunfish.Views.Container CreateLevelGridContainer ()
 		{
-			int lockWidthWithMargin = Views.Lock.LoadLockBackground ().Width + PixelsWithDensity (18);
+			int lockWidthWithMargin = Views.Lock.LoadLockBackground (1).Width + PixelsWithDensity (18);
 			int width = Model.LockGrid.ColCount * lockWidthWithMargin;
 			return new Sunfish.Views.Container (width, LocksGame.ScreenWidth, Sunfish.Constants.ViewContainerLayout.FloatLeft);
 		}

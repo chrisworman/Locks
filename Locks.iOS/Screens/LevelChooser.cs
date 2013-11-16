@@ -15,7 +15,7 @@ namespace Locks.iOS.Screens
 
 		#region "Initialization"
 
-		public LevelChooser (Sunfish.SunfishGame currentGame) : base(currentGame, Color.DarkSlateGray)
+		public LevelChooser (Sunfish.SunfishGame currentGame) : base(currentGame, Color.DarkGray)
 		{
 		}
 

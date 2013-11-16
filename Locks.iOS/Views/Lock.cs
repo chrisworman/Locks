@@ -18,6 +18,7 @@ namespace Locks.iOS.Views
 		private Texture2D LockIndicatorLockedTexture;
 		private Texture2D LockIndicatorUnlockedTexture;
 		private Sunfish.Views.Sprite GearMedium;
+		private int WorldNumber;
 
 		public delegate void OnLockButtonPushDelegate (Models.LockButtonPushResult pushResult);
 
@@ -27,15 +28,17 @@ namespace Locks.iOS.Views
 
 		public OnDialRotateCompleteDelegate OnDialRotateComplete;
 
-		public Lock (Models.Lock lockModel, bool isFirstRow, bool isLastRow, bool isFirstCol, bool isLastCol) :
-			base(LoadLockBackground(), new Vector2(0,0), Sunfish.Constants.ViewLayer.Layer2, Sunfish.Constants.ViewContainerLayout.Absolute)
+		public Lock (Models.Lock lockModel, int worldNumber, bool isFirstRow, bool isLastRow, bool isFirstCol, bool isLastCol) :
+		base(LoadLockBackground(worldNumber), new Vector2(0,0), Sunfish.Constants.ViewLayer.Layer2, Sunfish.Constants.ViewContainerLayout.Absolute)
 		{
 
+			WorldNumber = worldNumber;
 			LockModel = lockModel;
 
 			CreateGearsAndPipes (isFirstRow, isLastRow, isFirstCol, isLastCol);
 
-			Sunfish.Views.Sprite faceplate = new Sunfish.Views.Sprite (LocksGame.ActiveScreen.LoadTexture ("LockFaceplate"), Sunfish.Constants.ViewLayer.Layer3);
+			Texture2D facePlateTexture = LocksGame.ActiveScreen.LoadTexture ("LockFaceplate_" + (worldNumber + 1).ToString ());
+			Sunfish.Views.Sprite faceplate = new Sunfish.Views.Sprite (facePlateTexture, Sunfish.Constants.ViewLayer.Layer3);
 			AddChild (faceplate);
 
 			Layout = Sunfish.Constants.ViewContainerLayout.FloatLeft;
@@ -51,9 +54,10 @@ namespace Locks.iOS.Views
 			float halfWidth = (float)Width * 0.5f;
 			float halfHeight = (float)Height * 0.5f;
 
+			string worldNumberForTexture = (WorldNumber + 1).ToString ();
 
 			// Gears
-			Texture2D gearMediumTexture = LocksGame.ActiveScreen.LoadTexture ("GearMedium");
+			Texture2D gearMediumTexture = LocksGame.ActiveScreen.LoadTexture ("Gear_" + worldNumberForTexture);
 			Vector2 gearMediumPosition = new Vector2 ((halfWidth - ((float)gearMediumTexture.Width) * 0.5f) - PixelsWithDensity (20), PixelsWithDensity (20));
 			GearMedium = new Sunfish.Views.Sprite (gearMediumTexture, gearMediumPosition, Sunfish.Constants.ViewLayer.Layer2);
 			//GearMedium.CenterOrigin ();
@@ -109,13 +113,15 @@ namespace Locks.iOS.Views
 		{
 			LockButtonViewsDictionary = new Dictionary<int, Sunfish.Views.Switch> ();
 
+			string worldNumberForTexture = (WorldNumber + 1).ToString ();
+
 			for (int buttonIndex=0; buttonIndex < LockModel.ButtonCount; buttonIndex++) {
 				Models.LockButton lockButtonModel = LockModel.Buttons [buttonIndex];
 				Sunfish.Views.Switch lockButtonView = null;
 				if (lockButtonModel.IsOn) {
-					lockButtonView = Sunfish.Views.Switch.CreateOn (LocksGame.ActiveScreen.LoadTexture ("RotateCCWButton"), LocksGame.ActiveScreen.LoadTexture ("RotateCWButton"), Sunfish.Constants.ViewLayer.Layer4, HandleButtonTap);
+					lockButtonView = Sunfish.Views.Switch.CreateOn (LocksGame.ActiveScreen.LoadTexture ("RotateCCWButton_" + worldNumberForTexture), LocksGame.ActiveScreen.LoadTexture ("RotateCWButton_" + worldNumberForTexture), Sunfish.Constants.ViewLayer.Layer4, HandleButtonTap);
 				} else {
-					lockButtonView = Sunfish.Views.Switch.CreateOff (LocksGame.ActiveScreen.LoadTexture ("RotateCCWButton"), LocksGame.ActiveScreen.LoadTexture ("RotateCWButton"), Sunfish.Constants.ViewLayer.Layer4, HandleButtonTap);
+					lockButtonView = Sunfish.Views.Switch.CreateOff (LocksGame.ActiveScreen.LoadTexture ("RotateCCWButton_" + worldNumberForTexture), LocksGame.ActiveScreen.LoadTexture ("RotateCWButton_" + worldNumberForTexture), Sunfish.Constants.ViewLayer.Layer4, HandleButtonTap);
 				}
 				lockButtonView.Data = lockButtonModel;
 				int marginY = 0;
@@ -137,9 +143,9 @@ namespace Locks.iOS.Views
 			return dial;
 		}
 
-		public static Texture2D LoadLockBackground ()
+		public static Texture2D LoadLockBackground (int worldNumber)
 		{
-			return LocksGame.ActiveScreen.LoadTexture ("LockBackground");
+			return LocksGame.ActiveScreen.LoadTexture ("LockBackground_" + (worldNumber + 1).ToString());
 		}
 
 		private void HandleButtonTap (Sunfish.Views.View buttonThatWasTapped)

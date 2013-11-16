@@ -109,6 +109,24 @@
     <BundleResource Include="Content\Images\iPad\WorldLevelsContainer_1.png" />
     <BundleResource Include="Content\Images\iPad\WorldLevelsContainer_2.png" />
     <BundleResource Include="Content\Images\iPad\WorldLevelsContainer_3.png" />
+    <BundleResource Include="Content\Images\iPadRetina\RotateCWButton_1.png" />
+    <BundleResource Include="Content\Images\iPadRetina\RotateCWButton_2.png" />
+    <BundleResource Include="Content\Images\iPadRetina\RotateCWButton_3.png" />
+    <BundleResource Include="Content\Images\iPad\Gear_1.png" />
+    <BundleResource Include="Content\Images\iPad\Gear_2.png" />
+    <BundleResource Include="Content\Images\iPad\Gear_3.png" />
+    <BundleResource Include="Content\Images\iPad\LockBackground_1.png" />
+    <BundleResource Include="Content\Images\iPad\LockBackground_2.png" />
+    <BundleResource Include="Content\Images\iPad\LockBackground_3.png" />
+    <BundleResource Include="Content\Images\iPad\LockFaceplate_1.png" />
+    <BundleResource Include="Content\Images\iPad\LockFaceplate_2.png" />
+    <BundleResource Include="Content\Images\iPad\LockFaceplate_3.png" />
+    <BundleResource Include="Content\Images\iPad\RotateCCWButton_1.png" />
+    <BundleResource Include="Content\Images\iPad\RotateCCWButton_2.png" />
+    <BundleResource Include="Content\Images\iPad\RotateCCWButton_3.png" />
+    <BundleResource Include="Content\Images\iPad\RotateCWButton_1.png" />
+    <BundleResource Include="Content\Images\iPad\RotateCWButton_2.png" />
+    <BundleResource Include="Content\Images\iPad\RotateCWButton_3.png" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
@@ -285,5 +303,17 @@
     <Content Include="Content\Images\iPadRetina\WorldLevelsContainer_1.png" />
     <Content Include="Content\Images\iPadRetina\WorldLevelsContainer_2.png" />
     <Content Include="Content\Images\iPadRetina\WorldLevelsContainer_3.png" />
+    <Content Include="Content\Images\iPadRetina\Gear_1.png" />
+    <Content Include="Content\Images\iPadRetina\Gear_2.png" />
+    <Content Include="Content\Images\iPadRetina\Gear_3.png" />
+    <Content Include="Content\Images\iPadRetina\LockBackground_1.png" />
+    <Content Include="Content\Images\iPadRetina\LockBackground_2.png" />
+    <Content Include="Content\Images\iPadRetina\LockBackground_3.png" />
+    <Content Include="Content\Images\iPadRetina\LockFaceplate_1.png" />
+    <Content Include="Content\Images\iPadRetina\LockFaceplate_2.png" />
+    <Content Include="Content\Images\iPadRetina\LockFaceplate_3.png" />
+    <Content Include="Content\Images\iPadRetina\RotateCCWButton_1.png" />
+    <Content Include="Content\Images\iPadRetina\RotateCCWButton_2.png" />
+    <Content Include="Content\Images\iPadRetina\RotateCCWButton_3.png" />
   </ItemGroup>
 </Project>
