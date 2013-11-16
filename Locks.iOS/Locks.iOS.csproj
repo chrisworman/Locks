@@ -217,15 +217,6 @@
     <Content Include="Content\Images\iPadRetina\RightArrow.png" />
     <Content Include="Content\Images\iPad\TutorialRotateHint.png" />
     <Content Include="Content\Images\iPadRetina\TutorialRotateHint.png" />
-    <Content Include="Content\Images\iPad\Spark.png" />
-    <Content Include="Content\Images\iPad\Spark2.png" />
-    <Content Include="Content\Images\iPad\Smoke1.png" />
-    <Content Include="Content\Images\iPad\Smoke2.png" />
-    <Content Include="Content\Images\iPad\Smoke3.png" />
-    <Content Include="Content\Images\iPad\Smoke4.png" />
-    <Content Include="Content\Images\iPad\Smoke5.png" />
-    <Content Include="Content\Images\iPad\Smoke6.png" />
-    <Content Include="Content\Images\iPad\Smoke7.png" />
     <Content Include="Content\Images\iPad\SampleSpriteSheet.png" />
     <Content Include="Content\Levels\World0Level0.txt" />
     <Content Include="Content\Levels\World0Level1.txt" />
