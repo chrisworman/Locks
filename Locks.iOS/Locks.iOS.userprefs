@@ -1,11 +1,13 @@
 ﻿<Properties GitUserInfo="UsingGIT">
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug|iPhone" PreferredExecutionTarget="MonoDevelop.IPhone.IPhoneDeviceTarget.iPad Mini" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Screens/Home.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Info.plist">
     <Files>
       <File FileName="Screens/Level.cs" Line="1" Column="1" />
       <File FileName="Views/Lock.cs" Line="1" Column="1" />
       <File FileName="Screens/LevelChooser.cs" Line="1" Column="1" />
       <File FileName="Screens/Home.cs" Line="11" Column="2" />
+      <File FileName="../Locks.Core.iOS/Rules/GameProgress.cs" Line="4" Column="17" />
+      <File FileName="Info.plist" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

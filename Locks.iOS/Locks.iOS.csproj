@@ -106,9 +106,6 @@
     <BundleResource Include="Resources\Icon-72.png" />
     <BundleResource Include="Resources\Icon-72%402x.png" />
     <BundleResource Include="Resources\Icon.png" />
-    <BundleResource Include="Content\Images\iPad\WorldLevelsContainer_1.png" />
-    <BundleResource Include="Content\Images\iPad\WorldLevelsContainer_2.png" />
-    <BundleResource Include="Content\Images\iPad\WorldLevelsContainer_3.png" />
     <BundleResource Include="Content\Images\iPadRetina\RotateCWButton_1.png" />
     <BundleResource Include="Content\Images\iPadRetina\RotateCWButton_2.png" />
     <BundleResource Include="Content\Images\iPadRetina\RotateCWButton_3.png" />
@@ -315,5 +312,14 @@
     <Content Include="Content\Images\iPadRetina\RotateCCWButton_1.png" />
     <Content Include="Content\Images\iPadRetina\RotateCCWButton_2.png" />
     <Content Include="Content\Images\iPadRetina\RotateCCWButton_3.png" />
+    <Content Include="Content\Images\iPad\WorldBackground_1.jpg" />
+    <Content Include="Content\Images\iPad\WorldBackground_2.jpg" />
+    <Content Include="Content\Images\iPad\WorldBackground_3.jpg" />
+    <Content Include="Content\Images\iPadRetina\WorldBackground_1.jpg" />
+    <Content Include="Content\Images\iPadRetina\WorldBackground_2.jpg" />
+    <Content Include="Content\Images\iPadRetina\WorldBackground_3.jpg" />
+    <Content Include="Content\Images\iPad\WorldLevelsContainer_1.png" />
+    <Content Include="Content\Images\iPad\WorldLevelsContainer_2.png" />
+    <Content Include="Content\Images\iPad\WorldLevelsContainer_3.png" />
   </ItemGroup>
 </Project>
