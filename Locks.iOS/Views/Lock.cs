@@ -17,8 +17,10 @@ namespace Locks.iOS.Views
 		private Sunfish.Views.Sprite LockIndicator;
 		private Texture2D LockIndicatorLockedTexture;
 		private Texture2D LockIndicatorUnlockedTexture;
-		private Sunfish.Views.Sprite GearMedium;
+		private Sunfish.Views.Sprite GearLeft;
+		private Sunfish.Views.Sprite GearRight;
 		private int WorldNumber;
+		private static float GearRotationRadians = (float) (Math.PI / 4d);
 
 		public delegate void OnLockButtonPushDelegate (Models.LockButtonPushResult pushResult);
 
@@ -57,11 +59,13 @@ namespace Locks.iOS.Views
 			string worldNumberForTexture = (WorldNumber + 1).ToString ();
 
 			// Gears
-			Texture2D gearMediumTexture = LocksGame.ActiveScreen.LoadTexture ("Gear_" + worldNumberForTexture);
-			Vector2 gearMediumPosition = new Vector2 ((halfWidth - ((float)gearMediumTexture.Width) * 0.5f) - PixelsWithDensity (20), PixelsWithDensity (20));
-			GearMedium = new Sunfish.Views.Sprite (gearMediumTexture, gearMediumPosition, Sunfish.Constants.ViewLayer.Layer2);
-			//GearMedium.CenterOrigin ();
-			AddChild (GearMedium);
+			Texture2D gearTexture = LocksGame.ActiveScreen.LoadTexture ("Gear_" + worldNumberForTexture);
+			Vector2 gearLeftPosition = new Vector2 ((halfWidth - ((float)gearTexture.Width) * 0.5f) - PixelsWithDensity (20), PixelsWithDensity (35));
+			Vector2 gearRightPosition = new Vector2 ((halfWidth - ((float)gearTexture.Width) * 0.5f) + PixelsWithDensity (20), PixelsWithDensity (35));
+			GearLeft = new Sunfish.Views.Sprite (gearTexture, gearLeftPosition, Sunfish.Constants.ViewLayer.Layer2);
+			GearRight = new Sunfish.Views.Sprite (gearTexture, gearRightPosition, Sunfish.Constants.ViewLayer.Layer2);
+			AddChild (GearLeft);
+			AddChild (GearRight);
 
 			// Horizontal Pipes
 			Texture2D pipeHorizontal = LocksGame.ActiveScreen.LoadTexture ("PipeHorizontal1");
@@ -160,7 +164,7 @@ namespace Locks.iOS.Views
 			RotateDial (lockButton.ContainingLock.CurrentPosition - previousPosition);
 			LocksGame.ActiveScreen.PlaySoundEffect ("LockDialTurning");
 			PulsateLockButton (buttonThatWasTapped);
-			RotateGears ();
+			RotateGearsForLockButton (lockButton);
 
 			// Notify the handler of the button push
 			if (OnLockButtonPush != null) {
@@ -177,8 +181,8 @@ namespace Locks.iOS.Views
 				// Pulsate the lock button
 				lockButtonView.Toggle ();
 				PulsateLockButton (lockButtonView);
-
-				RotateGears ();
+				Models.LockButton lockButton = (Models.LockButton)lockButtonView.Data;
+				RotateGearsForLockButton (lockButton);
 
 			}
 		}
@@ -197,11 +201,16 @@ namespace Locks.iOS.Views
 			Dial.StartEffect (rotateEffect);
 		}
 
-		public void RotateGears ()
+		public void RotateGearsForLockButton (Models.LockButton lockButton)
 		{
-			GearMedium.StartEffect (new Sunfish.Views.Effects.Rotate (GearMedium.RotationRadians, GearMedium.RotationRadians + (float)Math.PI, 1000d));
+			if (lockButton.IsOn) {
+				GearLeft.StartEffect (new Sunfish.Views.Effects.Rotate (GearLeft.RotationRadians, GearLeft.RotationRadians + GearRotationRadians, 300d));
+				GearRight.StartEffect (new Sunfish.Views.Effects.Rotate (GearRight.RotationRadians, GearRight.RotationRadians - GearRotationRadians, 300d));
+			} else {
+				GearLeft.StartEffect (new Sunfish.Views.Effects.Rotate (GearLeft.RotationRadians, GearLeft.RotationRadians - GearRotationRadians, 300d));
+				GearRight.StartEffect (new Sunfish.Views.Effects.Rotate (GearRight.RotationRadians, GearRight.RotationRadians + GearRotationRadians, 300d));
+			}
 			LocksGame.ActiveScreen.PlaySoundEffect ("GearTurning", 0.6f);
-
 		}
 
 		public static float PositionsToRadians (int positions)
