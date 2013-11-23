@@ -65,7 +65,12 @@ namespace Models {
 		}
 
 		public string GetRowColString() {
-			return string.Format ("{0},{1}", GridRow, GridCol);
+			return Lock.GetRowColString(GridRow, GridCol);
+		}
+
+		public static string GetRowColString(int row, int col)
+		{
+			return string.Format ("{0},{1}", row, col);
 		}
 
 	}
