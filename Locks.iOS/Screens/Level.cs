@@ -253,7 +253,7 @@ namespace Locks.iOS.Screens
 
 			} else {
 				StartLockColumnShift (CurrentlyAnimatingLockColumnShift);
-				// Something else
+				// Something else and more
 			}
 
 		}
