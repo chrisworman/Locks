@@ -229,6 +229,7 @@ namespace Locks.iOS.Views
 				OnDialRotateComplete (this);
 			}
 		}
+
 	}
 }
 
