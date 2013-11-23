@@ -2,12 +2,9 @@
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug|iPhone" PreferredExecutionTarget="MonoDevelop.IPhone.IPhoneDeviceTarget.iPad Retina" />
   <MonoDevelop.Ide.Workbench>
     <Files>
-      <File FileName="Screens/Level.cs" Line="212" Column="23" />
-      <File FileName="../../Sunfish/Framework/Views/Effects/TranslateBy.cs" Line="40" Column="42" />
-      <File FileName="../../Sunfish/Framework/Views/Effects/TranslateTo.cs" Line="10" Column="35" />
-      <File FileName="../../Sunfish/Framework/Views/View.cs" Line="1" Column="1" />
-      <File FileName="Views/Lock.cs" Line="71" Column="86" />
-      <File FileName="../Locks.Core/Models/Lock.cs" Line="67" Column="3" />
+      <File FileName="Screens/Level.cs" Line="256" Column="17" />
+      <File FileName="../../Sunfish/Framework/Views/Effects/Effect.cs" Line="13" Column="71" />
+      <File FileName="../Locks.Core/Models/Lock.cs" Line="71" Column="33" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
