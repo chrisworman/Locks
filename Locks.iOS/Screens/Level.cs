@@ -33,13 +33,18 @@ namespace Locks.iOS.Screens
 
 		private Views.Stars StarsView { get; set; }
 
+		private int SpaceBetweenLocks;
+
 		public Level (Sunfish.SunfishGame currentGame, int worldNumber, int levelNumber) :
-		base(currentGame, "WorldBackground_" + (worldNumber+1).ToString())
+			base (currentGame, "WorldBackground_" + (worldNumber + 1).ToString ())
 		{
 			WorldNumber = worldNumber;
 			LevelNumber = levelNumber;
 			Model = Rules.Level.ReadLevel (WorldNumber, LevelNumber);
 			LockViewsDictionary = new Dictionary<string, Views.Lock> ();
+			// Compute the space between the locks, which is used during the animation when the user solves the level
+			Texture2D pipeHorizontal = LocksGame.ActiveScreen.LoadTexture ("PipeHorizontal1");
+			SpaceBetweenLocks = pipeHorizontal.Width;
 		}
 
 		public override void PopulateScreenViews ()
@@ -55,18 +60,18 @@ namespace Locks.iOS.Screens
 		{
 
 			Sunfish.Views.Sprite pauseButton = new Sunfish.Views.Sprite (LoadTexture ("PauseButton"));
-			pauseButton.EnableTapGesture(HandlePauseButtonTapped);
+			pauseButton.EnableTapGesture (HandlePauseButtonTapped);
 
 			Sunfish.Views.Sprite settingsButton = new Sunfish.Views.Sprite (LoadTexture ("SettingsButton"));
-			settingsButton.EnableTapGesture(HandleSettingsButtonTapped);
+			settingsButton.EnableTapGesture (HandleSettingsButtonTapped);
 
-			TurnsLabel = new Sunfish.Views.Label ("0", LocksGame.GetTopBarFont(), Color.Black);
+			TurnsLabel = new Sunfish.Views.Label ("0", LocksGame.GetTopBarFont (), Color.Black);
 			UpdateTurnsLabel ();
 
-			LockedCountLabel = new Sunfish.Views.Label ("0", LocksGame.GetTopBarFont(), Color.Black);
+			LockedCountLabel = new Sunfish.Views.Label ("0", LocksGame.GetTopBarFont (), Color.Black);
 			UpdateLockCountLabel ();
 
-			Sunfish.Views.Label levelLabel = new Sunfish.Views.Label ("World " + WorldNumber.ToString () + " Level " + LevelNumber.ToString (), LocksGame.GetTopBarFont(), Color.Black);
+			Sunfish.Views.Label levelLabel = new Sunfish.Views.Label ("World " + WorldNumber.ToString () + " Level " + LevelNumber.ToString (), LocksGame.GetTopBarFont (), Color.Black);
 
 			SettingsPopup = new Views.SettingsPopup ();
 			AddChildView (SettingsPopup);
@@ -86,8 +91,8 @@ namespace Locks.iOS.Screens
 			Sunfish.Views.Container lockContainer = CreateLevelGridContainer ();
 			int rowCount = Model.LockGrid.RowCount;
 			int colCount = Model.LockGrid.ColCount;
-			for (int row=0; row<rowCount; row++) {
-				for (int col=0; col<colCount; col++) {
+			for (int row = 0; row < rowCount; row++) {
+				for (int col = 0; col < colCount; col++) {
 					Models.Lock lockModel = Model.LockGrid.Locks [row, col];
 					Views.Lock lockView = new Views.Lock (lockModel, WorldNumber, row == 0, row == (rowCount - 1), col == 0, col == (colCount - 1));
 					lockView.OnLockButtonPush = HandleLockButtonPush;
@@ -110,14 +115,14 @@ namespace Locks.iOS.Screens
 		private void CreatePausedPopup ()
 		{
 
-			PausedPopup = AddPopup (LoadTexture("PopupBackground"), Sunfish.Constants.ViewContainerLayout.StackCentered);
+			PausedPopup = AddPopup (LoadTexture ("PopupBackground"), Sunfish.Constants.ViewContainerLayout.StackCentered);
 			Sunfish.Views.Sprite resumeButton = new Sunfish.Views.Sprite (LoadTexture ("ResumeGameButton"), Sunfish.Constants.ViewLayer.Modal);
 			Sunfish.Views.Sprite restartButton = new Sunfish.Views.Sprite (LoadTexture ("RestartGameButton"), Sunfish.Constants.ViewLayer.Modal);
 			Sunfish.Views.Sprite quitButton = new Sunfish.Views.Sprite (LoadTexture ("QuitGameButton"), Sunfish.Constants.ViewLayer.Modal);
 
-			resumeButton.EnableTapGesture(HandleResumeButtonTapped);
-			restartButton.EnableTapGesture(HandleRestartButtonTapped);
-			quitButton.EnableTapGesture(HandleQuitButtonFromPausedPopupTapped);
+			resumeButton.EnableTapGesture (HandleResumeButtonTapped);
+			restartButton.EnableTapGesture (HandleRestartButtonTapped);
+			quitButton.EnableTapGesture (HandleQuitButtonFromPausedPopupTapped);
 
 			PausedPopup.AddChild (resumeButton, 0, PixelsWithDensity (80));
 			PausedPopup.AddChild (restartButton, 0, PixelsWithDensity (30));
@@ -133,16 +138,16 @@ namespace Locks.iOS.Screens
 			Sunfish.Views.Sprite nextLevelButton = null;
 			if (WorldNumber != Core.Constants.WorldCount - 1 || LevelNumber != Core.Constants.WorldLevelCount - 1) {
 				nextLevelButton = new Sunfish.Views.Sprite (LoadTexture ("NextLevelButton"), Sunfish.Constants.ViewLayer.Modal);
-				nextLevelButton.EnableTapGesture(HandleNextLevelButtonTapped);
+				nextLevelButton.EnableTapGesture (HandleNextLevelButtonTapped);
 			}
 
 			Sunfish.Views.Sprite retryButton = new Sunfish.Views.Sprite (LoadTexture ("RetryButton"), Sunfish.Constants.ViewLayer.Modal);
-			retryButton.EnableTapGesture(HandleRetryButtonTapped);
+			retryButton.EnableTapGesture (HandleRetryButtonTapped);
 
 			Sunfish.Views.Sprite quitButton = new Sunfish.Views.Sprite (LoadTexture ("QuitGameButton"), Sunfish.Constants.ViewLayer.Modal);
-			quitButton.EnableTapGesture(HandleQuitButtonFromSolvedPopupTapped);
+			quitButton.EnableTapGesture (HandleQuitButtonFromSolvedPopupTapped);
 
-			SolvedPopup = AddPopup (LoadTexture("PopupBackground"), Sunfish.Constants.ViewContainerLayout.StackCentered);
+			SolvedPopup = AddPopup (LoadTexture ("PopupBackground"), Sunfish.Constants.ViewContainerLayout.StackCentered);
 			SolvedPopup.OnShown = HandleSolvedPopupShown;
 			SolvedPopup.AddChild (StarsView, 0, PixelsWithDensity (60));
 			if (nextLevelButton != null) {
@@ -193,6 +198,8 @@ namespace Locks.iOS.Screens
 		
 			lockWhoseDialRotated.OnDialRotateComplete = null;
 			if (Model.LockGrid.IsSolved ()) {
+				//StartSolvedLockAnimation ();
+				// TODO: move to function that is called after the solved animation completes
 				int stars = Model.LockGrid.GetStars (Moves);
 				Models.SolvedLevel solvedLevel = LocksGame.GameProgress.GetSolvedLevel (WorldNumber, LevelNumber);
 				StarsView.SetStars (stars);
@@ -208,12 +215,20 @@ namespace Locks.iOS.Screens
 
 		}
 
+		private void StartSolvedLockAnimation()
+		{
+			Views.Lock firstLock = null;
+			LockViewsDictionary.TryGetValue ("0,0", out firstLock);
+			Sunfish.Views.Effects.TranslateBy moveLock = new Sunfish.Views.Effects.TranslateBy (new Vector2(SpaceBetweenLocks,0), 200d);
+			firstLock.StartEffect (moveLock); 
+		}
+
 		private void UpdateTurnsLabel ()
 		{
 			if (Moves == 1) {
-				TurnsLabel.SetText(Moves.ToString () + " Turn");
+				TurnsLabel.SetText (Moves.ToString () + " Turn");
 			} else {
-				TurnsLabel.SetText(Moves.ToString () + " Turns");
+				TurnsLabel.SetText (Moves.ToString () + " Turns");
 			}
 		}
 
@@ -270,9 +285,9 @@ namespace Locks.iOS.Screens
 		private void HandleNextLevelButtonTapped (Sunfish.Views.View nextLevelButton)
 		{
 			if (LevelNumber == Core.Constants.WorldLevelCount - 1) {
-				CurrentGame.SetActiveScreen(new Screens.Level(CurrentGame, WorldNumber + 1, 0));
+				CurrentGame.SetActiveScreen (new Screens.Level (CurrentGame, WorldNumber + 1, 0));
 			} else {
-				CurrentGame.SetActiveScreen(new Screens.Level(CurrentGame, WorldNumber, LevelNumber + 1));
+				CurrentGame.SetActiveScreen (new Screens.Level (CurrentGame, WorldNumber, LevelNumber + 1));
 			}
 			SolvedPopup.Hide ();
 		}
@@ -289,7 +304,7 @@ namespace Locks.iOS.Screens
 
 		private void RetryLevel ()
 		{
-			CurrentGame.SetActiveScreen(new Screens.Level(CurrentGame, WorldNumber, LevelNumber));
+			CurrentGame.SetActiveScreen (new Screens.Level (CurrentGame, WorldNumber, LevelNumber));
 		}
 
 		private void QuitGame ()
