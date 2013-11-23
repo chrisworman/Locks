@@ -35,6 +35,14 @@ namespace Locks.iOS.Screens
 
 		private int SpaceBetweenLocks;
 
+		private int CurrentlyAnimatingLockColumnShift = -1;
+
+		private int LastLockColumnToShift = -1;
+
+		private int CurrentlyAnimatingLockRowShift = -1;
+
+		private int LastLockRowToShift = -1;
+
 		public Level (Sunfish.SunfishGame currentGame, int worldNumber, int levelNumber) :
 			base (currentGame, "WorldBackground_" + (worldNumber + 1).ToString ())
 		{
@@ -195,21 +203,21 @@ namespace Locks.iOS.Screens
 		{
 
 			UpdateLockCountLabel ();
-		
 			lockWhoseDialRotated.OnDialRotateComplete = null;
+
 			if (Model.LockGrid.IsSolved ()) {
-				//StartSolvedLockAnimation ();
-				// TODO: move to function that is called after the solved animation completes
-				int stars = Model.LockGrid.GetStars (Moves);
+
+				// Save the game progress
 				Models.SolvedLevel solvedLevel = LocksGame.GameProgress.GetSolvedLevel (WorldNumber, LevelNumber);
-				StarsView.SetStars (stars);
 				if (solvedLevel == null || Moves < solvedLevel.Moves) {
+					int stars = Model.LockGrid.GetStars (Moves);
 					solvedLevel = new Models.SolvedLevel (WorldNumber, LevelNumber, Moves, stars);
 					LocksGame.GameProgress.AddSolvedLevel (solvedLevel);
 					Rules.GameProgress.SaveGameProgress (LocksGame.GameProgress);
 				}
-				LocksGame.ActiveScreen.PlaySoundEffect ("Unlocked");
-				SolvedPopup.Show ();
+
+				// Start an animation indicating that the level is solved
+				StartSolvedLockAnimation ();
 
 			}
 
@@ -217,10 +225,87 @@ namespace Locks.iOS.Screens
 
 		private void StartSolvedLockAnimation()
 		{
-			Views.Lock firstLock = null;
-			LockViewsDictionary.TryGetValue ("0,0", out firstLock);
-			Sunfish.Views.Effects.TranslateBy moveLock = new Sunfish.Views.Effects.TranslateBy (new Vector2(SpaceBetweenLocks,0), 200d);
-			firstLock.StartEffect (moveLock); 
+			// Calculate the last column to shift during the animation
+			if (Model.LockGrid.ColCount % 2 == 0) { // Even number of columns?
+				LastLockColumnToShift = (Model.LockGrid.ColCount / 2) - 1;
+			} else {
+				LastLockColumnToShift = ((Model.LockGrid.ColCount - 1) / 2) - 1;
+			}
+
+			// Calculate the last row to shift during the animation
+			//LastLockRowToShift = Model.LockGrid.RowCount - 2;
+
+			StartNextLockShiftOrShowSolvedPopup (null);
+		}
+
+		private void StartNextLockShiftOrShowSolvedPopup(Sunfish.Views.Effects.Effect effectThatIsComplete)
+		{
+			CurrentlyAnimatingLockColumnShift++;
+			if (CurrentlyAnimatingLockColumnShift > LastLockColumnToShift) { // Done shifting columns?
+
+//				CurrentlyAnimatingLockRowShift++;
+//				if (CurrentlyAnimatingLockRowShift < LastLockRowToShift) {
+//					
+//				} else {
+					LocksGame.ActiveScreen.PlaySoundEffect ("Unlocked");
+					PrepareStarsAndShowSolvedPopup ();
+				//}
+
+			} else {
+				StartLockColumnShift (CurrentlyAnimatingLockColumnShift);
+			}
+
+		}
+
+		private void StartLockColumnShift(int leftEndCol)
+		{
+			/* Step 1: Figure out how many x units to shift the columns by */
+
+			// Default x shift
+			int xShift = SpaceBetweenLocks;
+			// If there is an even number of columns, then the last shift should only be by half the SpaceBetweenLocks
+			if (Model.LockGrid.ColCount % 2 == 0) { // Even number of columns
+				// Is this the last column shift?
+				if ((leftEndCol + 1) * 2 == Model.LockGrid.ColCount) {
+					xShift = (int) (SpaceBetweenLocks * 0.5f); // When even
+				}
+			}
+
+			/* Step 2: Start a TranslateBy effect on each of the appropriate locks (according to leftEndCol) */
+
+			// Shift the locks on the left side of the grid to the right
+			for (int row = 0; row < Model.LockGrid.RowCount; row++) {
+				for (int col = 0; col <= leftEndCol; col++) {
+					Sunfish.Views.Effects.TranslateBy shiftLock = new Sunfish.Views.Effects.TranslateBy (new Vector2(xShift,0), 200d);
+					if (row == 0 && col == 0) {
+						shiftLock.OnComplete = StartNextLockShiftOrShowSolvedPopup;
+					}
+					Views.Lock currentLockView = null;
+					string lockViewKey = Models.Lock.GetRowColString (row, col);
+					LockViewsDictionary.TryGetValue (lockViewKey, out currentLockView);
+					currentLockView.StartEffect (shiftLock);
+				}
+			}
+
+			// Shift the locks on the right side of the grid to the left
+			int lastRightCol = Model.LockGrid.ColCount - 1 - leftEndCol;
+			for (int row = 0; row < Model.LockGrid.RowCount; row++) {
+				for (int col = Model.LockGrid.ColCount - 1; col >= lastRightCol; col--) {
+					Sunfish.Views.Effects.TranslateBy shiftLock = new Sunfish.Views.Effects.TranslateBy (new Vector2(-xShift,0), 200d);
+					Views.Lock currentLockView = null;
+					string lockViewKey = Models.Lock.GetRowColString (row, col);
+					LockViewsDictionary.TryGetValue (lockViewKey, out currentLockView);
+					currentLockView.StartEffect (shiftLock);
+				}
+			}
+
+		}
+
+		private void PrepareStarsAndShowSolvedPopup()
+		{
+			int stars = Model.LockGrid.GetStars (Moves);
+			StarsView.SetStars (stars);
+			SolvedPopup.Show ();
 		}
 
 		private void UpdateTurnsLabel ()
