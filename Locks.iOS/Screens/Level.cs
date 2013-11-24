@@ -39,7 +39,7 @@ namespace Locks.iOS.Screens
 
 		private int LastLockColumnToShift = -1;
 
-		private const double LockShiftDelayMilliseconds = 300d;
+		private const double LockShiftDelayMilliseconds = 373d;
 
 		public Level (Sunfish.SunfishGame currentGame, int worldNumber, int levelNumber) :
 			base (currentGame, "WorldBackground_" + (worldNumber + 1).ToString ())
@@ -285,6 +285,8 @@ namespace Locks.iOS.Screens
 				}
 			}
 
+			PlaySoundEffect ("Shift1");
+
 		}
 
 		private void StartLockRowShiftAndShowSolvedPopupWhenDone()
@@ -313,6 +315,9 @@ namespace Locks.iOS.Screens
 						currentLockView.StartEffect (shiftLock);
 					}
 				}
+
+				PlaySoundEffect ("Shift1");
+
 
 			} else {
 				PrepareStarsAndShowSolvedPopup (null);
