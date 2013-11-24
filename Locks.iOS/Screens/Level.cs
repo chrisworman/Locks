@@ -39,9 +39,7 @@ namespace Locks.iOS.Screens
 
 		private int LastLockColumnToShift = -1;
 
-		private int CurrentlyAnimatingLockRowShift = -1;
-
-		private int LastLockRowToShift = -1;
+		private const double LockShiftDelayMilliseconds = 300d;
 
 		public Level (Sunfish.SunfishGame currentGame, int worldNumber, int levelNumber) :
 			base (currentGame, "WorldBackground_" + (worldNumber + 1).ToString ())
@@ -232,9 +230,6 @@ namespace Locks.iOS.Screens
 				LastLockColumnToShift = ((Model.LockGrid.ColCount - 1) / 2) - 1;
 			}
 
-			// Calculate the last row to shift during the animation
-			//LastLockRowToShift = Model.LockGrid.RowCount - 2;
-
 			StartNextLockShiftOrShowSolvedPopup (null);
 		}
 
@@ -242,20 +237,10 @@ namespace Locks.iOS.Screens
 		{
 			CurrentlyAnimatingLockColumnShift++;
 			if (CurrentlyAnimatingLockColumnShift > LastLockColumnToShift) { // Done shifting columns?
-
-//				CurrentlyAnimatingLockRowShift++;
-//				if (CurrentlyAnimatingLockRowShift < LastLockRowToShift) {
-//					
-//				} else {
-					LocksGame.ActiveScreen.PlaySoundEffect ("Unlocked");
-					PrepareStarsAndShowSolvedPopup ();
-				//}
-
+				StartLockRowShiftAndShowSolvedPopupWhenDone ();
 			} else {
 				StartLockColumnShift (CurrentlyAnimatingLockColumnShift);
-				// Something else and more and more
 			}
-
 		}
 
 		private void StartLockColumnShift(int leftEndCol)
@@ -277,7 +262,7 @@ namespace Locks.iOS.Screens
 			// Shift the locks on the left side of the grid to the right
 			for (int row = 0; row < Model.LockGrid.RowCount; row++) {
 				for (int col = 0; col <= leftEndCol; col++) {
-					Sunfish.Views.Effects.TranslateBy shiftLock = new Sunfish.Views.Effects.TranslateBy (new Vector2(xShift,0), 200d);
+					Sunfish.Views.Effects.TranslateBy shiftLock = new Sunfish.Views.Effects.TranslateBy (new Vector2(xShift,0), LockShiftDelayMilliseconds);
 					if (row == 0 && col == 0) {
 						shiftLock.OnComplete = StartNextLockShiftOrShowSolvedPopup;
 					}
@@ -292,7 +277,7 @@ namespace Locks.iOS.Screens
 			int lastRightCol = Model.LockGrid.ColCount - 1 - leftEndCol;
 			for (int row = 0; row < Model.LockGrid.RowCount; row++) {
 				for (int col = Model.LockGrid.ColCount - 1; col >= lastRightCol; col--) {
-					Sunfish.Views.Effects.TranslateBy shiftLock = new Sunfish.Views.Effects.TranslateBy (new Vector2(-xShift,0), 200d);
+					Sunfish.Views.Effects.TranslateBy shiftLock = new Sunfish.Views.Effects.TranslateBy (new Vector2(-xShift,0), LockShiftDelayMilliseconds);
 					Views.Lock currentLockView = null;
 					string lockViewKey = Models.Lock.GetRowColString (row, col);
 					LockViewsDictionary.TryGetValue (lockViewKey, out currentLockView);
@@ -302,8 +287,41 @@ namespace Locks.iOS.Screens
 
 		}
 
-		private void PrepareStarsAndShowSolvedPopup()
+		private void StartLockRowShiftAndShowSolvedPopupWhenDone()
 		{
+			if (Model.LockGrid.RowCount > 1) { // Should the rows be shifted?
+
+				// Shift the top row
+				for (int col = 0; col < Model.LockGrid.ColCount; col++) {
+					Sunfish.Views.Effects.TranslateBy shiftLock = new Sunfish.Views.Effects.TranslateBy (new Vector2 (0, SpaceBetweenLocks), LockShiftDelayMilliseconds);
+					if (col == 0) {
+						shiftLock.OnComplete = PrepareStarsAndShowSolvedPopup;
+					}
+					Views.Lock currentLockView = null;
+					string lockViewKey = Models.Lock.GetRowColString (0, col);
+					LockViewsDictionary.TryGetValue (lockViewKey, out currentLockView);
+					currentLockView.StartEffect (shiftLock);
+				}
+
+				// Shift the bottom row if necessary
+				if (Model.LockGrid.RowCount == 3) {
+					for (int col = 0; col < Model.LockGrid.ColCount; col++) {
+						Sunfish.Views.Effects.TranslateBy shiftLock = new Sunfish.Views.Effects.TranslateBy (new Vector2 (0, -SpaceBetweenLocks), LockShiftDelayMilliseconds);
+						Views.Lock currentLockView = null;
+						string lockViewKey = Models.Lock.GetRowColString (2, col);
+						LockViewsDictionary.TryGetValue (lockViewKey, out currentLockView);
+						currentLockView.StartEffect (shiftLock);
+					}
+				}
+
+			} else {
+				PrepareStarsAndShowSolvedPopup (null);
+			}
+		}
+
+		private void PrepareStarsAndShowSolvedPopup(Sunfish.Views.Effects.Effect effect)
+		{
+			LocksGame.ActiveScreen.PlaySoundEffect ("Unlocked");
 			int stars = Model.LockGrid.GetStars (Moves);
 			StarsView.SetStars (stars);
 			SolvedPopup.Show ();
