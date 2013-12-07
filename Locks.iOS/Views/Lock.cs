@@ -7,6 +7,13 @@ using Microsoft.Xna.Framework.Content;
 using System.Collections.Generic;
 using Microsoft.Xna.Framework.Audio;
 
+using Sunfish;
+using Sunfish.Utilities;
+using Sunfish.Views;
+using Sunfish.Views.Effects;
+
+using System.Timers;
+
 namespace Locks.iOS.Views
 {
 	public class Lock : Sunfish.Views.Container
@@ -45,7 +52,7 @@ namespace Locks.iOS.Views
 
 			Layout = Sunfish.Constants.ViewContainerLayout.FloatLeft;
 
-			CreateLockIndicatorDial ();
+			CreateLockIndicatorAndDial ();
 			CreateLockButtons ();
 
 		}
@@ -89,7 +96,7 @@ namespace Locks.iOS.Views
 
 		}
 
-		private void CreateLockIndicatorDial ()
+		private void CreateLockIndicatorAndDial ()
 		{
 			LockIndicator = CreateLockIndicator (LockModel.IsUnlocked ());
 			Dial = CreateDial (LockModel.CurrentPosition);
@@ -140,7 +147,7 @@ namespace Locks.iOS.Views
 
 		public static Sunfish.Views.Sprite CreateDial (int currentPosition)
 		{
-			Sunfish.Views.Sprite dial = new Sunfish.Views.Sprite (LocksGame.ActiveScreen.LoadTexture ("LockDial"), Sunfish.Constants.ViewLayer.Layer4);
+			Sunfish.Views.Sprite dial = new Sunfish.Views.Sprite (LocksGame.ActiveScreen.LoadTexture ("LockDial"), Sunfish.Constants.ViewLayer.Layer5);
 			if (currentPosition != 0) {
 				dial.RotationRadians = PositionsToRadians (currentPosition);
 			}
@@ -228,6 +235,56 @@ namespace Locks.iOS.Views
 			if (OnDialRotateComplete != null) {
 				OnDialRotateComplete (this);
 			}
+		}
+
+		public double ExplodeLockDialAfterRandomDelay()
+		{
+
+			double delay = 0d;
+
+			if (LockModel.GridCol == 0 && LockModel.GridRow == 0) {
+				OnLockDialExplosionTimedEvent (null, null);
+			} else {
+				delay = Randomization.NextDouble (0, 500d);
+				Timer explosionTimer = new Timer ();
+				explosionTimer.AutoReset = false; // Only do this once
+				explosionTimer.Elapsed += OnLockDialExplosionTimedEvent;
+				explosionTimer.Interval = delay;
+				explosionTimer.Enabled = true;
+			}
+
+			return delay;
+
+		}
+
+		private void OnLockDialExplosionTimedEvent(object source, ElapsedEventArgs e) 
+		{
+
+			// Velocity and acceleration
+			Vector2 minVelocity = new Vector2 (10f, 10f);
+			Vector2 maxVelocity = new Vector2 (15f, 15f);
+			Vector2 velocity = Randomization.NextVector2 (minVelocity, maxVelocity);
+			velocity.X = velocity.X * Randomization.NextFloatSign ();
+			velocity.Y = velocity.Y * Randomization.NextFloatSign ();
+			Dial.Velocity = velocity;
+			Dial.Acceleration = new Vector2 (0, 0.2f);
+
+			// Rotation
+			float finalRotationRadians = Randomization.NextFloat (Dial.RotationRadians + MathHelper.TwoPi, Dial.RotationRadians + (MathHelper.TwoPi * 4));
+			Rotate rotateDial = new Rotate (Dial.RotationRadians, finalRotationRadians, 4000d);
+			Dial.StartEffect (rotateDial);
+
+			// Explosion
+			Rectangle frameRectangle = new Rectangle (0, 0, 134, 134);
+			SpriteFraming framing = new SpriteFraming (frameRectangle, 12, 20d);
+			framing.Loops = 1;
+			framing.LoopingFinishedBehavior = Constants.SpriteFramingLoopingFinishedBehavior.HideSprite;
+			Texture2D explosionTexture = SunfishGame.ActiveScreen.LoadTexture ("LockDialExplosion");
+			Sprite explosion = new Sprite (explosionTexture, Constants.ViewLayer.Layer6, framing);
+			explosion.Position = Randomization.NextVector2Perturbed (Dial.Position, new Vector2 (10, 10));
+			SunfishGame.ActiveScreen.AddChildView (explosion);
+			SunfishGame.ActiveScreen.PlaySoundEffect ("LockDialExplosion1");
+
 		}
 
 	}

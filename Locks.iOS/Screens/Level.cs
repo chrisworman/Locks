@@ -7,10 +7,16 @@ using Microsoft.Xna.Framework.Content;
 using System.Collections.Generic;
 using Microsoft.Xna.Framework.Audio;
 
+using System.Timers;
+using Sunfish.Utilities;
+
 namespace Locks.iOS.Screens
 {
 	public class Level : Sunfish.Screen
 	{
+
+		#region "Properties"
+
 		private Sunfish.Views.Popup PausedPopup { get; set; }
 
 		private Sunfish.Views.Popup SolvedPopup { get; set; }
@@ -40,6 +46,10 @@ namespace Locks.iOS.Screens
 		private int LastLockColumnToShift = -1;
 
 		private const double LockShiftDelayMilliseconds = 373d;
+
+		#endregion
+
+		#region "Initialization"
 
 		public Level (Sunfish.SunfishGame currentGame, int worldNumber, int levelNumber) :
 			base (currentGame, "WorldBackground_" + (worldNumber + 1).ToString ())
@@ -180,6 +190,8 @@ namespace Locks.iOS.Screens
 			return new Sunfish.Views.Container (width, LocksGame.ScreenWidth, Sunfish.Constants.ViewContainerLayout.FloatLeft);
 		}
 
+		#endregion
+
 		private void HandleLockButtonPush (Models.LockButtonPushResult pushResult)
 		{
 
@@ -297,7 +309,9 @@ namespace Locks.iOS.Screens
 				for (int col = 0; col < Model.LockGrid.ColCount; col++) {
 					Sunfish.Views.Effects.TranslateBy shiftLock = new Sunfish.Views.Effects.TranslateBy (new Vector2 (0, SpaceBetweenLocks), LockShiftDelayMilliseconds);
 					if (col == 0) {
-						shiftLock.OnComplete = PrepareStarsAndShowSolvedPopup;
+						shiftLock.OnComplete = delegate {
+							ExplodeLockDialsThenShowSolvedPopup();
+						};
 					}
 					Views.Lock currentLockView = null;
 					string lockViewKey = Models.Lock.GetRowColString (0, col);
@@ -320,11 +334,30 @@ namespace Locks.iOS.Screens
 
 
 			} else {
-				PrepareStarsAndShowSolvedPopup (null);
+				ExplodeLockDialsThenShowSolvedPopup();
 			}
 		}
 
-		private void PrepareStarsAndShowSolvedPopup(Sunfish.Views.Effects.Effect effect)
+		private void ExplodeLockDialsThenShowSolvedPopup()
+		{
+
+			double maximumDialExplosionDelay = 0;
+			foreach (Views.Lock lockView in LockViewsDictionary.Values) {
+				double dialExplosionDelay = lockView.ExplodeLockDialAfterRandomDelay ();
+				maximumDialExplosionDelay = Math.Max (maximumDialExplosionDelay, dialExplosionDelay);
+			}
+
+			Timer showSolvedPopupTimer = new Timer ();
+			showSolvedPopupTimer.AutoReset = false; // Only do this once
+			showSolvedPopupTimer.Elapsed += (sender, e) => {
+				ShowSolvedPopup();
+			};
+			showSolvedPopupTimer.Interval = maximumDialExplosionDelay + 100;
+			showSolvedPopupTimer.Enabled = true;
+
+		}
+
+		private void ShowSolvedPopup()
 		{
 			LocksGame.ActiveScreen.PlaySoundEffect ("Unlocked");
 			int stars = Model.LockGrid.GetStars (Moves);
