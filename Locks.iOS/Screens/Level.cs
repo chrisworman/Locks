@@ -69,7 +69,7 @@ namespace Locks.iOS.Screens
 			CreateLocks (TopBar.Height);
 			CreatePausedPopup ();
 			CreateSolvedPopup ();
-			CreateAndShowTutorialPopupIfNecessary ();
+			//CreateAndShowTutorialPopupIfNecessary ();
 		}
 
 		private void CreateAndPopulateTopBar ()
@@ -176,11 +176,11 @@ namespace Locks.iOS.Screens
 
 		private void CreateAndShowTutorialPopupIfNecessary ()
 		{
-//			if (LevelNumber == 0 && WorldNumber == 0 && LocksGame.GameProgress.GetSolvedLevel (LevelNumber, WorldNumber) == null) {
-//				Views.TutorialPopup tutorialPopup = new Views.TutorialPopup ();
-//				AddChildView (tutorialPopup);
-//				tutorialPopup.Show ();
-//			}
+			if (LevelNumber == 0 && WorldNumber == 0 && LocksGame.GameProgress.GetSolvedLevel (LevelNumber, WorldNumber) == null) {
+				Views.TutorialPopup tutorialPopup = new Views.TutorialPopup ();
+				AddChildView (tutorialPopup);
+				tutorialPopup.Show ();
+			}
 		}
 
 		private Sunfish.Views.Container CreateLevelGridContainer ()
@@ -191,6 +191,8 @@ namespace Locks.iOS.Screens
 		}
 
 		#endregion
+
+		#region "Event Handling"
 
 		private void HandleLockButtonPush (Models.LockButtonPushResult pushResult)
 		{
@@ -233,6 +235,99 @@ namespace Locks.iOS.Screens
 
 		}
 
+		private void UpdateTurnsLabel ()
+		{
+			if (Moves == 1) {
+				TurnsLabel.SetText (Moves.ToString () + " Turn");
+			} else {
+				TurnsLabel.SetText (Moves.ToString () + " Turns");
+			}
+		}
+
+		private void UpdateLockCountLabel ()
+		{
+			string lockCountText = Model.LockGrid.CountUnlocked ().ToString () + " of " + (Model.LockGrid.ColCount * Model.LockGrid.RowCount).ToString () + " Unlocked";
+			LockedCountLabel.SetText (lockCountText);
+		}
+
+		private void HandleSolvedPopupShown (Sunfish.Views.Popup popupThatIsNowShown)
+		{
+			LocksGame.ActiveScreen.PlaySoundEffect ("LevelSuccess");
+		}
+
+		private void HandlePauseButtonTapped (Sunfish.Views.View pauseButton)
+		{
+			PauseGame ();
+		}
+
+		private void HandleSettingsButtonTapped (Sunfish.Views.View settingsButton)
+		{
+			SettingsPopup.Show ();
+		}
+
+		private void HandleResumeButtonTapped (Sunfish.Views.View pauseButton)
+		{
+			ResumeGame ();
+		}
+
+		private void HandleRestartButtonTapped (Sunfish.Views.View pauseButton)
+		{
+			PausedPopup.Hide ();
+			RetryLevel ();
+		}
+
+		private void HandleQuitButtonFromPausedPopupTapped (Sunfish.Views.View pauseButton)
+		{
+			PausedPopup.Hide ();
+			QuitGame ();
+		}
+
+		private void HandleQuitButtonFromSolvedPopupTapped (Sunfish.Views.View pauseButton)
+		{
+			SolvedPopup.Hide ();
+			QuitGame ();
+		}
+
+		private void HandleRetryButtonTapped (Sunfish.Views.View retryButton)
+		{
+			SolvedPopup.Hide ();
+			RetryLevel ();
+		}
+
+		private void HandleNextLevelButtonTapped (Sunfish.Views.View nextLevelButton)
+		{
+			if (LevelNumber == Core.Constants.WorldLevelCount - 1) {
+				CurrentGame.SetActiveScreen (new Screens.Level (CurrentGame, WorldNumber + 1, 0));
+			} else {
+				CurrentGame.SetActiveScreen (new Screens.Level (CurrentGame, WorldNumber, LevelNumber + 1));
+			}
+			SolvedPopup.Hide ();
+		}
+
+		private void PauseGame ()
+		{
+			PausedPopup.Show ();
+		}
+
+		private void ResumeGame ()
+		{
+			PausedPopup.Hide ();
+		}
+
+		private void RetryLevel ()
+		{
+			CurrentGame.SetActiveScreen (new Screens.Level (CurrentGame, WorldNumber, LevelNumber));
+		}
+
+		private void QuitGame ()
+		{
+			CurrentGame.SetActiveScreen (new Screens.LevelChooser (CurrentGame));
+		}
+
+		#endregion
+
+		#region "Solved"
+
 		private void StartSolvedLockAnimation()
 		{
 			// Calculate the last column to shift during the animation
@@ -257,7 +352,7 @@ namespace Locks.iOS.Screens
 
 		private void StartLockColumnShift(int leftEndCol)
 		{
-			/* Step 1: Figure out how many x units to shift the columns by */
+			/*			 Step 1: Figure out how many x units to shift the columns by */
 
 			// Default x shift
 			int xShift = SpaceBetweenLocks;
@@ -269,7 +364,7 @@ namespace Locks.iOS.Screens
 				}
 			}
 
-			/* Step 2: Start a TranslateBy effect on each of the appropriate locks (according to leftEndCol) */
+			/*			 Step 2: Start a TranslateBy effect on each of the appropriate locks (according to leftEndCol) */
 
 			// Shift the locks on the left side of the grid to the right
 			for (int row = 0; row < Model.LockGrid.RowCount; row++) {
@@ -365,94 +460,8 @@ namespace Locks.iOS.Screens
 			SolvedPopup.Show ();
 		}
 
-		private void UpdateTurnsLabel ()
-		{
-			if (Moves == 1) {
-				TurnsLabel.SetText (Moves.ToString () + " Turn");
-			} else {
-				TurnsLabel.SetText (Moves.ToString () + " Turns");
-			}
-		}
+		#endregion
 
-		private void UpdateLockCountLabel ()
-		{
-			string lockCountText = Model.LockGrid.CountUnlocked ().ToString () + " of " + (Model.LockGrid.ColCount * Model.LockGrid.RowCount).ToString () + " Unlocked";
-			LockedCountLabel.SetText (lockCountText);
-		}
-
-		private void HandleSolvedPopupShown (Sunfish.Views.Popup popupThatIsNowShown)
-		{
-			LocksGame.ActiveScreen.PlaySoundEffect ("LevelSuccess");
-		}
-
-		private void HandlePauseButtonTapped (Sunfish.Views.View pauseButton)
-		{
-			PauseGame ();
-		}
-
-		private void HandleSettingsButtonTapped (Sunfish.Views.View settingsButton)
-		{
-			SettingsPopup.Show ();
-		}
-
-		private void HandleResumeButtonTapped (Sunfish.Views.View pauseButton)
-		{
-			ResumeGame ();
-		}
-
-		private void HandleRestartButtonTapped (Sunfish.Views.View pauseButton)
-		{
-			PausedPopup.Hide ();
-			RetryLevel ();
-		}
-
-		private void HandleQuitButtonFromPausedPopupTapped (Sunfish.Views.View pauseButton)
-		{
-			PausedPopup.Hide ();
-			QuitGame ();
-		}
-
-		private void HandleQuitButtonFromSolvedPopupTapped (Sunfish.Views.View pauseButton)
-		{
-			SolvedPopup.Hide ();
-			QuitGame ();
-		}
-
-		private void HandleRetryButtonTapped (Sunfish.Views.View retryButton)
-		{
-			SolvedPopup.Hide ();
-			RetryLevel ();
-		}
-
-		private void HandleNextLevelButtonTapped (Sunfish.Views.View nextLevelButton)
-		{
-			if (LevelNumber == Core.Constants.WorldLevelCount - 1) {
-				CurrentGame.SetActiveScreen (new Screens.Level (CurrentGame, WorldNumber + 1, 0));
-			} else {
-				CurrentGame.SetActiveScreen (new Screens.Level (CurrentGame, WorldNumber, LevelNumber + 1));
-			}
-			SolvedPopup.Hide ();
-		}
-
-		private void PauseGame ()
-		{
-			PausedPopup.Show ();
-		}
-
-		private void ResumeGame ()
-		{
-			PausedPopup.Hide ();
-		}
-
-		private void RetryLevel ()
-		{
-			CurrentGame.SetActiveScreen (new Screens.Level (CurrentGame, WorldNumber, LevelNumber));
-		}
-
-		private void QuitGame ()
-		{
-			CurrentGame.SetActiveScreen (new Screens.LevelChooser (CurrentGame));
-		}
 	}
 }
 
