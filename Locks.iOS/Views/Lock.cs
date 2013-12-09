@@ -312,9 +312,9 @@ namespace Locks.iOS.Views
 			SunfishGame.ActiveScreen.AddChildView (explosion);
 
 			if (Randomization.NextBool ()) {
-				SunfishGame.ActiveScreen.PlaySoundEffect ("LockDialExplosion1", 0.8f);
+			SunfishGame.ActiveScreen.PlaySoundEffect ("LockDialExplosion1", 0.3f);
 			} else {
-				SunfishGame.ActiveScreen.PlaySoundEffect ("LockDialExplosion2", 0.8f);
+			SunfishGame.ActiveScreen.PlaySoundEffect ("LockDialExplosion2", 0.3f);
 			}
 
 		}
