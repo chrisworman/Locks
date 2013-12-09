@@ -275,15 +275,47 @@ namespace Locks.iOS.Views
 			Dial.StartEffect (rotateDial);
 
 			// Explosion
-			Rectangle frameRectangle = new Rectangle (0, 0, 134, 134);
-			SpriteFraming framing = new SpriteFraming (frameRectangle, 12, 20d);
+			CreateRandomLockDialExplosion ();
+
+		}
+
+		private void CreateRandomLockDialExplosion()
+		{
+
+			int explosionNumber = Randomization.NextInt (1, 4);
+
+			Rectangle frameRectangle = Rectangle.Empty;
+			SpriteFraming framing = null;
+
+			switch (explosionNumber) {
+			case 1:
+				frameRectangle = new Rectangle (0, 0, PixelsWithDensity(96), PixelsWithDensity(96));
+				framing = new SpriteFraming (frameRectangle, 12, 25d);
+				break;
+			case 2:
+				frameRectangle = new Rectangle (0, 0, PixelsWithDensity(96), PixelsWithDensity(96));
+				framing = new SpriteFraming (frameRectangle, 10, 25d);
+				break;
+			case 3:
+				frameRectangle = new Rectangle (0, 0, PixelsWithDensity(96), PixelsWithDensity(96));
+				framing = new SpriteFraming (frameRectangle, 10, 25d);
+				break;
+			}
+
 			framing.Loops = 1;
 			framing.LoopingFinishedBehavior = Constants.SpriteFramingLoopingFinishedBehavior.HideSprite;
-			Texture2D explosionTexture = SunfishGame.ActiveScreen.LoadTexture ("LockDialExplosion");
+
+			Texture2D explosionTexture = SunfishGame.ActiveScreen.LoadTexture ("LockDialExplosion" + explosionNumber.ToString());
 			Sprite explosion = new Sprite (explosionTexture, Constants.ViewLayer.Layer6, framing);
-			explosion.Position = Randomization.NextVector2Perturbed (Dial.Position, new Vector2 (10, 10));
+			explosion.Position = Randomization.NextVector2Perturbed (Dial.Position, new Vector2 (5, 5));
+
 			SunfishGame.ActiveScreen.AddChildView (explosion);
-			SunfishGame.ActiveScreen.PlaySoundEffect ("LockDialExplosion1");
+
+			if (Randomization.NextBool ()) {
+				SunfishGame.ActiveScreen.PlaySoundEffect ("LockDialExplosion1", 0.8f);
+			} else {
+				SunfishGame.ActiveScreen.PlaySoundEffect ("LockDialExplosion2", 0.8f);
+			}
 
 		}
 

@@ -315,9 +315,13 @@
     <Content Include="Content\Images\iPadRetina\PipeHorizontal1.png" />
     <Content Include="Content\Images\iPadRetina\PipeVertical1.png" />
     <Content Include="Content\Audio\Shift1.wav" />
-    <Content Include="Content\Images\iPad\LockDialExplosion.png" />
-    <Content Include="Content\Images\iPadRetina\LockDialExplosion.png" />
     <Content Include="Content\Audio\LockDialExplosion1.wav" />
     <Content Include="Content\Audio\LockDialExplosion2.wav" />
+    <Content Include="Content\Images\iPad\LockDialExplosion1.png" />
+    <Content Include="Content\Images\iPad\LockDialExplosion2.png" />
+    <Content Include="Content\Images\iPad\LockDialExplosion3.png" />
+    <Content Include="Content\Images\iPadRetina\LockDialExplosion1.png" />
+    <Content Include="Content\Images\iPadRetina\LockDialExplosion2.png" />
+    <Content Include="Content\Images\iPadRetina\LockDialExplosion3.png" />
   </ItemGroup>
 </Project>

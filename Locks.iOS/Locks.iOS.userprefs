@@ -1,12 +1,10 @@
 ﻿<Properties GitUserInfo="UsingGIT">
-  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug|iPhoneSimulator" PreferredExecutionTarget="MonoDevelop.IPhone.IPhoneSimulatorTarget.IPad.7.0" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="../../Sunfish/Framework/Views/Sprite.cs">
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug|iPhone" PreferredExecutionTarget="MonoDevelop.IPhone.IPhoneDeviceTarget" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="Screens/Level.cs">
     <Files>
-      <File FileName="Screens/Level.cs" Line="339" Column="18" />
-      <File FileName="Views/Lock.cs" Line="243" Column="34" />
-      <File FileName="../../Sunfish/Framework/Views/SpriteFraming.cs" Line="95" Column="89" />
-      <File FileName="../../Sunfish/Framework/Views/Sprite.cs" Line="60" Column="36" />
-      <File FileName="../../Sunfish/Framework/Constants.cs" Line="43" Column="14" />
+      <File FileName="../../Sunfish/Framework/Views/Popup.cs" Line="36" Column="6" />
+      <File FileName="Views/TutorialPopup.cs" Line="88" Column="6" />
+      <File FileName="Screens/Level.cs" Line="72" Column="6" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
