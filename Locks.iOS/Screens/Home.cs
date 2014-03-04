@@ -15,7 +15,8 @@ namespace Locks.iOS.Screens
 		private Sunfish.Views.Popup CreditsPopup;
 		private Sunfish.Views.Popup PlayPopup { get; set; }
 
-		public Home (SunfishGame currentGame) : base(currentGame, Color.DarkGray)
+		public Home (SunfishGame currentGame) : 
+			base(currentGame, Color.DarkGray, "HomeScreenBackground")
 		{
 		}
 

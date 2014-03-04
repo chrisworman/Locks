@@ -336,5 +336,10 @@
     <Content Include="Content\Images\iPadRetina\LockDialExplosion1.png" />
     <Content Include="Content\Images\iPadRetina\LockDialExplosion2.png" />
     <Content Include="Content\Images\iPadRetina\LockDialExplosion3.png" />
+    <Content Include="Content\Images\iPadRetina\HomeScreenBackground.jpg" />
+    <Content Include="Content\Fonts\Rave24.png" />
+    <Content Include="Content\Fonts\Rave24.txt" />
+    <Content Include="Content\Fonts\Rave48.png" />
+    <Content Include="Content\Fonts\Rave48.txt" />
   </ItemGroup>
 </Project>

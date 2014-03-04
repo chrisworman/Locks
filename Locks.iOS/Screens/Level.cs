@@ -82,13 +82,13 @@ namespace Locks.iOS.Screens
 			Sunfish.Views.Sprite settingsButton = new Sunfish.Views.Sprite (LoadTexture ("SettingsButton"));
 			settingsButton.EnableTapGesture (HandleSettingsButtonTapped);
 
-			TurnsLabel = new Sunfish.Views.Label ("0", LocksGame.GetTopBarFont (), Color.Black);
+			TurnsLabel = new Sunfish.Views.Label ("0", LocksGame.GetTopBarFont (), Color.AntiqueWhite);
 			UpdateTurnsLabel ();
 
-			LockedCountLabel = new Sunfish.Views.Label ("0", LocksGame.GetTopBarFont (), Color.Black);
+			LockedCountLabel = new Sunfish.Views.Label ("0", LocksGame.GetTopBarFont (), Color.AntiqueWhite);
 			UpdateLockCountLabel ();
 
-			Sunfish.Views.Label levelLabel = new Sunfish.Views.Label ("World " + WorldNumber.ToString () + " Level " + LevelNumber.ToString (), LocksGame.GetTopBarFont (), Color.Black);
+			Sunfish.Views.Label levelLabel = new Sunfish.Views.Label ("World " + WorldNumber.ToString () + " Level " + LevelNumber.ToString (), LocksGame.GetTopBarFont (), Color.AntiqueWhite);
 
 			SettingsPopup = new Views.SettingsPopup ();
 			AddChildView (SettingsPopup);

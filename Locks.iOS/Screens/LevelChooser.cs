@@ -15,7 +15,8 @@ namespace Locks.iOS.Screens
 
 		#region "Initialization"
 
-		public LevelChooser (Sunfish.SunfishGame currentGame) : base(currentGame, Color.DarkGray)
+		public LevelChooser (Sunfish.SunfishGame currentGame) : 
+		base(currentGame, Color.DarkGray, "HomeScreenBackground")
 		{
 		}
 
@@ -38,12 +39,12 @@ namespace Locks.iOS.Screens
 			SettingsPopup = new Views.SettingsPopup ();
 			AddChildView (SettingsPopup);
 
-			Sunfish.Views.Label chooseALevelLabel = new Sunfish.Views.Label ("Choose a Level", LocksGame.GetTopBarFont(), Color.Black);
+			//Sunfish.Views.Label chooseALevelLabel = new Sunfish.Views.Label ("Choose a Level", LocksGame.GetTopBarFont(), Color.Black);
 
 			CreateTopBar ();
 			TopBar.AddChild (backButton, PixelsWithDensity(10), PixelsWithDensity(10));
 			TopBar.AddChild (settingsButton, PixelsWithDensity(10), PixelsWithDensity(10));
-			TopBar.AddChild (chooseALevelLabel, PixelsWithDensity(240), PixelsWithDensity(20));
+			//TopBar.AddChild (chooseALevelLabel, PixelsWithDensity(240), PixelsWithDensity(20));
 
 		}
 
