@@ -95,6 +95,7 @@
     <Compile Include="Views\SettingsPopup.cs" />
     <Compile Include="Views\Stars.cs" />
     <Compile Include="Views\TutorialPopup.cs" />
+    <Compile Include="Views\BannerAd.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Info.plist" />

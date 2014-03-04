@@ -34,7 +34,7 @@ namespace Locks.iOS.Screens
 			AddChildView (SettingsPopup);
 
 			Sunfish.Views.Sprite creditsButton = new Sunfish.Views.Sprite (LoadTexture ("CreditsButton"));
-			creditsButton.EnableDoubleTapGesture (HandleCreditsButtonTap);
+			creditsButton.EnableTapGesture (HandleCreditsButtonTap);
 			CreateCreditsPopup ();
 
 			CreateTopBar ();
