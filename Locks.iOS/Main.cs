@@ -13,9 +13,9 @@ namespace Locks.iOS
 
 		public override void FinishedLaunching (UIApplication app)
 		{
-			// Fun begins..
 			game = new LocksGame ();
 			game.Run ();
+			Locks.iOS.Views.BannerAd.Initialize ();
 		}
 
 		/// <summary>

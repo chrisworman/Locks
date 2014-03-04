@@ -81,6 +81,9 @@
     <Reference Include="System.Core" />
     <Reference Include="monotouch" />
     <Reference Include="OpenTK" />
+    <Reference Include="GoogleAdMobAds">
+      <HintPath>..\..\MonoAdMobiOS\GoogleAdMobAds.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Main.cs" />

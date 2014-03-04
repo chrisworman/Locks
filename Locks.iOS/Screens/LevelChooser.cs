@@ -23,6 +23,7 @@ namespace Locks.iOS.Screens
 		{
 			CreateAndPopulateTopBar ();
 			CreateWorldsContainer ();
+			Views.BannerAd.Show ();
 		}
 
 		private void CreateAndPopulateTopBar ()

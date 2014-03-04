@@ -69,6 +69,7 @@ namespace Locks.iOS.Screens
 			CreateLocks (TopBar.Height);
 			CreatePausedPopup ();
 			CreateSolvedPopup ();
+			ToggleAdAccordingToRowCount ();
 			//CreateAndShowTutorialPopupIfNecessary ();
 		}
 
@@ -188,6 +189,16 @@ namespace Locks.iOS.Screens
 			int lockWidthWithMargin = Views.Lock.LoadLockBackground (1).Width + PixelsWithDensity (18);
 			int width = Model.LockGrid.ColCount * lockWidthWithMargin;
 			return new Sunfish.Views.Container (width, LocksGame.ScreenWidth, Sunfish.Constants.ViewContainerLayout.FloatLeft);
+		}
+
+		private void ToggleAdAccordingToRowCount() {
+		
+			if (Model.LockGrid.RowCount == 3) {
+				Views.BannerAd.Hide ();
+			} else {
+				Views.BannerAd.Show ();
+			}
+
 		}
 
 		#endregion
