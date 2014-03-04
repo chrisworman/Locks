@@ -1,14 +1,17 @@
 ﻿<Properties GitUserInfo="UsingGIT">
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug|iPhone" PreferredExecutionTarget="MonoDevelop.IPhone.IPhoneDeviceTarget" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Screens/Level.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Views/WorldLevelButton.cs">
     <Files>
-      <File FileName="../../Sunfish/Framework/Views/Popup.cs" Line="36" Column="6" />
-      <File FileName="Views/TutorialPopup.cs" Line="88" Column="6" />
-      <File FileName="Screens/Level.cs" Line="72" Column="6" />
+      <File FileName="Screens/LevelChooser.cs" Line="1" Column="1" />
+      <File FileName="Views/WorldLevelButton.cs" Line="27" Column="88" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
-    <BreakpointStore />
+    <BreakpointStore>
+      <Breakpoint file="/Users/chrisworman/Projects/Locks/Locks.iOS/Views/WorldLevelButton.cs" line="19" column="1" />
+      <Breakpoint file="/Users/chrisworman/Projects/Locks/Locks.iOS/Views/WorldLevelButton.cs" line="27" column="1" />
+      <Breakpoint file="/Users/chrisworman/Projects/Locks/Locks.iOS/Views/WorldLevelButton.cs" line="35" column="118" />
+    </BreakpointStore>
   </MonoDevelop.Ide.DebuggingService.Breakpoints>
   <MonoDevelop.Ide.DebuggingService.PinnedWatches>
     <Watch file="../../Sunfish/Framework/Views/View.cs" line="357" offsetX="338" offsetY="4620" expression="this.Texture.Name" liveUpdate="False" />

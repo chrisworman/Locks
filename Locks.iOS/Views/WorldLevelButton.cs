@@ -16,7 +16,7 @@ namespace Locks.iOS.Views
 
 		public static WorldLevelButton CreateSolved (int worldNumber, int levelNumber, int stars)
 		{
-			Texture2D buttonTexture = LocksGame.ActiveScreen.LoadTexture ("WorldLevelSolved");
+			Texture2D buttonTexture = LocksGame.ActiveScreen.LoadTexture ("WorldLevelSolved_" + (worldNumber + 1).ToString());
 			Sunfish.Views.Sprite buttonSprite = new Sunfish.Views.Sprite (buttonTexture, new Vector2 (0, 0), Sunfish.Constants.ViewLayer.Layer1);
 			WorldLevelButton button = new WorldLevelButton (buttonSprite, Stars.Create (stars, Sunfish.Constants.ViewLayer.Layer1), worldNumber, levelNumber);
 			return button;
@@ -24,7 +24,7 @@ namespace Locks.iOS.Views
 
 		public static WorldLevelButton CreateFirstUnsolved (int worldNumber, int levelNumber)
 		{
-			Texture2D buttonTexture = LocksGame.ActiveScreen.LoadTexture ("WorldLevelFirstUnsolved");
+			Texture2D buttonTexture = LocksGame.ActiveScreen.LoadTexture ("WorldLevelFirstUnsovled_" + (worldNumber + 1).ToString());
 			Sunfish.Views.Sprite buttonSprite = new Sunfish.Views.Sprite (buttonTexture, new Vector2 (0, 0), Sunfish.Constants.ViewLayer.Layer1);
 			WorldLevelButton button = new WorldLevelButton (buttonSprite, Stars.Create (0, Sunfish.Constants.ViewLayer.Layer1), worldNumber, levelNumber);
 			return button;
@@ -32,7 +32,7 @@ namespace Locks.iOS.Views
 
 		public static WorldLevelButton CreateUnsolved (int worldNumber, int levelNumber)
 		{
-			Texture2D buttonTexture = LocksGame.ActiveScreen.LoadTexture ("WorldLevelUnsolved");
+			Texture2D buttonTexture = LocksGame.ActiveScreen.LoadTexture ("WorldLevelUnsolved_" + (worldNumber + 1).ToString());
 			Sunfish.Views.Sprite unsolvedSprite = new Sunfish.Views.Sprite (buttonTexture, new Vector2 (0, 0), Sunfish.Constants.ViewLayer.Layer1);
 			return new WorldLevelButton (unsolvedSprite, Stars.Create (0, Sunfish.Constants.ViewLayer.Layer1), worldNumber, levelNumber);
 		}

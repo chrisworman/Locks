@@ -124,6 +124,15 @@
     <BundleResource Include="Content\Images\iPad\RotateCWButton_1.png" />
     <BundleResource Include="Content\Images\iPad\RotateCWButton_2.png" />
     <BundleResource Include="Content\Images\iPad\RotateCWButton_3.png" />
+    <BundleResource Include="Content\Images\iPadRetina\WorldLevelFirstUnsovled_1.png" />
+    <BundleResource Include="Content\Images\iPadRetina\WorldLevelFirstUnsovled_2.png" />
+    <BundleResource Include="Content\Images\iPadRetina\WorldLevelFirstUnsovled_3.png" />
+    <BundleResource Include="Content\Images\iPadRetina\WorldLevelSolved_1.png" />
+    <BundleResource Include="Content\Images\iPadRetina\WorldLevelSolved_2.png" />
+    <BundleResource Include="Content\Images\iPadRetina\WorldLevelSolved_3.png" />
+    <BundleResource Include="Content\Images\iPadRetina\WorldLevelUnsolved_1.png" />
+    <BundleResource Include="Content\Images\iPadRetina\WorldLevelUnsolved_2.png" />
+    <BundleResource Include="Content\Images\iPadRetina\WorldLevelUnsolved_3.png" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
