@@ -88,7 +88,7 @@ namespace Locks.iOS.Screens
 			LockedCountLabel = new Sunfish.Views.Label ("0", LocksGame.GetTopBarFont (), Color.AntiqueWhite);
 			UpdateLockCountLabel ();
 
-			Sunfish.Views.Label levelLabel = new Sunfish.Views.Label ("World " + WorldNumber.ToString () + " Level " + LevelNumber.ToString (), LocksGame.GetTopBarFont (), Color.AntiqueWhite);
+			Sunfish.Views.Label levelLabel = new Sunfish.Views.Label ("Level " + LevelNumber.ToString (), LocksGame.GetTopBarFont (), Color.AntiqueWhite);
 
 			SettingsPopup = new Views.SettingsPopup ();
 			AddChildView (SettingsPopup);
@@ -96,9 +96,9 @@ namespace Locks.iOS.Screens
 			CreateTopBar ();
 			TopBar.AddChild (pauseButton, PixelsWithDensity (10), PixelsWithDensity (10));
 			TopBar.AddChild (settingsButton, PixelsWithDensity (10), PixelsWithDensity (10));
-			TopBar.AddChild (TurnsLabel, PixelsWithDensity (80), PixelsWithDensity (20));
-			TopBar.AddChild (LockedCountLabel, PixelsWithDensity (70), PixelsWithDensity (20));
-			TopBar.AddChild (levelLabel, PixelsWithDensity (70), PixelsWithDensity (20));
+			TopBar.AddChild (TurnsLabel, PixelsWithDensity (120), PixelsWithDensity (20));
+			TopBar.AddChild (LockedCountLabel, PixelsWithDensity (120), PixelsWithDensity (20));
+			TopBar.AddChild (levelLabel, PixelsWithDensity (120), PixelsWithDensity (20));
 
 		}
 
@@ -119,8 +119,11 @@ namespace Locks.iOS.Screens
 			}
 
 			// Center the locks in a play area
-			if (Model.LockGrid.RowCount < 3) {
-				yOffset += PixelsWithDensity (50);
+			if (Model.LockGrid.RowCount == 1) {
+				yOffset += PixelsWithDensity (120);
+			}
+			else if (Model.LockGrid.RowCount == 2) {
+				yOffset += PixelsWithDensity (80);
 			}
 			Sunfish.Views.Container locksPlayArea = new Sunfish.Views.Container (LocksGame.ScreenHeight, LocksGame.ScreenWidth, new Vector2 (PixelsWithDensity (9), yOffset), Sunfish.Constants.ViewContainerLayout.StackCentered);
 			locksPlayArea.AddChild (lockContainer);

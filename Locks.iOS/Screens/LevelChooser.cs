@@ -77,7 +77,7 @@ namespace Locks.iOS.Screens
 			world2Container.AddChild (world2Title);
 			world2Container.AddChild (world2LevelsContainer, 0, PixelsWithDensity(20));
 
-			Sunfish.Views.Container worldsContainer = new Sunfish.Views.Container (LocksGame.ScreenHeight, LocksGame.ScreenWidth, new Vector2 (0, PixelsWithDensity(160)), Sunfish.Constants.ViewContainerLayout.FloatLeft);
+			Sunfish.Views.Container worldsContainer = new Sunfish.Views.Container (LocksGame.ScreenHeight, LocksGame.ScreenWidth, new Vector2 (0, PixelsWithDensity(140)), Sunfish.Constants.ViewContainerLayout.FloatLeft);
 			worldsContainer.AddChild (world0Container, PixelsWithDensity(31), 0);
 			worldsContainer.AddChild (world1Container, PixelsWithDensity(31), 0);
 			worldsContainer.AddChild (world2Container, PixelsWithDensity(31), 0);
@@ -106,7 +106,7 @@ namespace Locks.iOS.Screens
 					levelButton = Views.WorldLevelButton.CreateSolved (worldNumber, levelNumber, solvedLevel.Stars);
 					levelButton.EnableTapGesture(HandleLevelButtonTap);
 				}
-				worldContainer.AddChild (levelButton, PixelsWithDensity(10), PixelsWithDensity(15));
+				worldContainer.AddChild (levelButton, PixelsWithDensity(10), PixelsWithDensity(10));
 			}
 		}
 
