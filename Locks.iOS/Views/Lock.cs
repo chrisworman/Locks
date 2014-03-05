@@ -74,25 +74,41 @@ namespace Locks.iOS.Views
 			AddChild (GearLeft);
 			AddChild (GearRight);
 
+			Sunfish.Views.Sprite pipeSprite = null;
+
 			// Horizontal Pipes
-			Texture2D pipeHorizontal = LocksGame.ActiveScreen.LoadTexture ("PipeHorizontal1");
-			if (isLastCol) {
-				Vector2 pipePosition = new Vector2 (-pipeHorizontal.Width, halfHeight);
-				AddChild (new Sunfish.Views.Sprite (pipeHorizontal, pipePosition, Sunfish.Constants.ViewLayer.Layer1));
-			} else {
-				Vector2 pipePosition = new Vector2 (Width, halfHeight);
-				AddChild (new Sunfish.Views.Sprite (pipeHorizontal, pipePosition, Sunfish.Constants.ViewLayer.Layer1));
+//			Texture2D pipeHorizontal = LocksGame.ActiveScreen.LoadTexture ("PipeHorizontal1");
+//			float halfPipeHorizontalHeight = pipeHorizontal.Height * 0.5f;
+//			if (isLastCol) {
+//				Vector2 pipePosition = new Vector2 (-pipeHorizontal.Width, halfHeight - halfPipeHorizontalHeight);
+//				pipeSprite = new Sunfish.Views.Sprite (pipeHorizontal, pipePosition, Sunfish.Constants.ViewLayer.Layer1);
+//			} else {
+//				Vector2 pipePosition = new Vector2 (Width, halfHeight - halfPipeHorizontalHeight);
+//				pipeSprite = new Sunfish.Views.Sprite (pipeHorizontal, pipePosition, Sunfish.Constants.ViewLayer.Layer1);
+//			}
+//			pipeSprite.OverlayColor = new Color (0.5f, 0.5f, 0.5f, 0.5f);
+//			AddChild (pipeSprite);
+			if (!isLastCol) {
+				Texture2D pipeHorizontal = LocksGame.ActiveScreen.LoadTexture ("PipeHorizontal1");
+				float halfPipeHorizontalHeight = pipeHorizontal.Height * 0.5f;
+				Vector2 pipePosition = new Vector2 (Width, halfHeight - halfPipeHorizontalHeight);
+				pipeSprite = new Sunfish.Views.Sprite (pipeHorizontal, pipePosition, Sunfish.Constants.ViewLayer.Layer1);
+				pipeSprite.OverlayColor = new Color (0.5f, 0.5f, 0.5f, 0.5f);
+				AddChild (pipeSprite);
 			}
 
 			// Vertical Pipes
 			Texture2D pipeVertical = LocksGame.ActiveScreen.LoadTexture ("PipeVertical1");
+			float halfPipeVerticalWidth = pipeVertical.Width * 0.5f;
 			if (isLastRow) {
-				Vector2 pipePosition = new Vector2 (halfWidth, 0);
-				AddChild (new Sunfish.Views.Sprite (pipeVertical, pipePosition, Sunfish.Constants.ViewLayer.Layer1));
+				Vector2 pipePosition = new Vector2 (halfWidth - halfPipeVerticalWidth, 0);
+				pipeSprite = new Sunfish.Views.Sprite (pipeVertical, pipePosition, Sunfish.Constants.ViewLayer.Layer1);
 			} else {
-				Vector2 pipePosition = new Vector2 (halfWidth, Height);
-				AddChild (new Sunfish.Views.Sprite (pipeVertical, pipePosition, Sunfish.Constants.ViewLayer.Layer1));
+				Vector2 pipePosition = new Vector2 (halfWidth - halfPipeVerticalWidth, Height);
+				pipeSprite = new Sunfish.Views.Sprite (pipeVertical, pipePosition, Sunfish.Constants.ViewLayer.Layer1);
 			}
+			pipeSprite.OverlayColor = new Color (0.5f, 0.5f, 0.5f, 0.5f);
+			AddChild (pipeSprite);
 
 		}
 
