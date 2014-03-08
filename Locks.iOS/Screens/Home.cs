@@ -23,7 +23,7 @@ namespace Locks.iOS.Screens
 		public override void PopulateScreenViews ()
 		{
 			CreateAndPopulateTopBar ();
-			CreatePlayButtonAndPopup ();
+			CreateStartButtonAndPopup ();
 			Views.BannerAd.Show ();
 		}
 
@@ -45,13 +45,18 @@ namespace Locks.iOS.Screens
 
 		}
 
-		private void CreatePlayButtonAndPopup ()
+		private void CreateStartButtonAndPopup ()
 		{
 
-			Sunfish.Views.Sprite startButton = new Sunfish.Views.Sprite (LoadTexture ("StartButton"));
+			Sunfish.Views.Sprite startButtonGlow = new Sunfish.Views.Sprite (LoadTexture ("StartButtonGlow"), Sunfish.Constants.ViewLayer.Layer2);
+			startButtonGlow.CenterInScreen ();
+			startButtonGlow.OverlayColor = Color.TransparentBlack;
+			startButtonGlow.StartEffect(new Sunfish.Views.Effects.InAndOut(10000d, 100, Color.White));
+			AddChildView (startButtonGlow);
+
+			Sunfish.Views.Sprite startButton = new Sunfish.Views.Sprite (LoadTexture ("StartButton"), Sunfish.Constants.ViewLayer.Layer3);
 			startButton.CenterInScreen ();
 			startButton.EnableTapGesture (HandleStartButtonTap);
-			startButton.StartEffect(new Sunfish.Views.Effects.Pulsate(4000d, 100, new Color(0.5f, 0.5f, 0.5f, 1f)));
 			AddChildView (startButton);
 
 			PlayPopup = AddPopup (LoadTexture ("PopupBackground"), Sunfish.Constants.ViewContainerLayout.StackCentered);

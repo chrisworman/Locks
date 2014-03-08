@@ -343,5 +343,6 @@
     <Content Include="Content\Images\iPadRetina\TopBarWorld2.png" />
     <Content Include="Content\Images\iPadRetina\TopBarWorld3.png" />
     <Content Include="Content\Images\iPadRetina\TutorialButton.png" />
+    <Content Include="Content\Images\iPadRetina\StartButtonGlow.png" />
   </ItemGroup>
 </Project>

@@ -38,11 +38,8 @@ namespace Locks.iOS
 		public static Sunfish.Views.Font GetTopBarFont()
 		{
 			if (IsiPad()) {
-				//return new Sunfish.Views.Font ("AmericanTypewriter24");
-				return new Sunfish.Views.Font ("Rave24");
+				return new Sunfish.Views.Font ("Futura24");
 			} else {
-				//return new Sunfish.Views.Font ("AmericanTypewriter48");
-				//return new Sunfish.Views.Font ("Rave48");
 				return new Sunfish.Views.Font ("Futura48");
 			}
 		}
