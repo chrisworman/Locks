@@ -82,12 +82,17 @@ namespace Locks.iOS.Screens
 			Sunfish.Views.Sprite settingsButton = new Sunfish.Views.Sprite (LoadTexture ("SettingsButton"));
 			settingsButton.EnableTapGesture (HandleSettingsButtonTapped);
 
+			Sunfish.Views.Sprite tutorialButton = new Sunfish.Views.Sprite (LoadTexture ("TutorialButton"));
+
+			Sunfish.Views.Sprite turnsIcon = new Sunfish.Views.Sprite (LoadTexture ("TopBarTurn"));
 			TurnsLabel = new Sunfish.Views.Label ("0", LocksGame.GetTopBarFont (), Color.AntiqueWhite);
 			UpdateTurnsLabel ();
 
+			Sunfish.Views.Sprite gemIcon = new Sunfish.Views.Sprite (LoadTexture ("TopBarGem"));
 			LockedCountLabel = new Sunfish.Views.Label ("0", LocksGame.GetTopBarFont (), Color.AntiqueWhite);
 			UpdateLockCountLabel ();
 
+			Sunfish.Views.Sprite levelIcon = new Sunfish.Views.Sprite (LoadTexture ("TopBarWorld" + (WorldNumber+1).ToString()));
 			Sunfish.Views.Label levelLabel = new Sunfish.Views.Label ("Level " + LevelNumber.ToString (), LocksGame.GetTopBarFont (), Color.AntiqueWhite);
 
 			SettingsPopup = new Views.SettingsPopup ();
@@ -96,9 +101,13 @@ namespace Locks.iOS.Screens
 			CreateTopBar ();
 			TopBar.AddChild (pauseButton, PixelsWithDensity (10), PixelsWithDensity (10));
 			TopBar.AddChild (settingsButton, PixelsWithDensity (10), PixelsWithDensity (10));
-			TopBar.AddChild (TurnsLabel, PixelsWithDensity (120), PixelsWithDensity (20));
-			TopBar.AddChild (LockedCountLabel, PixelsWithDensity (120), PixelsWithDensity (20));
-			TopBar.AddChild (levelLabel, PixelsWithDensity (120), PixelsWithDensity (20));
+			TopBar.AddChild (tutorialButton, PixelsWithDensity (10), PixelsWithDensity (10));
+			TopBar.AddChild (turnsIcon, PixelsWithDensity (70), PixelsWithDensity (25));
+			TopBar.AddChild (TurnsLabel, PixelsWithDensity (5), PixelsWithDensity (20));
+			TopBar.AddChild (gemIcon, PixelsWithDensity (70), PixelsWithDensity (25));
+			TopBar.AddChild (LockedCountLabel, PixelsWithDensity (5), PixelsWithDensity (20));
+			TopBar.AddChild (levelIcon, PixelsWithDensity (70), PixelsWithDensity (25));
+			TopBar.AddChild (levelLabel, PixelsWithDensity (5), PixelsWithDensity (20));
 
 		}
 

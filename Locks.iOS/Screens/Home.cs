@@ -51,6 +51,7 @@ namespace Locks.iOS.Screens
 			Sunfish.Views.Sprite startButton = new Sunfish.Views.Sprite (LoadTexture ("StartButton"));
 			startButton.CenterInScreen ();
 			startButton.EnableTapGesture (HandleStartButtonTap);
+			startButton.StartEffect(new Sunfish.Views.Effects.Pulsate(4000d, 100, new Color(0.5f, 0.5f, 0.5f, 1f)));
 			AddChildView (startButton);
 
 			PlayPopup = AddPopup (LoadTexture ("PopupBackground"), Sunfish.Constants.ViewContainerLayout.StackCentered);

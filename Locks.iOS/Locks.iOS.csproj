@@ -337,5 +337,11 @@
     <Content Include="Content\Fonts\Futura48.txt" />
     <Content Include="Content\Fonts\Futura24.png" />
     <Content Include="Content\Fonts\Futura24.txt" />
+    <Content Include="Content\Images\iPadRetina\TopBarGem.png" />
+    <Content Include="Content\Images\iPadRetina\TopBarTurn.png" />
+    <Content Include="Content\Images\iPadRetina\TopBarWorld1.png" />
+    <Content Include="Content\Images\iPadRetina\TopBarWorld2.png" />
+    <Content Include="Content\Images\iPadRetina\TopBarWorld3.png" />
+    <Content Include="Content\Images\iPadRetina\TutorialButton.png" />
   </ItemGroup>
 </Project>
