@@ -180,7 +180,9 @@ namespace Locks.iOS.Screens
 			quitButton.EnableTapGesture (HandleQuitButtonFromSolvedPopupTapped);
 
 			SolvedPopup = AddPopup (LoadTexture ("PopupBackground"), Sunfish.Constants.ViewContainerLayout.StackCentered);
+			SolvedPopup.TransitionAudioVolume = 0.8f;
 			SolvedPopup.OnShown = HandleSolvedPopupShown;
+
 			SolvedPopup.AddChild (StarsView, 0, PixelsWithDensity (60));
 			if (nextLevelButton != null) {
 				SolvedPopup.AddChild (nextLevelButton, 0, PixelsWithDensity (30));
@@ -278,7 +280,7 @@ namespace Locks.iOS.Screens
 
 		private void HandleSolvedPopupShown (Sunfish.Views.Popup popupThatIsNowShown)
 		{
-			LocksGame.ActiveScreen.PlaySoundEffect ("LevelSuccess");
+			//LocksGame.ActiveScreen.PlaySoundEffect ("LevelSuccess");
 		}
 
 		private void HandlePauseButtonTapped (Sunfish.Views.View pauseButton)
@@ -288,6 +290,7 @@ namespace Locks.iOS.Screens
 
 		private void HandleSettingsButtonTapped (Sunfish.Views.View settingsButton)
 		{
+			SolvedPopup.TransitionAudioFilename = "PopupTransition";
 			SettingsPopup.Show ();
 		}
 
@@ -298,30 +301,35 @@ namespace Locks.iOS.Screens
 
 		private void HandleRestartButtonTapped (Sunfish.Views.View pauseButton)
 		{
+			SolvedPopup.TransitionAudioFilename = "PopupTransition";
 			PausedPopup.Hide ();
 			RetryLevel ();
 		}
 
 		private void HandleQuitButtonFromPausedPopupTapped (Sunfish.Views.View pauseButton)
 		{
+			SolvedPopup.TransitionAudioFilename = "PopupTransition";
 			PausedPopup.Hide ();
 			QuitGame ();
 		}
 
 		private void HandleQuitButtonFromSolvedPopupTapped (Sunfish.Views.View pauseButton)
 		{
+			SolvedPopup.TransitionAudioFilename = "PopupTransition";
 			SolvedPopup.Hide ();
 			QuitGame ();
 		}
 
 		private void HandleRetryButtonTapped (Sunfish.Views.View retryButton)
 		{
+			SolvedPopup.TransitionAudioFilename = "PopupTransition";
 			SolvedPopup.Hide ();
 			RetryLevel ();
 		}
 
 		private void HandleNextLevelButtonTapped (Sunfish.Views.View nextLevelButton)
 		{
+			SolvedPopup.TransitionAudioFilename = "LightSwoosh";
 			if (LevelNumber == Core.Constants.WorldLevelCount - 1) {
 				CurrentGame.SetActiveScreen (new Screens.Level (CurrentGame, WorldNumber + 1, 0));
 			} else {
@@ -483,6 +491,10 @@ namespace Locks.iOS.Screens
 			LocksGame.ActiveScreen.PlaySoundEffect ("Unlocked");
 			int stars = Model.LockGrid.GetStars (Moves);
 			StarsView.SetStars (stars);
+			StarsView.StartEffect (new Sunfish.Views.Effects.Scale (50f, 1f, 1500d));
+			StarsView.StartEffect (new Sunfish.Views.Effects.Appear (1200d));
+			StarsView.StartEffect (new Sunfish.Views.Effects.Rotate ((float)Math.PI * 12f, 0f, 1500d));
+			SolvedPopup.TransitionAudioFilename = "SpaceHarpChord";
 			SolvedPopup.Show ();
 		}
 

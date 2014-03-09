@@ -88,17 +88,18 @@ namespace Locks.iOS.Views
 //			}
 //			pipeSprite.OverlayColor = new Color (0.5f, 0.5f, 0.5f, 0.5f);
 //			AddChild (pipeSprite);
+			int pipeIndex = ((LockModel.GridRow + LockModel.GridCol) % 2) + 1;
 			if (!isLastCol) {
-				Texture2D pipeHorizontal = LocksGame.ActiveScreen.LoadTexture ("PipeHorizontal1");
+				Texture2D pipeHorizontal = LocksGame.ActiveScreen.LoadTexture ("PipeHorizontal" + pipeIndex.ToString());
 				float halfPipeHorizontalHeight = pipeHorizontal.Height * 0.5f;
 				Vector2 pipePosition = new Vector2 (Width, halfHeight - halfPipeHorizontalHeight);
 				pipeSprite = new Sunfish.Views.Sprite (pipeHorizontal, pipePosition, Sunfish.Constants.ViewLayer.Layer1);
-				pipeSprite.OverlayColor = new Color (0.5f, 0.5f, 0.5f, 0.5f);
+				//pipeSprite.OverlayColor = new Color (0.5f, 0.5f, 0.5f, 0.5f);
 				AddChild (pipeSprite);
 			}
 
 			// Vertical Pipes
-			Texture2D pipeVertical = LocksGame.ActiveScreen.LoadTexture ("PipeVertical1");
+			Texture2D pipeVertical = LocksGame.ActiveScreen.LoadTexture ("PipeVertical" + pipeIndex.ToString());
 			float halfPipeVerticalWidth = pipeVertical.Width * 0.5f;
 			if (isLastRow) {
 				Vector2 pipePosition = new Vector2 (halfWidth - halfPipeVerticalWidth, 0);
@@ -107,7 +108,7 @@ namespace Locks.iOS.Views
 				Vector2 pipePosition = new Vector2 (halfWidth - halfPipeVerticalWidth, Height);
 				pipeSprite = new Sunfish.Views.Sprite (pipeVertical, pipePosition, Sunfish.Constants.ViewLayer.Layer1);
 			}
-			pipeSprite.OverlayColor = new Color (0.5f, 0.5f, 0.5f, 0.5f);
+			//pipeSprite.OverlayColor = new Color (0.5f, 0.5f, 0.5f, 0.5f);
 			AddChild (pipeSprite);
 
 		}
