@@ -39,12 +39,9 @@ namespace Locks.iOS.Screens
 			SettingsPopup = new Views.SettingsPopup ();
 			AddChildView (SettingsPopup);
 
-			//Sunfish.Views.Label chooseALevelLabel = new Sunfish.Views.Label ("Choose a Level", LocksGame.GetTopBarFont(), Color.Black);
-
 			CreateTopBar ();
 			TopBar.AddChild (backButton, PixelsWithDensity(10), PixelsWithDensity(10));
 			TopBar.AddChild (settingsButton, PixelsWithDensity(10), PixelsWithDensity(10));
-			//TopBar.AddChild (chooseALevelLabel, PixelsWithDensity(240), PixelsWithDensity(20));
 
 		}
 
@@ -121,7 +118,7 @@ namespace Locks.iOS.Screens
 
 		private void HandleLevelButtonTap (Sunfish.Views.View levelButtonView)
 		{
-			PlaySoundEffect ("Unlocked");
+			PlaySoundEffect ("LightSwoosh");
 			Views.WorldLevelButton levelButton = (Views.WorldLevelButton)levelButtonView;
 			CurrentGame.SetActiveScreen (new Screens.Level (CurrentGame, levelButton.WorldNumber, levelButton.LevelNumber));
 		}

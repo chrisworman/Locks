@@ -13,6 +13,9 @@ namespace Locks.iOS.Views
 			base(LocksGame.ActiveScreen.LoadTexture ("PopupBackground"), Sunfish.Constants.ViewContainerLayout.StackCentered)
 		{
 
+			TransitionAudioFilename = "PopupTransition";
+			TransitionAudioVolume = 0.8f;
+
 			Sunfish.Views.Sprite soundEffectsLabel = new Sunfish.Views.Sprite (LocksGame.ActiveScreen.LoadTexture ("SoundEffectsLabel"), Sunfish.Constants.ViewLayer.Modal);
 			if (LocksGame.SoundEffectsOn) {
 				SoundEffectsCheckBox = Sunfish.Views.Switch.CreateOn (LocksGame.ActiveScreen.LoadTexture ("CheckBoxOn"), LocksGame.ActiveScreen.LoadTexture ("CheckBoxOff"), Sunfish.Constants.ViewLayer.Modal, HandleSoundEffectsCheckboxTapped);

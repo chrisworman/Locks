@@ -41,7 +41,7 @@ namespace Locks.iOS.Screens
 
 			CreateTopBar ();
 			TopBar.AddChild (settingsButton, PixelsWithDensity (10), PixelsWithDensity (10));
-			TopBar.AddChild (creditsButton, PixelsWithDensity (10), PixelsWithDensity (10));
+			//TopBar.AddChild (creditsButton, PixelsWithDensity (10), PixelsWithDensity (10));
 
 		}
 
@@ -60,6 +60,8 @@ namespace Locks.iOS.Screens
 			AddChildView (startButton);
 
 			PlayPopup = AddPopup (LoadTexture ("PopupBackground"), Sunfish.Constants.ViewContainerLayout.StackCentered);
+			PlayPopup.TransitionAudioFilename = "PopupTransition";
+			PlayPopup.TransitionAudioVolume = 0.8f;
 
 			Models.GameProgress[] gameProgress = Rules.GameProgress.LoadGameProgress ();
 			for (int slot=0; slot < Core.Constants.SlotsCount; slot++) {

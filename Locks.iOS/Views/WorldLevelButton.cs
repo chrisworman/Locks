@@ -27,6 +27,7 @@ namespace Locks.iOS.Views
 			Texture2D buttonTexture = LocksGame.ActiveScreen.LoadTexture ("WorldLevelFirstUnsovled_" + (worldNumber + 1).ToString());
 			Sunfish.Views.Sprite buttonSprite = new Sunfish.Views.Sprite (buttonTexture, new Vector2 (0, 0), Sunfish.Constants.ViewLayer.Layer1);
 			WorldLevelButton button = new WorldLevelButton (buttonSprite, Stars.Create (0, Sunfish.Constants.ViewLayer.Layer1), worldNumber, levelNumber);
+			buttonSprite.StartEffect (new Sunfish.Views.Effects.Pulsate (1200d, 1000, Color.White));
 			return button;
 		}
 

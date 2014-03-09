@@ -344,5 +344,6 @@
     <Content Include="Content\Images\iPadRetina\TopBarWorld3.png" />
     <Content Include="Content\Images\iPadRetina\TutorialButton.png" />
     <Content Include="Content\Images\iPadRetina\StartButtonGlow.png" />
+    <Content Include="Content\Audio\LightSwoosh.wav" />
   </ItemGroup>
 </Project>

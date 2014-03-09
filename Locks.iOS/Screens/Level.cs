@@ -145,6 +145,9 @@ namespace Locks.iOS.Screens
 		{
 
 			PausedPopup = AddPopup (LoadTexture ("PopupBackground"), Sunfish.Constants.ViewContainerLayout.StackCentered);
+			PausedPopup.TransitionAudioFilename = "PopupTransition";
+			PausedPopup.TransitionAudioVolume = 0.8f;
+
 			Sunfish.Views.Sprite resumeButton = new Sunfish.Views.Sprite (LoadTexture ("ResumeGameButton"), Sunfish.Constants.ViewLayer.Modal);
 			Sunfish.Views.Sprite restartButton = new Sunfish.Views.Sprite (LoadTexture ("RestartGameButton"), Sunfish.Constants.ViewLayer.Modal);
 			Sunfish.Views.Sprite quitButton = new Sunfish.Views.Sprite (LoadTexture ("QuitGameButton"), Sunfish.Constants.ViewLayer.Modal);
