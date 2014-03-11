@@ -47,6 +47,8 @@ namespace Locks.iOS.Screens
 
 		private const double LockShiftDelayMilliseconds = 373d;
 
+		private Views.TutorialPopup TutorialPopup = null;
+
 		#endregion
 
 		#region "Initialization"
@@ -54,23 +56,27 @@ namespace Locks.iOS.Screens
 		public Level (Sunfish.SunfishGame currentGame, int worldNumber, int levelNumber) :
 			base (currentGame, "WorldBackground_" + (worldNumber + 1).ToString ())
 		{
+
 			WorldNumber = worldNumber;
 			LevelNumber = levelNumber;
 			Model = Rules.Level.ReadLevel (WorldNumber, LevelNumber);
 			LockViewsDictionary = new Dictionary<string, Views.Lock> ();
+
 			// Compute the space between the locks, which is used during the animation when the user solves the level
 			Texture2D pipeHorizontal = LocksGame.ActiveScreen.LoadTexture ("PipeHorizontal1");
 			SpaceBetweenLocks = pipeHorizontal.Width;
+
 		}
 
 		public override void PopulateScreenViews ()
 		{
+			TutorialPopup = new Views.TutorialPopup ();
+			ChildViews.Add (TutorialPopup);
 			CreateAndPopulateTopBar ();
 			CreateLocks (TopBar.Height);
 			CreatePausedPopup ();
 			CreateSolvedPopup ();
 			ToggleAdAccordingToRowCount ();
-			//CreateAndShowTutorialPopupIfNecessary ();
 		}
 
 		private void CreateAndPopulateTopBar ()
@@ -83,6 +89,10 @@ namespace Locks.iOS.Screens
 			settingsButton.EnableTapGesture (HandleSettingsButtonTapped);
 
 			Sunfish.Views.Sprite tutorialButton = new Sunfish.Views.Sprite (LoadTexture ("TutorialButton"));
+			tutorialButton.EnableTapGesture (HandleTutorialButtonTapped);
+			if (LevelNumber == 0 && WorldNumber == 0 && LocksGame.GameProgress.GetSolvedLevel (LevelNumber, WorldNumber) == null) {
+				tutorialButton.StartEffect (new Sunfish.Views.Effects.Pulsate (1500d, 100, Color.LightGreen));
+			}
 
 			Sunfish.Views.Sprite turnsIcon = new Sunfish.Views.Sprite (LoadTexture ("TopBarTurn"));
 			TurnsLabel = new Sunfish.Views.Label ("0", LocksGame.GetTopBarFont (), Color.AntiqueWhite);
@@ -192,15 +202,6 @@ namespace Locks.iOS.Screens
 
 		}
 
-		private void CreateAndShowTutorialPopupIfNecessary ()
-		{
-			if (LevelNumber == 0 && WorldNumber == 0 && LocksGame.GameProgress.GetSolvedLevel (LevelNumber, WorldNumber) == null) {
-				Views.TutorialPopup tutorialPopup = new Views.TutorialPopup ();
-				AddChildView (tutorialPopup);
-				tutorialPopup.Show ();
-			}
-		}
-
 		private Sunfish.Views.Container CreateLevelGridContainer ()
 		{
 			int lockWidthWithMargin = Views.Lock.LoadLockBackground (1).Width + PixelsWithDensity (18);
@@ -292,6 +293,13 @@ namespace Locks.iOS.Screens
 		{
 			SolvedPopup.TransitionAudioFilename = "PopupTransition";
 			SettingsPopup.Show ();
+		}
+
+		private void HandleTutorialButtonTapped (Sunfish.Views.View tutorialButton)
+		{
+			tutorialButton.ClearEffects ();
+			tutorialButton.OverlayColor = Color.White;
+			TutorialPopup.Show ();
 		}
 
 		private void HandleResumeButtonTapped (Sunfish.Views.View pauseButton)

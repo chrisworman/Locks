@@ -1,8 +1,10 @@
 ﻿<Properties GitUserInfo="UsingGIT">
-  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug|iPhoneSimulator" PreferredExecutionTarget="MonoDevelop.IPhone.IPhoneSimulatorTarget.IPadRetina.7.0" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="LocksGame.cs">
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug|iPhone" PreferredExecutionTarget="MonoDevelop.IPhone.IPhoneDeviceTarget" />
+  <MonoDevelop.Ide.Workbench>
     <Files>
-      <File FileName="LocksGame.cs" Line="45" Column="7" />
+      <File FileName="Screens/Level.cs" Line="492" Column="48" />
+      <File FileName="Views/WorldLevelButton.cs" Line="31" Column="18" />
+      <File FileName="Screens/LevelChooser.cs" Line="121" Column="33" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

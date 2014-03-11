@@ -221,15 +221,12 @@
     <Content Include="Content\Images\iPadRetina\TopBarBackground.png" />
     <Content Include="Content\Images\iPadRetina\ContinueGameButton.png" />
     <Content Include="Content\Images\iPad\TutorialDialHint.png" />
-    <Content Include="Content\Images\iPadRetina\TutorialDialHint.png" />
-    <Content Include="Content\Images\iPadRetina\TapIcon.png" />
     <Content Include="Content\Images\iPad\TapIcon.png" />
     <Content Include="Content\Images\iPad\NextButton.png" />
     <Content Include="Content\Images\iPadRetina\NextButton.png" />
     <Content Include="Content\Images\iPad\RightArrow.png" />
     <Content Include="Content\Images\iPadRetina\RightArrow.png" />
     <Content Include="Content\Images\iPad\TutorialRotateHint.png" />
-    <Content Include="Content\Images\iPadRetina\TutorialRotateHint.png" />
     <Content Include="Content\Images\iPad\SampleSpriteSheet.png" />
     <Content Include="Content\Levels\World0Level0.txt" />
     <Content Include="Content\Levels\World0Level1.txt" />
@@ -348,5 +345,7 @@
     <Content Include="Content\Images\iPadRetina\PipeHorizontal2.png" />
     <Content Include="Content\Images\iPadRetina\PipeVertical2.png" />
     <Content Include="Content\Audio\SpaceHarpChord.wav" />
+    <Content Include="Content\Images\iPadRetina\TutorialContent.png" />
+    <Content Include="Content\Images\iPadRetina\TutorialPopupBackground.png" />
   </ItemGroup>
 </Project>
