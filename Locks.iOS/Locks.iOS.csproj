@@ -99,6 +99,7 @@
     <Compile Include="Views\Stars.cs" />
     <Compile Include="Views\TutorialPopup.cs" />
     <Compile Include="Views\BannerAd.cs" />
+    <Compile Include="GameCenter.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Info.plist" />

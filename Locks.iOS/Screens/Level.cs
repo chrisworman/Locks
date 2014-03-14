@@ -102,8 +102,9 @@ namespace Locks.iOS.Screens
 			LockedCountLabel = new Sunfish.Views.Label ("0", LocksGame.GetTopBarFont (), Color.AntiqueWhite);
 			UpdateLockCountLabel ();
 
+			int levelNumberForLabel = (WorldNumber * Locks.Core.Constants.WorldLevelCount) + LevelNumber + 1;
 			Sunfish.Views.Sprite levelIcon = new Sunfish.Views.Sprite (LoadTexture ("TopBarWorld" + (WorldNumber+1).ToString()));
-			Sunfish.Views.Label levelLabel = new Sunfish.Views.Label ("Level " + LevelNumber.ToString (), LocksGame.GetTopBarFont (), Color.AntiqueWhite);
+			Sunfish.Views.Label levelLabel = new Sunfish.Views.Label ("Level " + levelNumberForLabel.ToString (), LocksGame.GetTopBarFont (), Color.AntiqueWhite);
 
 			SettingsPopup = new Views.SettingsPopup ();
 			AddChildView (SettingsPopup);
@@ -247,6 +248,11 @@ namespace Locks.iOS.Screens
 			lockWhoseDialRotated.OnDialRotateComplete = null;
 
 			if (Model.LockGrid.IsSolved ()) {
+
+				// Was a world just completed?  If so, record the achievement in Game Center
+				if (Model.LevelNumber == Locks.Core.Constants.WorldLevelCount - 1) {
+					Locks.iOS.GameCenter.RecordWorldCompleteAchievement (Model.WorldNumber);
+				}
 
 				// Save the game progress
 				Models.SolvedLevel solvedLevel = LocksGame.GameProgress.GetSolvedLevel (WorldNumber, LevelNumber);

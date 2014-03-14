@@ -1,10 +1,11 @@
 ﻿<Properties GitUserInfo="UsingGIT">
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug|iPhone" PreferredExecutionTarget="MonoDevelop.IPhone.IPhoneDeviceTarget" />
-  <MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.Workbench ActiveDocument="Info.plist">
     <Files>
-      <File FileName="Screens/Level.cs" Line="492" Column="48" />
-      <File FileName="Views/WorldLevelButton.cs" Line="31" Column="18" />
-      <File FileName="Screens/LevelChooser.cs" Line="121" Column="33" />
+      <File FileName="Screens/Level.cs" Line="252" Column="81" />
+      <File FileName="GameCenter.cs" Line="54" Column="6" />
+      <File FileName="Main.cs" Line="17" Column="21" />
+      <File FileName="Info.plist" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

@@ -13,9 +13,15 @@ namespace Locks.iOS
 
 		public override void FinishedLaunching (UIApplication app)
 		{
+
+			// Start the game
 			game = new LocksGame ();
 			game.Run ();
+
+			// Initialize Game Center and the banner ad
+			Locks.iOS.GameCenter.Initialize ();
 			Locks.iOS.Views.BannerAd.Initialize ();
+
 		}
 
 		/// <summary>
