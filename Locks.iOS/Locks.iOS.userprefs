@@ -1,9 +1,9 @@
 ﻿<Properties GitUserInfo="UsingGIT">
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug|iPhone" PreferredExecutionTarget="MonoDevelop.IPhone.IPhoneDeviceTarget" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Info.plist">
+  <MonoDevelop.Ide.Workbench>
     <Files>
-      <File FileName="Screens/Level.cs" Line="252" Column="81" />
-      <File FileName="GameCenter.cs" Line="54" Column="6" />
+      <File FileName="Screens/Level.cs" Line="254" Column="1" />
+      <File FileName="GameCenter.cs" Line="165" Column="18" />
       <File FileName="Main.cs" Line="17" Column="21" />
       <File FileName="Info.plist" />
     </Files>
@@ -17,4 +17,7 @@
   <MonoDevelop.Ide.DebuggingService.PinnedWatches>
     <Watch file="../../Sunfish/Framework/Views/View.cs" line="357" offsetX="338" offsetY="4620" expression="this.Texture.Name" liveUpdate="False" />
   </MonoDevelop.Ide.DebuggingService.PinnedWatches>
+  <MonoDevelop.Ide.ItemProperties.Locks.iOS>
+    <MonoDevelop.MacDev.AppleDevelopmentTeam DeveloperId="2P95TGRZHP" TeamId="828A5C3NGA" />
+  </MonoDevelop.Ide.ItemProperties.Locks.iOS>
 </Properties>
