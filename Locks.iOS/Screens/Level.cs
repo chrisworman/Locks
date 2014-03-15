@@ -9,6 +9,8 @@ using Microsoft.Xna.Framework.Audio;
 using Locks.iOS.Views;
 using System.Timers;
 using Sunfish.Utilities;
+using Sunfish.Views;
+using Sunfish.Views.Effects;
 
 namespace Locks.iOS.Screens
 {
@@ -48,6 +50,8 @@ namespace Locks.iOS.Screens
 		private const double LockShiftDelayMilliseconds = 373d;
 
 		private Views.TutorialPopup TutorialPopup = null;
+
+		private Label SolvedLabel = null;
 
 		#endregion
 
@@ -182,8 +186,11 @@ namespace Locks.iOS.Screens
 
 			StarsView = Views.Stars.Create (0, Sunfish.Constants.ViewLayer.Modal);
 
+			string initialTextForSizing = Model.IsLastLevel () ? "All Levels Complete!" : "Solved in 99 Turns";
+			SolvedLabel = new Label (initialTextForSizing, LocksGame.GetTopBarFont (), Color.AntiqueWhite, Sunfish.Constants.ViewLayer.Modal);
+
 			Sunfish.Views.Sprite nextLevelButton = null;
-			if (WorldNumber != Core.Constants.WorldCount - 1 || LevelNumber != Core.Constants.WorldLevelCount - 1) {
+			if ( ! Model.IsLastLevel()) {
 				nextLevelButton = new Sunfish.Views.Sprite (LoadTexture ("NextLevelButton"), Sunfish.Constants.ViewLayer.Modal);
 				nextLevelButton.EnableTapGesture (HandleNextLevelButtonTapped);
 			}
@@ -198,12 +205,15 @@ namespace Locks.iOS.Screens
 			SolvedPopup.TransitionAudioVolume = 0.8f;
 			SolvedPopup.OnShown = HandleSolvedPopupShown;
 
-			SolvedPopup.AddChild (StarsView, 0, PixelsWithDensity (60));
+			/** Add solved popup children **/
+
+			SolvedPopup.AddChild (StarsView, 0, PixelsWithDensity (Model.IsLastLevel() ? 60 : 35));
+			SolvedPopup.AddChild (SolvedLabel, 0, PixelsWithDensity (12));
 			if (nextLevelButton != null) {
-				SolvedPopup.AddChild (nextLevelButton, 0, PixelsWithDensity (30));
+				SolvedPopup.AddChild (nextLevelButton, 0, PixelsWithDensity (25));
 			}
-			SolvedPopup.AddChild (retryButton, 0, PixelsWithDensity (30));
-			SolvedPopup.AddChild (quitButton, 0, PixelsWithDensity (30));
+			SolvedPopup.AddChild (retryButton, 0, PixelsWithDensity (Model.IsLastLevel() ? 60 : 25));
+			SolvedPopup.AddChild (quitButton, 0, PixelsWithDensity (25));
 
 		}
 
@@ -258,6 +268,8 @@ namespace Locks.iOS.Screens
 					Locks.iOS.GameCenter.RecordWorldCompleteAchievement (Model.WorldNumber);
 				}
 
+
+
 				// Save the game progress
 				Models.SolvedLevel solvedLevel = LocksGame.GameProgress.GetSolvedLevel (WorldNumber, LevelNumber);
 				if (solvedLevel == null || Moves < solvedLevel.Moves) {
@@ -267,6 +279,12 @@ namespace Locks.iOS.Screens
 					Rules.GameProgress.SaveGameProgress (LocksGame.GameProgress);
 				}
 
+				// Update the solved message 
+				if (Model.IsLastLevel ()) {
+					SolvedLabel.SetText ("All Levels Complete!");
+				} else {
+					SolvedLabel.SetText ("Solved in " + Moves.ToString () + " Turns");
+				}
 				// Start an animation indicating that the level is solved
 				StartSolvedLockAnimation ();
 
@@ -507,6 +525,38 @@ namespace Locks.iOS.Screens
 
 		private void ShowSolvedPopup()
 		{
+
+			// Show a final animation if this is the last level
+			if (Model.IsLastLevel ()) {
+
+				Sprite star1 = new Sprite (LoadTexture ("World1Star"), Sunfish.Constants.ViewLayer.Modal);	
+				Sprite star2 = new Sprite (LoadTexture ("World2Star"), Sunfish.Constants.ViewLayer.Modal);	
+				Sprite star3 = new Sprite (LoadTexture ("World3Star"), Sunfish.Constants.ViewLayer.Modal);	
+
+				ViewPositioner.ScreenCenter (star1);
+				ViewPositioner.ScreenCenter (star2);
+				ViewPositioner.ScreenCenter (star3);
+
+				double starsEffectLength = 3100d;
+
+				star1.StartEffect (new Scale (0, 10.0f, starsEffectLength));
+				star1.StartEffect (new Disappear (starsEffectLength));
+				star1.StartEffect (new TranslateBy (new Vector2 (PixelsWithDensity (LocksGame.ScreenWidth * 2), PixelsWithDensity (LocksGame.ScreenWidth * 2)), starsEffectLength));
+
+				star2.StartEffect (new Scale (0, 12.0f, starsEffectLength));
+				star2.StartEffect (new Disappear (starsEffectLength));
+				star2.StartEffect (new TranslateBy (new Vector2 (PixelsWithDensity (LocksGame.ScreenWidth * 2), PixelsWithDensity (-LocksGame.ScreenWidth * 2)), starsEffectLength));
+
+				star3.StartEffect (new Scale (0, 15.0f, starsEffectLength));
+				star3.StartEffect (new Disappear (starsEffectLength));
+				star3.StartEffect (new TranslateBy (new Vector2 (PixelsWithDensity (-LocksGame.ScreenWidth * 4), PixelsWithDensity (-LocksGame.ScreenWidth * 2)), starsEffectLength));
+
+				AddChildView (star1);
+				AddChildView (star2);
+				AddChildView (star3);
+
+			}
+
 			LocksGame.ActiveScreen.PlaySoundEffect ("Unlocked");
 			int stars = Model.LockGrid.GetStars (Moves);
 			StarsView.SetStars (stars);

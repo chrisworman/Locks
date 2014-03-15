@@ -362,6 +362,9 @@
     <Content Include="Content\Images\iPadRetina\TutorialContent.png" />
     <Content Include="Content\Images\iPadRetina\TutorialPopupBackground.png" />
     <Content Include="Content\Images\iPadRetina\GameCenterIcon.png" />
+    <Content Include="Content\Images\iPadRetina\World1Star.png" />
+    <Content Include="Content\Images\iPadRetina\World2Star.png" />
+    <Content Include="Content\Images\iPadRetina\World3Star.png" />
   </ItemGroup>
   <ItemGroup>
     <ITunesArtwork Include="iTunesArtwork" />

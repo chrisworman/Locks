@@ -163,6 +163,11 @@ namespace Locks.iOS
 			RecordAchievement (worldCompleteAchievementId);
 		}
 
+		public static void RecordWorld3StarsAchievement(int worldNumber) {
+			string worldCompleteAchievementId = "world." + worldNumber.ToString () + ".complete";
+			RecordAchievement (worldCompleteAchievementId);
+		}
+
 		/// <summary>
 		/// Record that the achievement with the specified id was earned.
 		/// </summary>
