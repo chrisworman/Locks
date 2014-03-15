@@ -14,7 +14,7 @@ namespace Locks.iOS
 	public static class GameCenter
 	{
 
-		#region View Controller Delegates
+		#region Delegates
 
 		private class LeaderBoardDelegate : GKGameCenterControllerDelegate {
 			public override void Finished (GKGameCenterViewController controller) {
@@ -27,6 +27,10 @@ namespace Locks.iOS
 				viewController.DismissViewController (true, null);
 			}
 		}
+
+		public delegate void PlayerStatusChangedDelegate ();
+
+		public static PlayerStatusChangedDelegate OnPlayerStatusChanged;
 
 		#endregion
 
@@ -83,14 +87,25 @@ namespace Locks.iOS
 					GKAchievement.ResetAchivements ((resetError) => {
 					});
 
+					GameCenter.CallOnPlayerStatusChanged ();
+
 				} else {
 
 					CurrentPlayerId = null; // No current player I guess
+
+					GameCenter.CallOnPlayerStatusChanged ();
+
 
 				}
 
 			}
 
+		}
+
+		public static void CallOnPlayerStatusChanged () {
+			if (GameCenter.OnPlayerStatusChanged != null) {
+				GameCenter.OnPlayerStatusChanged ();
+			}
 		}
 
 		/// <summary>

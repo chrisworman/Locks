@@ -35,13 +35,11 @@ namespace Locks.iOS.Screens
 			SettingsPopup = new Views.SettingsPopup ();
 			AddChildView (SettingsPopup);
 
-			Sunfish.Views.Sprite creditsButton = new Sunfish.Views.Sprite (LoadTexture ("CreditsButton"));
-			creditsButton.EnableTapGesture (HandleCreditsButtonTap);
-			CreateCreditsPopup ();
+			Sunfish.Views.Sprite gameCenterButton = new Locks.iOS.Views.GameCenterButton ();
 
 			CreateTopBar ();
 			TopBar.AddChild (settingsButton, PixelsWithDensity (10), PixelsWithDensity (10));
-			//TopBar.AddChild (creditsButton, PixelsWithDensity (10), PixelsWithDensity (10));
+			TopBar.AddChild (gameCenterButton, PixelsWithDensity (10), PixelsWithDensity (10));
 
 		}
 
@@ -92,11 +90,6 @@ namespace Locks.iOS.Screens
 		private void HandleSettingsButtonTap (Sunfish.Views.View settingsButton)
 		{
 			SettingsPopup.Show ();
-		}
-
-		private void HandleCreditsButtonTap (Sunfish.Views.View creditsButton)
-		{
-			CreditsPopup.Show ();
 		}
 
 		private void HandleCreditsPopupCloseButtonTap (Sunfish.Views.View closeButton)
