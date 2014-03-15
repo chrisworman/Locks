@@ -263,12 +263,6 @@ namespace Locks.iOS.Screens
 
 			if (Model.LockGrid.IsSolved ()) {
 
-				// Was a world just completed?  If so, record the achievement in Game Center
-				if (Model.LevelNumber == Locks.Core.Constants.WorldLevelCount - 1) {
-					Locks.iOS.GameCenter.RecordWorldCompleteAchievement (Model.WorldNumber);
-				}
-
-
 
 				// Save the game progress
 				Models.SolvedLevel solvedLevel = LocksGame.GameProgress.GetSolvedLevel (WorldNumber, LevelNumber);
@@ -277,6 +271,14 @@ namespace Locks.iOS.Screens
 					solvedLevel = new Models.SolvedLevel (WorldNumber, LevelNumber, Moves, stars);
 					LocksGame.GameProgress.AddSolvedLevel (solvedLevel);
 					Rules.GameProgress.SaveGameProgress (LocksGame.GameProgress);
+				}
+
+				// Detect and record Game Center achievements
+				if (Model.LevelNumber == Locks.Core.Constants.WorldLevelCount - 1) {
+					Locks.iOS.GameCenter.RecordWorldCompleteAchievement (Model.WorldNumber);
+				}
+				if (LocksGame.GameProgress.IsWorld3Star (WorldNumber)) {
+					Locks.iOS.GameCenter.RecordWorld3StarsAchievement (Model.WorldNumber);
 				}
 
 				// Update the solved message 

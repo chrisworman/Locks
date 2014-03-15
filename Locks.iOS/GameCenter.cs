@@ -102,6 +102,7 @@ namespace Locks.iOS
 
 		}
 
+		// Call the OnPlayerStatusChanged method if it exists
 		public static void CallOnPlayerStatusChanged () {
 			if (GameCenter.OnPlayerStatusChanged != null) {
 				GameCenter.OnPlayerStatusChanged ();
@@ -164,7 +165,7 @@ namespace Locks.iOS
 		}
 
 		public static void RecordWorld3StarsAchievement(int worldNumber) {
-			string worldCompleteAchievementId = "world." + worldNumber.ToString () + ".complete";
+			string worldCompleteAchievementId = "world." + worldNumber.ToString () + ".3Stars";
 			RecordAchievement (worldCompleteAchievementId);
 		}
 
