@@ -11,14 +11,14 @@ namespace Locks.iOS.Views
 	{
 
 		public GameCenterButton()
-			: this(LocksGame.ActiveScreen.LoadTexture ("GameCenterButton"), Sunfish.Constants.ViewLayer.Layer5)
+			: this(LocksGame.ActiveScreen.LoadTexture ("GameCenterIcon"), Sunfish.Constants.ViewLayer.Layer5)
 		{
 		}
 
 		private GameCenterButton (Texture2D buttonTexture, Sunfish.Constants.ViewLayer layer) :
 		base (buttonTexture, Vector2.Zero, layer)
 		{
-			GameCenter.OnPlayerStatusChanged = HandleGameCenterPlayerStatusChanged;
+
 			if (GameCenter.IsGamePlayerAuthenticated ()) {
 				EnableTapGesture (HandleGameCenterButtonTap);
 				Visible = true;
@@ -26,6 +26,14 @@ namespace Locks.iOS.Views
 				Visible = false;
 				DisableTapGestures ();
 			}
+
+			GameCenter.OnPlayerStatusChanged = HandleGameCenterPlayerStatusChanged;
+			PositionInTopRight ();
+
+		}
+
+		public void PositionInTopRight() {
+			ViewPositioner.ScreenTopRight (this, PixelsWithDensity (10), PixelsWithDensity (10));
 		}
 
 		private void HandleGameCenterButtonTap (View gameCenterButton) {
@@ -34,10 +42,15 @@ namespace Locks.iOS.Views
 
 		private void HandleGameCenterPlayerStatusChanged() {
 			if (GameCenter.IsGamePlayerAuthenticated ()) {
+				if (!Visible) {
+					StartEffect (new Appear (1500d));
+				}
 				EnableTapGesture (HandleGameCenterButtonTap);
-				StartEffect (new Appear (1500d));
+				Visible = true; 
 			} else {
-				Visible = false;
+				if (Visible) {
+					StartEffect (new Disappear (1500d));
+				}
 				DisableTapGestures ();
 			}
 		}

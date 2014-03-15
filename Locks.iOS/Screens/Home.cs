@@ -5,6 +5,7 @@ using Microsoft.Xna.Framework.Input;
 using Microsoft.Xna.Framework.Input.Touch;
 using Microsoft.Xna.Framework.Content;
 using Locks.Core;
+using Locks.iOS.Views;
 using Sunfish;
 
 namespace Locks.iOS.Screens
@@ -35,11 +36,12 @@ namespace Locks.iOS.Screens
 			SettingsPopup = new Views.SettingsPopup ();
 			AddChildView (SettingsPopup);
 
-			Sunfish.Views.Sprite gameCenterButton = new Locks.iOS.Views.GameCenterButton ();
+			GameCenterButton gameCenterButton = new GameCenterButton ();
 
 			CreateTopBar ();
 			TopBar.AddChild (settingsButton, PixelsWithDensity (10), PixelsWithDensity (10));
-			TopBar.AddChild (gameCenterButton, PixelsWithDensity (10), PixelsWithDensity (10));
+			TopBar.AddChild (gameCenterButton);
+			gameCenterButton.PositionInTopRight ();
 
 		}
 

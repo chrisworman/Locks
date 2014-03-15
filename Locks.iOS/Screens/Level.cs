@@ -6,7 +6,7 @@ using Microsoft.Xna.Framework.Input.Touch;
 using Microsoft.Xna.Framework.Content;
 using System.Collections.Generic;
 using Microsoft.Xna.Framework.Audio;
-
+using Locks.iOS.Views;
 using System.Timers;
 using Sunfish.Utilities;
 
@@ -109,6 +109,8 @@ namespace Locks.iOS.Screens
 			SettingsPopup = new Views.SettingsPopup ();
 			AddChildView (SettingsPopup);
 
+			GameCenterButton gameCenterButton = new GameCenterButton ();
+
 			CreateTopBar ();
 			TopBar.AddChild (pauseButton, PixelsWithDensity (10), PixelsWithDensity (10));
 			TopBar.AddChild (settingsButton, PixelsWithDensity (10), PixelsWithDensity (10));
@@ -119,6 +121,8 @@ namespace Locks.iOS.Screens
 			TopBar.AddChild (LockedCountLabel, PixelsWithDensity (5), PixelsWithDensity (20));
 			TopBar.AddChild (levelIcon, PixelsWithDensity (70), PixelsWithDensity (25));
 			TopBar.AddChild (levelLabel, PixelsWithDensity (5), PixelsWithDensity (20));
+			TopBar.AddChild (gameCenterButton);
+			gameCenterButton.PositionInTopRight ();
 
 		}
 
@@ -344,6 +348,7 @@ namespace Locks.iOS.Screens
 		private void HandleNextLevelButtonTapped (Sunfish.Views.View nextLevelButton)
 		{
 			SolvedPopup.TransitionAudioFilename = "LightSwoosh";
+			SolvedPopup.TransitionAudioVolume = 0.8f;
 			if (LevelNumber == Core.Constants.WorldLevelCount - 1) {
 				CurrentGame.SetActiveScreen (new Screens.Level (CurrentGame, WorldNumber + 1, 0));
 			} else {

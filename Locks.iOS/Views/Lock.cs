@@ -186,7 +186,7 @@ namespace Locks.iOS.Views
 
 			// Start the effects in the UI
 			RotateDial (lockButton.ContainingLock.CurrentPosition - previousPosition);
-			LocksGame.ActiveScreen.PlaySoundEffect ("LockDialTurning");
+			LocksGame.ActiveScreen.PlaySoundEffect ("LockDialTurning", 0.8f);
 			PulsateLockButton (buttonThatWasTapped);
 			RotateGearsForLockButton (lockButton);
 

@@ -361,6 +361,7 @@
     <Content Include="Content\Audio\SpaceHarpChord.wav" />
     <Content Include="Content\Images\iPadRetina\TutorialContent.png" />
     <Content Include="Content\Images\iPadRetina\TutorialPopupBackground.png" />
+    <Content Include="Content\Images\iPadRetina\GameCenterIcon.png" />
   </ItemGroup>
   <ItemGroup>
     <ITunesArtwork Include="iTunesArtwork" />

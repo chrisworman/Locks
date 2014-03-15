@@ -5,6 +5,7 @@ using Microsoft.Xna.Framework.Input;
 using Microsoft.Xna.Framework.Input.Touch;
 using Microsoft.Xna.Framework.Content;
 using Locks.Core;
+using Locks.iOS.Views;
 
 namespace Locks.iOS.Screens
 {
@@ -39,9 +40,13 @@ namespace Locks.iOS.Screens
 			SettingsPopup = new Views.SettingsPopup ();
 			AddChildView (SettingsPopup);
 
+			GameCenterButton gameCenterButton = new GameCenterButton ();
+
 			CreateTopBar ();
 			TopBar.AddChild (backButton, PixelsWithDensity(10), PixelsWithDensity(10));
 			TopBar.AddChild (settingsButton, PixelsWithDensity(10), PixelsWithDensity(10));
+			TopBar.AddChild (gameCenterButton);
+			gameCenterButton.PositionInTopRight ();
 
 		}
 
@@ -118,7 +123,7 @@ namespace Locks.iOS.Screens
 
 		private void HandleLevelButtonTap (Sunfish.Views.View levelButtonView)
 		{
-			PlaySoundEffect ("LightSwoosh");
+			PlaySoundEffect ("LightSwoosh", 0.8f);
 			Views.WorldLevelButton levelButton = (Views.WorldLevelButton)levelButtonView;
 			CurrentGame.SetActiveScreen (new Screens.Level (CurrentGame, levelButton.WorldNumber, levelButton.LevelNumber));
 		}
