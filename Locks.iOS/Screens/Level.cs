@@ -279,6 +279,10 @@ namespace Locks.iOS.Screens
 				}
 				if (LocksGame.GameProgress.IsWorld3Star (WorldNumber)) {
 					Locks.iOS.GameCenter.RecordWorld3StarsAchievement (Model.WorldNumber);
+
+				}
+				if (LocksGame.GameProgress.AllLevels3Stars ()) {
+					Locks.iOS.GameCenter.RecordAllLevels3StarsAchievment ();
 				}
 
 				// Update the solved message 

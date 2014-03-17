@@ -164,9 +164,20 @@ namespace Locks.iOS
 			RecordAchievement (worldCompleteAchievementId);
 		}
 
+		/// <summary>
+		/// Record an achievement when the user gets 3 stars on all levels in the specified world.
+		/// </summary>
+		/// <param name="worldNumber">World number.</param>
 		public static void RecordWorld3StarsAchievement(int worldNumber) {
 			string worldCompleteAchievementId = "world." + worldNumber.ToString () + ".3Stars";
 			RecordAchievement (worldCompleteAchievementId);
+		}
+
+		/// <summary>
+		/// Record an achievement when the user gets 3 stars on all levels in the entire game.
+		/// </summary>
+		public static void RecordAllLevels3StarsAchievment() {
+			RecordAchievement ("allLevels.3Stars");
 		}
 
 		/// <summary>
