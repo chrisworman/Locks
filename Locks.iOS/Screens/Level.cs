@@ -203,7 +203,6 @@ namespace Locks.iOS.Screens
 
 			SolvedPopup = AddPopup (LoadTexture ("PopupBackground"), Sunfish.Constants.ViewContainerLayout.StackCentered);
 			SolvedPopup.TransitionAudioVolume = 0.8f;
-			SolvedPopup.OnShown = HandleSolvedPopupShown;
 
 			/** Add solved popup children **/
 
@@ -311,11 +310,6 @@ namespace Locks.iOS.Screens
 		{
 			string lockCountText = Model.LockGrid.CountUnlocked ().ToString () + " of " + (Model.LockGrid.ColCount * Model.LockGrid.RowCount).ToString () + " Unlocked";
 			LockedCountLabel.SetText (lockCountText);
-		}
-
-		private void HandleSolvedPopupShown (Sunfish.Views.Popup popupThatIsNowShown)
-		{
-			//LocksGame.ActiveScreen.PlaySoundEffect ("LevelSuccess");
 		}
 
 		private void HandlePauseButtonTapped (Sunfish.Views.View pauseButton)

@@ -168,7 +168,6 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\Audio\PopupTransition.wav" />
-    <Content Include="Content\Audio\LevelSuccess.wav" />
     <Content Include="Content\Audio\LevelSong.mp3" />
     <Content Include="Content\Audio\Unlocked.wav" />
     <Content Include="Content\Images\iPadRetina\CheckBoxOff.png" />
