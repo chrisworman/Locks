@@ -1,11 +1,10 @@
 ﻿<Properties GitUserInfo="UsingGIT">
-  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug|iPhone" PreferredExecutionTarget="MonoDevelop.IPhone.IPhoneDeviceTarget" />
-  <MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug|iPhoneSimulator" PreferredExecutionTarget="MonoDevelop.IPhone.IPhoneSimulatorTarget.IPadRetina.7.0" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="LocksGame.cs">
     <Files>
-      <File FileName="Screens/Level.cs" Line="254" Column="1" />
-      <File FileName="GameCenter.cs" Line="165" Column="18" />
-      <File FileName="Main.cs" Line="17" Column="21" />
-      <File FileName="Info.plist" />
+      <File FileName="../../Sunfish/Framework/SunfishGame.cs" Line="74" Column="4" />
+      <File FileName="../../Sunfish/Framework/Screen.cs" Line="77" Column="4" />
+      <File FileName="LocksGame.cs" Line="40" Column="4" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
