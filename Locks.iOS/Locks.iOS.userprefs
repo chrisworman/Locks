@@ -1,12 +1,6 @@
 ﻿<Properties GitUserInfo="UsingGIT">
-  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug|iPhoneSimulator" PreferredExecutionTarget="MonoDevelop.IPhone.IPhoneSimulatorTarget.IPadRetina.7.0" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="LocksGame.cs">
-    <Files>
-      <File FileName="../../Sunfish/Framework/SunfishGame.cs" Line="74" Column="4" />
-      <File FileName="../../Sunfish/Framework/Screen.cs" Line="77" Column="4" />
-      <File FileName="LocksGame.cs" Line="40" Column="4" />
-    </Files>
-  </MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Release|iPhone" PreferredExecutionTarget="MonoDevelop.IPhone.IPhoneDeviceTarget.iPad Retina" />
+  <MonoDevelop.Ide.Workbench />
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
     <BreakpointStore>
       <Breakpoint file="/Users/chrisworman/Projects/Sunfish/Framework/Views/Label.cs" line="72" column="37" />
