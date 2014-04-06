@@ -185,7 +185,6 @@
     <Content Include="Content\Images\iPadRetina\TopBarBackground.png" />
     <Content Include="Content\Images\iPadRetina\ContinueGameButton.png" />
     <Content Include="Content\Images\iPadRetina\NextButton.png" />
-    <Content Include="Content\Images\iPadRetina\RightArrow.png" />
     <Content Include="Content\Levels\World0Level0.txt" />
     <Content Include="Content\Levels\World0Level1.txt" />
     <Content Include="Content\Levels\World0Level2.txt" />
@@ -227,10 +226,7 @@
     <Content Include="Content\Images\iPadRetina\World0Title.png" />
     <Content Include="Content\Images\iPadRetina\World1Title.png" />
     <Content Include="Content\Images\iPadRetina\World2Title.png" />
-    <Content Include="Content\Images\iPadRetina\WorldLevelFirstUnsolved.png" />
     <Content Include="Content\Images\iPadRetina\WorldLevelsContainer.png" />
-    <Content Include="Content\Images\iPadRetina\WorldLevelSolved.png" />
-    <Content Include="Content\Images\iPadRetina\WorldLevelUnsolved.png" />
     <Content Include="Content\Images\iPadRetina\GearMedium.png" />
     <Content Include="Content\Images\iPadRetina\LockFaceplate.png" />
     <Content Include="Content\Images\iPadRetina\LockBackground.png" />
@@ -393,6 +389,8 @@
     <Content Include="Content\Images\iPad\WorldLevelUnsolved_1.png" />
     <Content Include="Content\Images\iPad\WorldLevelUnsolved_2.png" />
     <Content Include="Content\Images\iPad\WorldLevelUnsolved_3.png" />
+    <Content Include="Content\Images\iPadRetina\UpArrow.png" />
+    <Content Include="Content\Images\iPad\UpArrow.png" />
   </ItemGroup>
   <ItemGroup>
     <ITunesArtwork Include="iTunesArtwork" />
