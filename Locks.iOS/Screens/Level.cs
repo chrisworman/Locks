@@ -53,6 +53,8 @@ namespace Locks.iOS.Screens
 
 		private Label SolvedLabel = null;
 
+		private Sunfish.Views.Sprite TutorialEmphasisArrow = null;
+
 		#endregion
 
 		#region "Initialization"
@@ -94,9 +96,6 @@ namespace Locks.iOS.Screens
 
 			Sunfish.Views.Sprite tutorialButton = new Sunfish.Views.Sprite (LoadTexture ("TutorialButton"));
 			tutorialButton.EnableTapGesture (HandleTutorialButtonTapped);
-			if (LevelNumber == 0 && WorldNumber == 0 && LocksGame.GameProgress.GetSolvedLevel (LevelNumber, WorldNumber) == null) {
-				tutorialButton.StartEffect (new Sunfish.Views.Effects.Pulsate (1500d, 100, Color.LightGreen));
-			}
 
 			Sunfish.Views.Sprite turnsIcon = new Sunfish.Views.Sprite (LoadTexture ("TopBarTurn"));
 			TurnsLabel = new Sunfish.Views.Label ("0", LocksGame.GetTopBarFont (), Color.AntiqueWhite);
@@ -127,6 +126,16 @@ namespace Locks.iOS.Screens
 			TopBar.AddChild (levelLabel, PixelsWithDensity (5), PixelsWithDensity (20));
 			TopBar.AddChild (gameCenterButton);
 			gameCenterButton.PositionInTopRight ();
+
+			if (LevelNumber == 0 && WorldNumber == 0 && LocksGame.GameProgress.GetSolvedLevel (LevelNumber, WorldNumber) == null) {
+				TutorialEmphasisArrow = new Sunfish.Views.Sprite (LoadTexture ("UpArrow"), Sunfish.Constants.ViewLayer.Layer5);
+				Vector2 initialPosition = new Vector2 (tutorialButton.Position.X + PixelsWithDensity(10), tutorialButton.Position.Y + tutorialButton.Height + PixelsWithDensity (10));
+				Vector2 finalPosition = new Vector2 (tutorialButton.Position.X + PixelsWithDensity(10), tutorialButton.Position.Y + tutorialButton.Height - PixelsWithDensity(10));
+				TutorialEmphasisArrow.Position = initialPosition;
+				TutorialEmphasisArrow.StartEffect(new Sunfish.Views.Effects.BackAndForth(initialPosition, finalPosition, 400d));
+				TutorialEmphasisArrow.StartEffect (new Sunfish.Views.Effects.Pulsate (800d, 500, Color.Green));
+				AddChildView (TutorialEmphasisArrow);
+			}
 
 		}
 
@@ -325,8 +334,10 @@ namespace Locks.iOS.Screens
 
 		private void HandleTutorialButtonTapped (Sunfish.Views.View tutorialButton)
 		{
-			tutorialButton.ClearEffects ();
-			tutorialButton.OverlayColor = Color.White;
+			if (TutorialEmphasisArrow != null && TutorialEmphasisArrow.Visible) {
+				TutorialEmphasisArrow.ClearEffects ();
+				TutorialEmphasisArrow.Visible = false;
+			}
 			TutorialPopup.Show ();
 		}
 
